@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<module>
+	<type>language</type>
+	<name>Hungarian</name>
+	<label>HU Magyar</label>
+	<prefix>hu_hu</prefix>
+	
+	<version>5.2.0</version>
+	<creationDate>2010-05-21 17:52:08</creationDate>
+	<author>Holbok István</author>	
+
+	<license><![CDATA[Licensed under the terms of GPL v3.
+
+If you have a questions or suggestions about this translation module, please contact me.
+
+Ha bármilyen kérdése vagy javaslata van ehhez a fordításhoz kapcsolódóan, akkor lépjen kapcsolatba velem.
+
+e-mail: holbok@gmail.com
+mobil: +3670-3420900
+Skype: holboki]]></license>
+
+	<dependencies>
+		<vtiger_version>5.1.0</vtiger_version>
+		<vtiger_max_version>5.*</vtiger_max_version>
+	</dependencies>
+</module>
+

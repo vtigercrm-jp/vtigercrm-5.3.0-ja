@@ -1,0 +1,24 @@
+﻿#################################################################################################################
+#												        														#
+#												Pack de langue Français											#
+#						   						     Pour vtigerCRM												#
+#					        					   Version 5.2.0 VB1.0											#
+#										   Créé et maintenu par French-vTiger									#
+#																												#
+#################################################################################################################
+
+								********************	ChangeLog	********************
+V5.2.0-VB1.0
+# Passage à vTigerCRM 5.2.0
+# Ajout du module Assets
+# Ajout du module SMSNotifier
+								
+V5.1.3=>V5.1.4
+# Correction d'erreurs de traduction dans divers modules
+		# modules/products/language/fr_fr.lang.php
+		# include/language/fr_fr.lang.php
+								
+V5.1.2=>V5.1.3
+# Correction encodage UTF8
+# Ajout des traduction des Picklist des rapports
+# Correction d'erreur d'orthographe et français

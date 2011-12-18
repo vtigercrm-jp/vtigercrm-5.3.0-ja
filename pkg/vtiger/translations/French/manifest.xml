@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<module>
+	<type>language</type>
+	<name>French</name>
+	<label>Francais</label>
+	<prefix>fr_fr</prefix>
+	<version>5.2.0 RC</version>
+	<encoding>UTF-8</encoding>
+	<creationDate>2010-05-31 22:08:14</creationDate>
+	<author>French-vTiger</author>
+	<license>MPL1.1</license>
+	<dependencies>
+		<vtiger_version>5.1.0</vtiger_version>
+		<vtiger_max_version>5.*</vtiger_max_version>
+	</dependencies>
+</module>
+
