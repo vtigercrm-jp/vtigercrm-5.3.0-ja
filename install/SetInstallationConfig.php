@@ -36,7 +36,10 @@ session_start();
 !isset($_SESSION['config_file_info']['site_URL']) ? $site_URL = $web_root : $site_URL = $_SESSION['config_file_info']['site_URL'];
 !isset($_SESSION['config_file_info']['root_directory']) ? $root_directory = $current_dir : $root_directory = $_SESSION['config_file_info']['root_directory'];
 !isset($_SESSION['config_file_info']['admin_email']) ? $admin_email = "" : $admin_email = $_SESSION['config_file_info']['admin_email'];
-!isset($_SESSION['config_file_info']['currency_name']) ? $currency_name = 'USA, Dollars' : $currency_name = $_SESSION['config_file_info']['currency_name'];
+// JFV - change default currency to Japan, Yen
+!isset($_SESSION['config_file_info']['currency_name']) ? $currency_name = 'Japan, Yen' : $currency_name = $_SESSION['config_file_info']['currency_name'];
+//!isset($_SESSION['config_file_info']['currency_name']) ? $currency_name = 'USA, Dollars' : $currency_name = $_SESSION['config_file_info']['currency_name'];
+// JFV END
 
 !isset($_SESSION['installation_info']['check_createdb']) ? $check_createdb = "" : $check_createdb = $_SESSION['installation_info']['check_createdb'];
 !isset($_SESSION['installation_info']['root_user']) ? $root_user = "" : $root_user = $_SESSION['installation_info']['root_user'];
