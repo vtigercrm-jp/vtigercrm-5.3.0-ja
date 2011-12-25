@@ -1884,10 +1884,14 @@ $body='<table width="700" cellspacing="0" cellpadding="0" border="0" align="cent
 		
 	//Insert into vtiger_organizationdetails vtiger_table
 	$organizationId = $this->db->getUniqueID('vtiger_organizationdetails');
+// JFV - localize organization info from vtiger to vtigerCRM.jp
 	$this->db->query("insert into vtiger_organizationdetails(organization_id,organizationname,address,city,state,country,code,phone,fax,website,logoname)
-								values ($organizationId,'vtiger',' 40-41-42, Sivasundar Apartments, Flat D-II, Shastri Street, Velachery','Chennai',
-										'Tamil Nadu','India','600 042','+91-44-5202-1990','+91-44-5202-1990','www.vtiger.com','vtiger-crm-logo.gif')");
-
+								values ($organizationId,'vtigerCRM.jp','1-1','Chiyoda-ku',
+										'Tokyo','Japan','100-0001','+81-12-3456-7890','+81-12-3456-7890','www.vtigerCRM.jp','vtigerCRM.jp_logo.png')");
+//	$this->db->query("insert into vtiger_organizationdetails(organization_id,organizationname,address,city,state,country,code,phone,fax,website,logoname)
+//								values ($organizationId,'vtiger',' 40-41-42, Sivasundar Apartments, Flat D-II, Shastri Street, Velachery','Chennai',
+//										'Tamil Nadu','India','600 042','+91-44-5202-1990','+91-44-5202-1990','www.vtiger.com','vtiger-crm-logo.gif')");
+// JFV END
 
 	$this->db->query("insert into vtiger_actionmapping values(0,'Save',0)");
 	$this->db->query("insert into vtiger_actionmapping values(1,'EditView',0)");

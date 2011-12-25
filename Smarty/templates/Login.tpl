@@ -14,8 +14,15 @@
 	<tr valign="top">
 		<td valign="top" align="left" width="50%">
 			<img align="absmiddle" src="test/logo/{$COMPANY_DETAILS.logo}" alt="logo"/>
-			<br />
+{* JFV - localize login page
+			<br /> *}
+			<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;
+			<span class="communityLinks">日本語版開発元： vtigerCRM 日本語化プロジェクト（
+{* JFV END *}
 			<a target="_blank" href="http://{$COMPANY_DETAILS.website}">{$COMPANY_DETAILS.name}</a>
+{* JFV - localize login page *}
+）</span>
+{* JFV END *}
 		</td>
 
 		<td rowspan="2">
@@ -27,10 +34,16 @@
 					<input type="hidden" name="return_module" value="Users" />
 					<input type="hidden" name="return_action" value="Login" />
 					<div class="inputs">
-						<div class="label">User Name</div>
+{* JFV - localize login page
+						<div class="label">User Name</div> *}
+						<div class="label">{$CURRENT_MODULE_STRINGS.LBL_USER_NAME}</div>
+{* JFV END *}
 						<div class="input"><input type="text" name="user_name"/></div>
 						<br />
-						<div class="label">Password</div>
+{* JFV - localize login page
+						<div class="label">Password</div> *}
+						<div class="label">{$CURRENT_MODULE_STRINGS.LBL_PASSWORD}</div>
+{* JFV END *}
 						<div class="input"><input type="password" name="user_password"/></div>
 						{if $LOGIN_ERROR neq ''}
 						<div class="errorMessage">
@@ -39,7 +52,10 @@
 						{/if}
 						<br />
 						<div class="button">
-							<input type="submit" id="submitButton" value="Login" />
+{* JFV - localize login page
+							<input type="submit" id="submitButton" value="Login" /> *}
+							<input type="submit" id="submitButton" value="{$CURRENT_MODULE_STRINGS.LBL_LOGIN_BUTTON_LABEL}" />
+{* JFV END *}
 						</div>
 					</div>
 				</form>

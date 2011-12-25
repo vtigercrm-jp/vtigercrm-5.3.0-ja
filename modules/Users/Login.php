@@ -66,7 +66,11 @@ require_once 'vtigerversion.php';
 global $currentModule, $moduleList, $adb, $vtiger_current_version;
 $image_path="include/images/";
 
-$app_strings = return_application_language('en_us');
+// JFV - localize login page
+global $default_language;
+$app_strings = return_application_language($default_language);
+//$app_strings = return_application_language('en_us');
+// JFV END
 
 $smarty=new vtigerCRM_Smarty;
 $smarty->assign("APP", $app_strings);
@@ -90,6 +94,9 @@ $companyDetails['name'] = $adb->query_result($result,0,'organizationname');
 $companyDetails['website'] = $adb->query_result($result,0,'website');
 $companyDetails['logo'] = decode_html($adb->query_result($result,0,'logoname'));
 $smarty->assign("COMPANY_DETAILS",$companyDetails);
+// JFV - localize login page
+$smarty->assign("CURRENT_MODULE_STRINGS",$current_module_strings);
+// JFV END
 
 if(isset($login_error) && $login_error != "") {
 	$smarty->assign("LOGIN_ERROR", $login_error);

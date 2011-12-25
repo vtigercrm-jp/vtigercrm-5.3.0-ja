@@ -165,7 +165,10 @@ $default_charset = '_VT_CHARSET_';
 
 // default language
 // default_language default value = en_us
-$default_language = 'en_us';
+// JFV - default language to ja
+$default_language = 'ja';
+//$default_language = 'en_us';
+// JFV END
 
 // add the language pack name to every translation string in the display.
 // translation_string_prefix default value = false
