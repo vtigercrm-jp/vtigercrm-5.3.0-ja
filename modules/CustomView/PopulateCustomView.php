@@ -169,15 +169,27 @@ $cvcolumns = Array(Array('vtiger_leaddetails:lead_no:lead_no:Leads_Lead_No:V',
                          'vtiger_leaddetails:email:email:Leads_Email:E',
 			 'vtiger_crmentity:smownerid:assigned_user_id:Leads_Assigned_To:V'),
 
-	           Array('vtiger_leaddetails:firstname:firstname:Leads_First_Name:V',
+// JFV - swap firstname and lastname
+	           Array(
+//	           Array('vtiger_leaddetails:firstname:firstname:Leads_First_Name:V',
+// JFV END
                          'vtiger_leaddetails:lastname:lastname:Leads_Last_Name:V',
+// JFV - swap firstname and lastname
+						 'vtiger_leaddetails:firstname:firstname:Leads_First_Name:V',
+// JFV END
                          'vtiger_leaddetails:company:company:Leads_Company:V',
                          'vtiger_leaddetails:leadsource:leadsource:Leads_Lead_Source:V',
                          'vtiger_leadsubdetails:website:website:Leads_Website:V',
                          'vtiger_leaddetails:email:email:Leads_Email:E'),
 
-		   Array('vtiger_leaddetails:firstname:firstname:Leads_First_Name:V',
+// JFV - swap firstname and lastname
+		   Array(
+//		   Array('vtiger_leaddetails:firstname:firstname:Leads_First_Name:V',
+// JFV END
                          'vtiger_leaddetails:lastname:lastname:Leads_Last_Name:V',
+// JFV - swap firstname and lastname
+						 'vtiger_leaddetails:firstname:firstname:Leads_First_Name:V',
+// JFV END
                          'vtiger_leaddetails:company:company:Leads_Company:V',
                          'vtiger_leaddetails:leadsource:leadsource:Leads_Lead_Source:V',
                          'vtiger_leadsubdetails:website:website:Leads_Website:V',
@@ -203,24 +215,41 @@ $cvcolumns = Array(Array('vtiger_leaddetails:lead_no:lead_no:Leads_Lead_No:V',
                          'vtiger_crmentity:smownerid:assigned_user_id:Accounts_Assigned_To:V'),
 
 		   Array('vtiger_contactdetails:contact_no:contact_no:Contacts_Contact_Id:V',
-		   			'vtiger_contactdetails:firstname:firstname:Contacts_First_Name:V',
+// JFV - swap firstname and lastname
+//		   			'vtiger_contactdetails:firstname:firstname:Contacts_First_Name:V',
+// JFV END					
                          'vtiger_contactdetails:lastname:lastname:Contacts_Last_Name:V',
+// JFV - swap firstname and lastname
+						 'vtiger_contactdetails:firstname:firstname:Contacts_First_Name:V',
+// JFV END					
                          'vtiger_contactdetails:title:title:Contacts_Title:V',
 						 'vtiger_contactdetails:accountid:account_id:Contacts_Account_Name:I',
                          'vtiger_contactdetails:email:email:Contacts_Email:E',
                          'vtiger_contactdetails:phone:phone:Contacts_Office_Phone:V',
 			 'vtiger_crmentity:smownerid:assigned_user_id:Contacts_Assigned_To:V'),
 
-		   Array('vtiger_contactdetails:firstname:firstname:Contacts_First_Name:V',
+// JFV - swap firstname and lastname
+		   Array(
+//		   Array('vtiger_contactdetails:firstname:firstname:Contacts_First_Name:V',
+// JFV END					
                          'vtiger_contactdetails:lastname:lastname:Contacts_Last_Name:V',
+// JFV - swap firstname and lastname
+						 'vtiger_contactdetails:firstname:firstname:Contacts_First_Name:V',
+// JFV END					
                          'vtiger_contactaddress:mailingstreet:mailingstreet:Contacts_Mailing_Street:V',
                          'vtiger_contactaddress:mailingcity:mailingcity:Contacts_Mailing_City:V',
                          'vtiger_contactaddress:mailingstate:mailingstate:Contacts_Mailing_State:V',
 			 'vtiger_contactaddress:mailingzip:mailingzip:Contacts_Mailing_Zip:V',
 			 'vtiger_contactaddress:mailingcountry:mailingcountry:Contacts_Mailing_Country:V'),
 		   
-		   Array('vtiger_contactdetails:firstname:firstname:Contacts_First_Name:V',
+// JFV - swap firstname and lastname
+		   Array(
+//		   Array('vtiger_contactdetails:firstname:firstname:Contacts_First_Name:V',
+// JFV END
                  'vtiger_contactdetails:lastname:lastname:Contacts_Last_Name:V',
+// JFV - swap firstname and lastname
+				 'vtiger_contactdetails:firstname:firstname:Contacts_First_Name:V',
+// JFV END
                  'vtiger_contactdetails:title:title:Contacts_Title:V',
                  'vtiger_contactdetails:accountid:account_id:Contacts_Account_Name:I',
                  'vtiger_contactdetails:email:email:Contacts_Email:E',
