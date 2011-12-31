@@ -203,6 +203,9 @@ function export($type){
 	$header = implode("\",\"",array_values($translated_fields_array));
 	$header = "\"" .$header;
 	$header .= "\"\r\n";
+// JFV - output UTF-8 BOM chars for exporting
+	echo chr(0xef) . chr(0xbb) . chr(0xbf);
+// JFV END
 	
 	/** Output header information */
 	echo $header;
