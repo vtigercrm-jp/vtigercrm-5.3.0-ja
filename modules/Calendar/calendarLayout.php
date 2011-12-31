@@ -310,12 +310,20 @@ function get_cal_header_data(& $cal_arr,$viewBox,$subtab)
 			<tr><td colspan='3'>&nbsp;</td></tr>";
 			if(isPermitted("Calendar","EditView") == "yes")
 			{
+// JFV - adjust height and icon of Add button Calendar page
+//			$headerdata .="<tr>
+//				<td>
+//				<table><tr><td class='calAddButton' style='cursor:pointer;height:30px' align='center' width='15%' onMouseOver='fnAddEvent(this,\"addEventDropDown\",\"".$temp_date."\",\"".$temp_date."\",\"".$time_arr['starthour']."\",\"".$time_arr['startmin']."\",\"".$time_arr['startfmt']."\",\"".$time_arr['endhour']."\",\"".$time_arr['endmin']."\",\"".$time_arr['endfmt']."\",\"".$viewBox."\",\"".$subtab."\",\"".$eventlist."\");'>
+//					".$mod_strings['LBL_ADD']."
+//					<img src='".vtiger_imageurl('menuDnArrow.gif', $theme)."' style='padding-left: 5px;' border='0'>
+//				</td></tr></table> </td>";
 			$headerdata .="<tr>
-				<td>
-				<table><tr><td class='calAddButton' style='cursor:pointer;height:30px' align='center' width='15%' onMouseOver='fnAddEvent(this,\"addEventDropDown\",\"".$temp_date."\",\"".$temp_date."\",\"".$time_arr['starthour']."\",\"".$time_arr['startmin']."\",\"".$time_arr['startfmt']."\",\"".$time_arr['endhour']."\",\"".$time_arr['endmin']."\",\"".$time_arr['endfmt']."\",\"".$viewBox."\",\"".$subtab."\",\"".$eventlist."\");'>
-					".$mod_strings['LBL_ADD']."
-					<img src='".vtiger_imageurl('menuDnArrow.gif', $theme)."' style='padding-left: 5px;' border='0'>
-				</td></tr></table> </td>";
+			<td>
+			<table><tr><td class='calAddButton' style='cursor:pointer;height:20px' align='center' width='15%' onMouseOver='fnAddEvent(this,\"addEventDropDown\",\"".$temp_date."\",\"".$temp_date."\",\"".$time_arr['starthour']."\",\"".$time_arr['startmin']."\",\"".$time_arr['startfmt']."\",\"".$time_arr['endhour']."\",\"".$time_arr['endmin']."\",\"".$time_arr['endfmt']."\",\"".$viewBox."\",\"".$subtab."\",\"".$eventlist."\");'>
+			".$mod_strings['LBL_ADD']."
+			<img src='".vtiger_imageurl('menuDnArrow2.gif', $theme)."' style='padding-left: 5px;' border='0'>
+			</td></tr></table> </td>";
+// JFV END
 			}
 			else
 			{
@@ -2143,10 +2151,18 @@ function constructTodoListView($todo_list,$cal,$subtab,$navigation_array='')
 			//checking permission for Create/Edit Operation
 			if(isPermitted("Calendar","EditView") == "yes")
 			{
+// JFV - adjust height and icon of Add button Calendar page
+//			$list_view .="<tr>
+//				<td class='calAddButton' onMouseOver='fnAddEvent(this,\"addEventDropDown\",\"".$temp_date."\",\"".$endtemp_date."\",\"".$time_arr['starthour']."\",\"".$time_arr['startmin']."\",\"".$time_arr['startfmt']."\",\"".$time_arr['endhour']."\",\"".$time_arr['endmin']."\",\"".$time_arr['endfmt']."\",\"\",\"".$subtab."\",\"".$eventlist."\");'style='border: 1px solid #666666;cursor:pointer;height:30px' align='center' width='10%'>
+//                                        ".$mod_strings['LBL_ADD']."
+//                                        <img src='".vtiger_imageurl('menuDnArrow.gif', $theme)."' style='padding-left: 5px;' border='0'>                                                                                                                         </td>";
 			$list_view .="<tr>
-				<td class='calAddButton' onMouseOver='fnAddEvent(this,\"addEventDropDown\",\"".$temp_date."\",\"".$endtemp_date."\",\"".$time_arr['starthour']."\",\"".$time_arr['startmin']."\",\"".$time_arr['startfmt']."\",\"".$time_arr['endhour']."\",\"".$time_arr['endmin']."\",\"".$time_arr['endfmt']."\",\"\",\"".$subtab."\",\"".$eventlist."\");'style='border: 1px solid #666666;cursor:pointer;height:30px' align='center' width='10%'>
+			<td><table><tr>
+				<td class='calAddButton' onMouseOver='fnAddEvent(this,\"addEventDropDown\",\"".$temp_date."\",\"".$endtemp_date."\",\"".$time_arr['starthour']."\",\"".$time_arr['startmin']."\",\"".$time_arr['startfmt']."\",\"".$time_arr['endhour']."\",\"".$time_arr['endmin']."\",\"".$time_arr['endfmt']."\",\"\",\"".$subtab."\",\"".$eventlist."\");'style='border: 1px solid #666666;cursor:pointer;height:20px' align='center' width='15%'>
                                         ".$mod_strings['LBL_ADD']."
-                                        <img src='".vtiger_imageurl('menuDnArrow.gif', $theme)."' style='padding-left: 5px;' border='0'>                                                                                                                         </td>";
+                                        <img src='".vtiger_imageurl('menuDnArrow2.gif', $theme)."' style='padding-left: 5px;' border='0'></td>
+			</tr></table></td>";
+// JFV END
 			}
 			else
 			{
