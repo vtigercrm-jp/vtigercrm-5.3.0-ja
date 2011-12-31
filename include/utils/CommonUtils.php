@@ -1498,7 +1498,15 @@ function updateInfo($id)
     $values=explode(' ',$modifiedtime);
     $date_info=explode('-',$values[0]);
     $time_info=explode(':',$values[1]);
+// JFV - updateinfo date format
+	global $lang_crm;
+	if($lang_crm == 'ja'){
+		$date = $values[0];
+	}else{
 	$date = $date_info[2].' '.$app_strings[date("M", mktime(0, 0, 0, $date_info[1], $date_info[2],$date_info[0]))].' '.$date_info[0];
+// JFV
+	}
+// JFV END
     $time_modified = strtotime($modifiedtime);
     $time_now = strtotime($current_time);
     $days_diff = (int)(($time_now - $time_modified) / (60 * 60 * 24));
