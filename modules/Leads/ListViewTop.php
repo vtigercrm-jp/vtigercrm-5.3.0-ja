@@ -116,8 +116,15 @@ function getNewLeads($maxval,$calCnt)
 				'COMPANY' => $lead['company'],
 				'LEAD_ID' => $lead['id'],
 				);
-
+// JFV - fix wrongly truncationed utf8 string
+		if (function_exists("mb_strimwidth")) {
+			$Top_Leads = mb_strimwidth($lead['leadname'], 0, 30, '...', "UTF-8");
+		}else{
+// JFV END
 		$Top_Leads = (strlen($lead['leadname']) > 20) ? (substr($lead['leadname'],0,20).'...') : $lead['leadname'];
+// JFV
+		}
+// JFV END
 		$value[]= '<a href="index.php?action=DetailView&module=Leads&record='.$lead_fields['LEAD_ID'].'">'.$Top_Leads.'</a>';
 		$value[]=$lead_fields['COMPANY'];
 

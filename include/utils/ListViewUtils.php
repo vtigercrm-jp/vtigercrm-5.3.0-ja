@@ -4275,6 +4275,16 @@ function textlength_check($field_val)
 	global $listview_max_textlength, $default_charset;
 	if($listview_max_textlength) {
 		$temp_val = preg_replace("/(<\/?)(\w+)([^>]*>)/i","",$field_val);
+		// JFV : fix wrongly truncationed utf8 string, see 
+		//		http://forums.vtiger.com/viewtopic.php?p=64841#64841
+		//		mb_string.dll in php.ini is disabled by default, when using windows installer
+		if (function_exists("mb_strimwidth")) {
+
+			$temp_val = preg_replace("/(<\/?)(\w+)([^>]*>)/i","",$field_val); 
+			return mb_strimwidth($temp_val, 0, $listview_max_textlength, '...', "UTF-8");
+		
+		}else{
+		// JFV END
 		if(function_exists('mb_strlen')){
 			if(mb_strlen($temp_val) > $listview_max_textlength) {
 				$temp_val = mb_substr(preg_replace("/(<\/?)(\w+)([^>]*>)/i","",$field_val),0,
@@ -4283,6 +4293,9 @@ function textlength_check($field_val)
 		}elseif(strlen($field_val) > $listview_max_textlength) {
 			$temp_val = substr(preg_replace("/(<\/?)(\w+)([^>]*>)/i","",$field_val),0,$listview_max_textlength).'...';
         }
+		// JFV
+		}
+		// JFV END
 	} else {
 		$temp_val = $field_val;
 	}

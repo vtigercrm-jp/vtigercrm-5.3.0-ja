@@ -82,7 +82,15 @@ function getTopPotentials($maxval,$calCnt)
 					);
 			$potentialid=$adb->query_result($list_result,$i,'potentialid');                                  
 			$potentialname = $adb->query_result($list_result,$i,'potentialname');
+// JFV - fix wrongly truncationed utf8 string
+			if (function_exists("mb_strimwidth")) {
+				$Top_Potential = mb_strimwidth($potentialname, 0, 30, '...', "UTF-8");
+			}else{
+// JFV END
 			$Top_Potential = (strlen($potentialname) > 20) ? (substr($potentialname,0,20).'...') : $potentialname;
+// JFV
+			}
+// JFV END
 			$value=array();
 			$value[]='<a href="index.php?action=DetailView&module=Potentials&record='.$potentialid.'">'.$Top_Potential.'</a>';
 

@@ -63,7 +63,15 @@ function getMyTickets($maxval,$calCnt)
 			elseif($viewstatus == 'Marked')
 				$value[]= '<a style="color:yellow;" href="index.php?action=DetailView&module=HelpDesk&record='.substr($adb->query_result($tktresult,$i,"ticketid"),0,20).'">'.$adb->query_result($tktresult,$i,"title").'</a>';
 			else
+// JFV - fix wrongly truncationed utf8 string
+				if (function_exists("mb_strimwidth")) {
+					$value[]= '<a href="index.php?action=DetailView&module=HelpDesk&record='.substr($adb->query_result($tktresult,$i,"ticketid"),0,20).'">'.mb_strimwidth($adb->query_result($tktresult,$i,"title"), 0, 30, '...', "UTF-8").'</a>';
+				}else{
+// JFV END
 				$value[]= '<a href="index.php?action=DetailView&module=HelpDesk&record='.substr($adb->query_result($tktresult,$i,"ticketid"),0,20).'">'.substr($adb->query_result($tktresult,$i,"title"),0,20).'</a>';
+// JFV
+				}
+// JFV END
 
 			$parent_id = $adb->query_result($tktresult,$i,"parent_id");
 			$parent_name = '';

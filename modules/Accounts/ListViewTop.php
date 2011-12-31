@@ -96,8 +96,15 @@ function getTopAccounts($maxval,$calCnt)
 				'ACCOUNT_NAME' => $account['accountname'],
 				'AMOUNT' => ($account['amount']),
 				);
-
+// JFV - fix wrongly truncationed utf8 string
+		if (function_exists("mb_strimwidth")) {
+			$Top_Accounts = mb_strimwidth($account['accountname'], 0, 30, '...', "UTF-8");
+		}else{
+// JFV END
 		$Top_Accounts = (strlen($account['accountname']) > 20) ? (substr($account['accountname'],0,20).'...') : $account['accountname'];
+// JFV
+		}
+// JFV END
 		$value[]='<a href="index.php?action=DetailView&module=Accounts&record='.$account['accountid'].'">'.$Top_Accounts.'</a>';
 		$value[] = CurrencyField::convertToUserFormat($account['amount']);
 		$entries[$account['accountid']]=$value;	

@@ -106,7 +106,15 @@ function getKeyMetrics($maxval,$calCnt)
 		foreach($metriclists as $metriclist)
 		{
 			$value=array();
+// JFV - fix wrongly truncationed utf8 string
+			if (function_exists("mb_strimwidth")) {
+				$CVname = mb_strimwidth($metriclist['name'], 0, 20, '...', "UTF-8");
+			}else{
+// JFV END
 			$CVname = (strlen($metriclist['name']) > 20) ? (substr($metriclist['name'],0,20).'...') : $metriclist['name'];
+// JFV
+		}
+// JFV END
 			$value[]='<a href="index.php?action=ListView&module='.$metriclist['module'].'&viewname='.$metriclist['id'].'">'.$CVname . '</a> <font style="color:#6E6E6E;">('. $metriclist['user'] .')</font>';
 			$value[]='<a href="index.php?action=ListView&module='.$metriclist['module'].'&viewname='.$metriclist['id'].'">'.getTranslatedString($metriclist['module']). '</a>';
 			$value[]='<a href="index.php?action=ListView&module='.$metriclist['module'].'&viewname='.$metriclist['id'].'">'.$metriclist['count'].'</a>';
