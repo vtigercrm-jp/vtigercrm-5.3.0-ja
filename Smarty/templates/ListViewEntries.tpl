@@ -188,6 +188,21 @@
 				<table border="0" cellpadding="5" cellspacing="0" width="98%">
 				<tr>
 					<td rowspan="2" width="25%"><img src="{'empty.jpg'|@vtiger_imageurl:$THEME}" height="60" width="61"></td>
+					
+				{* JFV : remove LBL_NO for ja lang*}
+				{if $smarty.session.authenticated_user_language eq 'ja'}
+					<td style="border-bottom: 1px solid rgb(204, 204, 204);" nowrap="nowrap" width="75%" align="left"><span class="genHeaderSmall">
+					{if $MODULE_CREATE eq 'SalesOrder' || $MODULE_CREATE eq 'PurchaseOrder' || $MODULE_CREATE eq 'Invoice' || $MODULE_CREATE eq 'Quotes'}
+						{$APP.$MODULE_CREATE} {$APP.LBL_FOUND}
+					{elseif $MODULE eq 'Calendar'}
+						{$APP.ACTIVITIES} {$APP.LBL_FOUND}
+					{else}
+						{* vtlib customization: Use translation string only if available *}
+						{if $APP.$MODULE_CREATE}{$APP.$MODULE_CREATE}{else}{$MODULE_CREATE}{/if} {$APP.LBL_FOUND}
+					{/if}
+
+				{else}
+				{* JFV END *}
 					<td style="border-bottom: 1px solid rgb(204, 204, 204);" nowrap="nowrap" width="75%"><span class="genHeaderSmall">
 					{if $MODULE_CREATE eq 'SalesOrder' || $MODULE_CREATE eq 'PurchaseOrder' || $MODULE_CREATE eq 'Invoice' || $MODULE_CREATE eq 'Quotes'}
 						{$APP.LBL_NO} {$APP.$MODULE_CREATE} {$APP.LBL_FOUND} !
@@ -197,6 +212,12 @@
 						{* vtlib customization: Use translation string only if available *}
 						{$APP.LBL_NO} {if $APP.$MODULE_CREATE}{$APP.$MODULE_CREATE}{else}{$MODULE_CREATE}{/if} {$APP.LBL_FOUND} !
 					{/if}
+					
+				{* JFV *}
+				{/if}
+				{* JFV END *}
+					
+					
 					</span></td>
 				</tr>
 				<tr>
@@ -240,6 +261,21 @@
 				<table border="0" cellpadding="5" cellspacing="0" width="98%">
 				<tr>
 				<td rowspan="2" width="25%"><img src="{'denied.gif'|@vtiger_imageurl:$THEME}"></td>
+				
+				{* JFV : remove LBL_NO for ja lang*}
+				{if $smarty.session.authenticated_user_language eq 'ja'}
+				
+				<td style="border-bottom: 1px solid rgb(204, 204, 204);" nowrap="nowrap" width="75%"><span class="genHeaderSmall">
+				{if $MODULE_CREATE eq 'SalesOrder' || $MODULE_CREATE eq 'PurchaseOrder' || $MODULE_CREATE eq 'Invoice' || $MODULE_CREATE eq 'Quotes'}
+					{$APP.$MODULE_CREATE} {$APP.LBL_FOUND}</span></td>
+				{else}
+					{* vtlib customization: Use translation string only if available *}
+					{if $APP.$MODULE_CREATE}{$APP.$MODULE_CREATE}{else}{$MODULE_CREATE}{/if} {$APP.LBL_FOUND}</span></td>
+				{/if}
+
+				{else}
+				{* JFV END *}
+				
 				<td style="border-bottom: 1px solid rgb(204, 204, 204);" nowrap="nowrap" width="75%"><span class="genHeaderSmall">
 				{if $MODULE_CREATE eq 'SalesOrder' || $MODULE_CREATE eq 'PurchaseOrder' || $MODULE_CREATE eq 'Invoice' || $MODULE_CREATE eq 'Quotes'}
 					{$APP.LBL_NO} {$APP.$MODULE_CREATE} {$APP.LBL_FOUND} !</span></td>
@@ -247,6 +283,11 @@
 					{* vtlib customization: Use translation string only if available *}
 					{$APP.LBL_NO} {if $APP.$MODULE_CREATE}{$APP.$MODULE_CREATE}{else}{$MODULE_CREATE}{/if} {$APP.LBL_FOUND} !</span></td>
 				{/if}
+				
+				{* JFV *}
+				{/if}
+				{* JFV END *}
+				
 				</tr>
 				<tr>
 				<td class="small" align="left" nowrap="nowrap">{$APP.LBL_YOU_ARE_NOT_ALLOWED_TO_CREATE} {$APP.$vowel_conf}

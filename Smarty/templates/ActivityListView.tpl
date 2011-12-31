@@ -449,7 +449,13 @@ function alphabetic(module,url,dataid)
 							<table border="0" cellpadding="5" cellspacing="0" width="98%">
 							<tr>
 								<td rowspan="2" width="25%"><img src="{'empty.jpg'|@vtiger_imageurl:$THEME}" height="60" width="61"></td>
+								{* JFV : remove LBL_NO for ja lang*}
+								{if $smarty.session.authenticated_user_language eq 'ja'}
+								<td style="border-bottom: 1px solid rgb(204, 204, 204);" align="left" nowrap="nowrap" width="75%"><span class="genHeaderSmall">{$APP.ACTIVITIES} {$APP.LBL_FOUND}</span></td>
+								{else}
 								<td style="border-bottom: 1px solid rgb(204, 204, 204);" nowrap="nowrap" width="75%"><span class="genHeaderSmall">{$APP.LBL_NO} {$APP.ACTIVITIES} {$APP.LBL_FOUND} !</span></td>
+								{/if}
+								{* JFV END *}
 							</tr>
 							<tr>
 							<td class="small" align="left" nowrap="nowrap">{$APP.LBL_YOU_CAN_CREATE} {$APP.$vowel_conf} {$APP.$MODULE_CREATE} {$APP.LBL_NOW}. {$APP.LBL_CLICK_THE_LINK}:<br>
@@ -462,7 +468,12 @@ function alphabetic(module,url,dataid)
 							<table border="0" cellpadding="5" cellspacing="0" width="98%">
 							<tr>
 								<td rowspan="2" width="25%"><img src="{'empty.jpg'|@vtiger_imageurl:$THEME}" height="60" width="61"></td>
+								{* JFV *}
+								{if $smarty.session.authenticated_user_language eq 'ja'}
+								<td style="border-bottom: 1px solid rgb(204, 204, 204);" nowrap="nowrap" width="75%"><span class="genHeaderSmall">{$APP.ACTIVITIES} {$APP.LBL_FOUND}</span></td>
+								{else}
 								<td style="border-bottom: 1px solid rgb(204, 204, 204);" nowrap="nowrap" width="75%"><span class="genHeaderSmall">{$APP.LBL_NO} {$APP.ACTIVITIES} {$APP.LBL_FOUND} !</span></td>
+								{/if}
 							</tr>
 							<tr>
 								<td class="small" align="left" nowrap="nowrap">{$APP.LBL_YOU_ARE_NOT_ALLOWED_TO_CREATE} {$APP.$vowel_conf} {$APP.$MODULE_CREATE}<br>

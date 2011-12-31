@@ -71,7 +71,15 @@
 					<script>redirectWhenNoRelatedRecordsFound();</script>
                                         <td style="border-bottom: 1px solid rgb(204, 204, 204);" nowrap="nowrap" width="75%"><span class="genHeaderSmall">{$APP.LBL_NO} {$MODULE|@getTranslatedString:$MODULE} {$APP.RELATED} !</td>
                                         {else}
+{* JFV : remove LBL_NO for ja lang*}
+{if $smarty.session.authenticated_user_language eq 'ja'}										
+                                        <td style="border-bottom: 1px solid rgb(204, 204, 204);" nowrap="nowrap" width="75%"><span class="genHeaderSmall">{$MODULE|@getTranslatedString:$MODULE} {$APP.LBL_FOUND}</td>
+{else}
+{* JFV END *}
                                         <td style="border-bottom: 1px solid rgb(204, 204, 204);" nowrap="nowrap" width="75%"><span class="genHeaderSmall">{$APP.LBL_NO} {$MODULE|@getTranslatedString:$MODULE} {$APP.LBL_FOUND} !</td>
+{* JFV *}
+{/if}
+{* JFV END *}
                                         {/if}
                                 </tr>
                         </table>

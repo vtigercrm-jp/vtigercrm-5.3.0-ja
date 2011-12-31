@@ -1987,6 +1987,18 @@ function constructEventListView(& $cal,$entry_list,$navigation_array='')
 	{
 		$list_view .="<tr><td style='background-color:#efefef;height:340px' align='center' colspan='9'>
 				";
+			// JFV : remove LBL_NO for ja lang
+			if($_SESSION['authenticated_user_language']=='ja'){
+			$list_view .="<div style='border: 3px solid rgb(153, 153, 153); background-color: rgb(255, 255, 255); width: 45%; position: relative; z-index: 5000;'>
+					<table border='0' cellpadding='5' cellspacing='0' width='98%'>
+						<tr>
+							<td rowspan='2' width='25%'>
+								<img src='" . vtiger_imageurl('empty.jpg', $theme). "' height='60' width='61'></td>
+							<td style='border-bottom: 1px solid rgb(204, 204, 204);padding-left:15px' nowrap='nowrap' width='75%' align='left'><span class='genHeaderSmall'>".$app_strings['Events']." ".$app_strings['LBL_FOUND']."</span></td>
+						</tr>
+						<tr>";
+			}else{
+			// JFV END
 			$list_view .="<div style='border: 3px solid rgb(153, 153, 153); background-color: rgb(255, 255, 255); width: 45%; position: relative; z-index: 5000;'>
 					<table border='0' cellpadding='5' cellspacing='0' width='98%'>
 						<tr>
@@ -1995,6 +2007,9 @@ function constructEventListView(& $cal,$entry_list,$navigation_array='')
 							<td style='border-bottom: 1px solid rgb(204, 204, 204);' nowrap='nowrap' width='75%'><span class='genHeaderSmall'>".$app_strings['LBL_NO']." ".$app_strings['Events']." ".$app_strings['LBL_FOUND']." !</span></td>
 						</tr>
 						<tr>";
+			// JFV
+			}
+			// JFV END
 			//checking permission for Create/Edit Operation
 			if(isPermitted("Calendar","EditView") == "yes")
                         {
@@ -2174,6 +2189,18 @@ function constructTodoListView($todo_list,$cal,$subtab,$navigation_array='')
         else
         {
 		$list_view .="<tr><td style='background-color:#efefef;height:340px' align='center' colspan='".$colspan."'>";
+		// JFV : remove LBL_NO for ja lang
+		if($_SESSION['authenticated_user_language']=='ja'){
+			$list_view .="<div style='border: 3px solid rgb(153, 153, 153); background-color: rgb(255, 255, 255); width: 45%; position: relative; z-index: 5000;'>
+			<table border='0' cellpadding='5' cellspacing='0' width='98%'>
+			<tr>
+			<td rowspan='2' width='25%'>
+			<img src='" . vtiger_imageurl('empty.jpg', $theme). "' height='60' width='61'></td>
+			<td style='border-bottom: 1px solid rgb(204, 204, 204);padding-left:15px' nowrap='nowrap' width='75%' align='left'><span class='genHeaderSmall'>".$app_strings['Todos']." ".$app_strings['LBL_FOUND']."</span></td>
+			</tr>
+			<tr>";
+		}else{
+		// JFV END		
 		$list_view .="<div style='border: 3px solid rgb(153, 153, 153); background-color: rgb(255, 255, 255); width: 45%; position: relative; z-index: 5000;'>
 			<table border='0' cellpadding='5' cellspacing='0' width='98%'>
 			<tr>
@@ -2182,6 +2209,9 @@ function constructTodoListView($todo_list,$cal,$subtab,$navigation_array='')
 				<td style='border-bottom: 1px solid rgb(204, 204, 204);' nowrap='nowrap' width='75%'><span class='genHeaderSmall'>".$app_strings['LBL_NO']." ".$app_strings['Todos']." ".$app_strings['LBL_FOUND']." !</span></td>
 			</tr>
 			<tr>";
+		// JFV
+		}
+		// JFV END
 		//checking permission for Create/Edit Operation
 		if(isPermitted("Calendar","EditView") == "yes")
 		{

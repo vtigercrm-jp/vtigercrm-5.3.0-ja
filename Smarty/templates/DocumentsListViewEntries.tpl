@@ -191,10 +191,21 @@
 																<table border="0" cellpadding="5" cellspacing="0" width="98%">
 																	<tr>
 																		<td rowspan="2" width="25%"><img src="{'empty.jpg'|@vtiger_imageurl:$THEME}" height="60" width="61"></td>
+{* JFV : remove LBL_NO for ja lang*}
+{if $smarty.session.authenticated_user_language eq 'ja'}
+																		<td style="border-bottom: 1px solid rgb(204, 204, 204);" nowrap="nowrap" width="75%" align="left"><span class="genHeaderSmall">
+																		{* vtlib customization: Use translation string only if available *}
+																		{if $APP.$MODULE_CREATE}{$APP.$MODULE_CREATE}{else}{$MODULE_CREATE}{/if} {$APP.LBL_FOUND}
+{else}
+{* JFV END *}
 																		<td style="border-bottom: 1px solid rgb(204, 204, 204);" nowrap="nowrap" width="75%"><span class="genHeaderSmall">
 																		{* vtlib customization: Use translation string only if available *}
 																		{$APP.LBL_NO} {if $APP.$MODULE_CREATE}{$APP.$MODULE_CREATE}{else}{$MODULE_CREATE}{/if} {$APP.LBL_FOUND} !
-																			</span>
+{* JFV *}
+{/if}
+{* JFV END *}
+
+																		</span>
 																		</td>
 																	</tr>
 																	<tr>
