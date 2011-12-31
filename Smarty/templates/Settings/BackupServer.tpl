@@ -74,7 +74,16 @@
 												<td width="20%" align='right' class="small cellText"> 
 													<input title="{$APP.LBL_EDIT_BUTTON_TITLE}" accessKey="{$APP.LBL_EDIT_BUTTON_KEY}" class="crmButton small edit" onclick="this.form.action.value='BackupServerConfig';this.form.local_server_mode.value='edit'" type="submit" name="Edit" value="{$APP.LBL_EDIT_BUTTON_LABEL}">&nbsp;
 													{if $LOCAL_SERVER_MODE neq 'edit'}
+{* JFV : force to change jp translation for LBL_NOW, temporally dirty solution. root cause is LBL_NOW label conflict *}
+{if $smarty.session.authenticated_user_language eq 'ja'}
+														<input title="{$APP.LBL_SAVE_BUTTON_LABEL}" accessKey="{$APP.LBL_SAVE_BUTTON_KEY}" class="crmButton small save" type="submit" name="backupnow" value="{$MOD.LBL_BACKUP} {php}global $app_strings; echo str_replace('には','',$app_strings['LBL_NOW']);{/php}" onclick="this.form.action.value='BackupServerConfig';" >&nbsp;&nbsp;
+{else}
+{* JFV END *}
 														<input title="{$APP.LBL_SAVE_BUTTON_LABEL}" accessKey="{$APP.LBL_SAVE_BUTTON_KEY}" class="crmButton small save" type="submit" name="backupnow" value="{$MOD.LBL_BACKUP} {$APP.LBL_NOW}" onclick="this.form.action.value='BackupServerConfig';" >&nbsp;&nbsp;
+{* JFV *}
+{/if}
+{* JFV END *}
+
 													{else}
 														<input title="{$APP.LBL_SAVE_BUTTON_LABEL}" accessKey="{$APP.LBL_SAVE_BUTTON_KEY}" class="crmButton small save" type="submit" name="backupnow" value="{$MOD.LBL_BACKUP} {$APP.LBL_NOW}" onclick="this.form.action.value='BackupServerConfig';" style='visibility:none;' disabled='true'>&nbsp;&nbsp;
 													{/if}												
