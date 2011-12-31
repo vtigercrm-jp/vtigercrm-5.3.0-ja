@@ -91,12 +91,20 @@ function validateFile(form)
 							<select name="delimiter" class="small" style="font-family:Times;">
 								<option value=",">,</option>
 								<option value=";">;</option>
+{* JFV : add import separators *}
+								<option value="	" selected>(Tab)</option>
+{* JFV END *}
 							</select>
 					  	&nbsp;&nbsp;&nbsp;&nbsp;<b>{$MOD.LBL_FORMAT}</b>&nbsp;
 							<select name="format" class="small">
 							<!-- value must be a known format for mb_convert_encoding() -->
-					  			<option value="ISO-8859-1">ISO-8859-1</option>
-					  			<option value="UTF-8">UTF-8</option>
+{* JFV : add import encodings *}
+{*					  			<option value="ISO-8859-1">ISO-8859-1</option> *}
+{*					  			<option value="UTF-8">UTF-8</option> *}
+					  			<option value="ISO-8859-1">ASCII Alphabet (ISO-8859-1)</option>
+					  			<option value="UTF-8">Unicode (UTF-8)</option>
+					  			<option value="SJIS-win" selected>Shift JIS (Windows - Excel)</option>
+{* JFV END *}
 					  		</select>
 					</td>
 				   </tr>
