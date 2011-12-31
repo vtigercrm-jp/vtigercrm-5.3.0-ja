@@ -243,7 +243,10 @@ function get_cal_header_tab(& $header,$viewBox,$subtab)
 		</td>";
 		$tabhtml .= "<td width='2%'><img onClick='fnvshobj(this,\"miniCal\"); getMiniCal(\"view=".$header['calendar']->view."".$header['calendar']->date_time->get_date_str()."&viewOption=".$viewBox."&subtab=".$subtab."&parenttab=".$category."\");' src='".$header['IMAGE_PATH']."btnL3Calendar.gif' alt='".$mod_strings['LBL_OPENCAL']."...' title='".$mod_strings['LBL_OPENCAL']."...' align='absmiddle' border='0'></td>";
 		$tabhtml .= "<td width=20% ><img onClick='fnvshobj(this,\"calSettings\"); getCalSettings(\"view=".$header['calendar']->view."".$header['calendar']->date_time->get_date_str()."&viewOption=".$viewBox."&subtab=".$subtab."&parenttab=".$category."\");' src='".$header['IMAGE_PATH']."tbarSettings.gif' alt='".$mod_strings['LBL_SETTINGS']."' title='".$mod_strings['LBL_SETTINGS']."' align='absmiddle' border='0'></td>";
-	$tabhtml .= "<td class='calHdr calTopRight componentName'>".$app_strings['Calendar']."</td>";	
+// JFV - prevent new line for translation of "Calendar"
+	$tabhtml .= "<td class='calHdr calTopRight componentName'><nobr>".$app_strings['Calendar']."</nobr></td>";	
+	//$tabhtml .= "<td class='calHdr calTopRight componentName'>".$app_strings['Calendar']."</td>";	
+// JFV END
 	$tabhtml .= "</tr>";
 	echo $tabhtml;
 	$cal_log->debug("Exiting get_cal_header_tab() method...");
