@@ -111,6 +111,22 @@ if ($_REQUEST["format"] != "UTF-8")
 	fwrite($fh, $content);
 	fclose($fh);
 }
+// JFV - remove UTF-8 BOM
+else if ($_REQUEST["format"] == "UTF-8")
+{
+	$fh = fopen($tmp_file_name,"r");
+	$content = fread($fh, filesize($tmp_file_name));
+	fclose($fh);
+
+	if($content[0] == chr(0xef) && $content[1] == chr(0xbb) && $content[2] == chr(0xbf))
+	{
+		$content = substr($content, 3);
+	}
+	$fh = fopen($tmp_file_name,"w");
+	fwrite($fh, $content);
+	fclose($fh);
+}
+// JFV END
 
 // Now parse the file and look for errors
 $ret_value = 0;
