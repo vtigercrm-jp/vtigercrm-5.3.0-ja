@@ -458,9 +458,17 @@ function get_next_cal(& $cal,$viewBox='',$subtab='')
 function display_date($view,$date_time)
 {
 	global $cal_log;
+// JFV
+	global $lang_crm;
+// JFV END
 	$cal_log->debug("Entering display_date() method...");
 	if ($view == 'day')
         {
+// JFV - calenderNav date format
+		if($lang_crm == 'ja'){
+			return $date_time->year.' 年 '.$date_time->getMonth().' 月 '.$date_time->get_Date().' 日 （'.$date_time->getdayofWeek_inshort().'）';
+		}
+// JFV END
 		//$label = $date_time->getdayofWeek()." ";
 		$label = $date_time->get_Date()." ";
 		$label .= $date_time->getmonthName()." ";
@@ -472,6 +480,17 @@ function display_date($view,$date_time)
         {
                 $week_start = $date_time->getThisweekDaysbyIndex(0);
                 $week_end = $date_time->getThisweekDaysbyIndex(6);
+// JFV - calenderNav date format
+		if($lang_crm == 'ja'){
+			if ($week_start->year <> $week_end->year){
+				return $week_start->year.'年'.$week_start->getMonth().'月'.$week_start->get_Date().'日（'.$week_start->getdayofWeek_inshort().'） ～ '.$week_end->year.'年'.$week_end->getMonth().'月'.$week_end->get_Date().'日（'.$week_end->getdayofWeek_inshort().'）';
+			}else if($week_start->getMonth() <> $week_end->getMonth()){
+				return $week_start->year.'年'.$week_start->getMonth().'月'.$week_start->get_Date().'日 ～ '.$week_end->getMonth().'月'.$week_end->get_Date().'日（'.$week_end->getdayofWeek_inshort().'）';
+			}else{
+				return $week_start->year.'年'.$week_start->getMonth().'月'.$week_start->get_Date().'日（'.$week_start->getdayofWeek_inshort().'） ～ '.$week_end->get_Date().'日（'.$week_end->getdayofWeek_inshort().'）';
+			}
+        }
+// JFV END
                 $label = $week_start->get_Date()." ";
                 $label .= $week_start->getmonthName()." ";
                 $label .= $week_start->year;
@@ -485,6 +504,11 @@ function display_date($view,$date_time)
 
 	elseif ($view == 'month')
 	{
+// JFV - calenderNav date format
+		if($lang_crm == 'ja'){
+			return $date_time->year.' 年 '.$date_time->getMonth().' 月';
+		}
+// JFV END
 		$label = $date_time->getmonthName()." ";
 		$label .= $date_time->year;
 		$cal_log->debug("Exiting display_date() method...");
@@ -492,6 +516,11 @@ function display_date($view,$date_time)
         }
 	elseif ($view == 'year')
 	{
+// JFV - calenderNav date format
+		if($lang_crm == 'ja'){
+			return $date_time->year.' 年';
+		}
+// JFV END
 		$cal_log->debug("Exiting display_date() method...");
 		return $date_time->year;
         }
