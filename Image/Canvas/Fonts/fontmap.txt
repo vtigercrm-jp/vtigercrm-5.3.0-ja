@@ -33,3 +33,4 @@ Verdana,verdana.ttf
 Verdana Bold,verdanab.ttf
 Verdana Bold Italic,verdanaz.ttf
 Verdana Italic,verdanai.ttf
+Uigothic,ipagui.ttf

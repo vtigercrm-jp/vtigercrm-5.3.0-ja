@@ -26,7 +26,10 @@ DEFINE("FF_CHINESE",'Chinese');
 DEFINE("FF_BIG5",'Big5');
 
 DEFINE("FF_FONT1",'Vera');
-
+// JFV
+// Japanese font
+DEFINE("FF_UIGOTHIC",'Uigothic');
+// JFV END
 /**This function is used to get the font name when a language code is given
 * Param $locale - language code
 * Return type string - font name
@@ -39,6 +42,11 @@ function calculate_font_name($locale)
 
 	switch($locale)
 	{
+		// JFV
+		case 'ja':
+			$log->debug("Exiting calculate_font_name method ...");
+			return FF_UIGOTHIC;
+		// JFV END
 		case 'cn_zh':
 			$log->debug("Exiting calculate_font_name method ...");
 			return FF_SIMSUN;
