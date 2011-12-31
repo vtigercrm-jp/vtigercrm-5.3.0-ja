@@ -39,7 +39,11 @@ function pie_chart($referdata,$refer_code,$width,$height,$left,$right,$top,$bott
 	{
 		$name=$datax[$i];
 		$pos = substr_count($name," ");
-		$alts[]=htmlentities($name)."=%d";
+// JFV : prevent utf-8 char garbled and display numbers correctly
+		global $default_charset;
+		$alts[]=htmlentities($name,ENT_QUOTES,$default_charset)." = ".$datay[$i];
+		//$alts[]=htmlentities($name)."=%d";
+// JFV END
 		//If the datax value of a string is greater, adding '\n' to it so that it'll come in 2nd line
 		if(strlen($name)>=14)
 			$name=substr($name, 0, 34);

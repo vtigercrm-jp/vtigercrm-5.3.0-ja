@@ -40,7 +40,16 @@ function horizontal_graph($referdata,$refer_code,$width,$height,$left,$right,$to
 	{
 		$name=$datax[$i];
 		$pos = substr_count($name," ");
-		$alts[]=htmlentities($name)."=%d";
+// JFV : prevent utf-8 char garbled and display percentage correctly
+		global $default_charset;
+		$sum = 0;
+		for($j=0;$j<count($datay); $j++)
+		{
+			$sum += $datay[$j];
+		}
+		$alts[]=htmlentities($name,ENT_QUOTES,$default_charset)." = ".sprintf('%0.1f%%',100*$datay[$i]/$sum);
+//		$alts[]=htmlentities($name)."=%d";
+// JFV END
 //If the daatx value of a string is greater, adding '\n' to it so that it'll cme inh 2nd line
 		 if(strlen($name)>=14)
                         $name=substr($name, 0, 44);
