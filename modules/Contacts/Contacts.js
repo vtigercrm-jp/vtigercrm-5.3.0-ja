@@ -135,6 +135,57 @@ function submitform(id){
 		document.massdelete.submit();
 }	
 
+//JFV 
+// google map location by japanese and chinese address order
+function mapLocation2(){
+	this.areaType=null;
+	this.separator=" ";
+    var countryName = "";
+    this.setAreaTypeByCountry = function(countryStr){
+	    if(fieldname.indexOf(countryStr) > -1)    {
+	    	if(document.getElementById("dtlview_"+fieldlabel[fieldname.indexOf(countryStr)])){
+	        	countryName = document.getElementById("dtlview_"+fieldlabel[fieldname.indexOf(countryStr)]).innerHTML;
+	        }
+		    if(countryName.indexOf("日") > -1 ){this.areaType="jp"; this.separator=""}
+		    else if(countryName.indexOf("中華民國") > -1 ){this.areaType="roc"; this.separator=""}
+		    else if(countryName.indexOf("中") > -1 ){this.areaType="cn"; this.separator=""}
+		    else if(countryName.indexOf("香") > -1 ){this.areaType="hk"; this.separator=""}
+		    else if(countryName.indexOf("台") > -1 ){this.areaType="tw"; this.separator=""}
+	    }
+	    return this.areaType;
+	}
+	this.getMapParameter = function(itemArray){
+		mapParameter="";
+		var ii=0
+		if(this.areaType=="roc"){ ii = 1}  // google can't accept 中華民國 currently.
+		for(; ii<itemArray.length; ii++){
+			var item = itemArray[ii];
+			if(fieldname.indexOf(item) > -1){
+				if(document.getElementById("dtlview_"+fieldlabel[fieldname.indexOf(item)]))
+					mapParameter = mapParameter + document.getElementById("dtlview_"+fieldlabel[fieldname.indexOf(item)]).innerHTML+this.separator;
+			}
+		}
+		return mapParameter;
+	}
+	this.openMapWindow = function(mapParameter){
+		mapParameter = removeHTMLFormatting(mapParameter);
+		if(this.areaType=="jp"){
+			window.open('http://maps.google.co.jp/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8&oe=UTF8&hl=ja','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
+		}else if(this.areaType=="roc"){
+			window.open('http://maps.google.com.tw/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8&oe=UTF8&hl=zh-TW','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
+		}else if(this.areaType=="tw"){
+			window.open('http://maps.google.com.tw/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8&oe=UTF8&hl=zh-TW','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
+		}else if(this.areaType=="hk"){ // map haven't been supported by hk google
+			window.open('http://maps.google.com.tw/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8&oe=UTF8&hl=zh-HK','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
+		}else if(this.areaType=="cn"){
+	         window.open('http://ditu.google.com/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8&oe=UTF8','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
+		}else{
+			window.open('http://maps.google.com/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
+		}
+	}
+}
+//JFV END
+
 function searchMapLocation(addressType)
 {
         var mapParameter = '';
@@ -204,8 +255,28 @@ function searchMapLocation(addressType)
                         	mapParameter = mapParameter + document.getElementById("dtlview_"+fieldlabel[fieldname.indexOf('otherzip')]).innerHTML;
 		}
         }
-	mapParameter = removeHTMLFormatting(mapParameter);
-	window.open('http://maps.google.com/maps?q='+mapParameter,'goolemap','height=450,width=700,resizable=no,titlebar,location,top=200,left=250');
+//JFV
+		var otherLoc = new mapLocation2()
+		if (addressType == 'Main'){
+			otherLoc.setAreaTypeByCountry('mailingcountry')
+		}else{
+			otherLoc.setAreaTypeByCountry('othercountry')
+		}
+		if(null != otherLoc.areaType){ 	// address area isn't normal type, eg. japan or china
+			if (addressType == 'Main'){
+				var addressOrderAry = [/*mailingzip,*/'mailingcountry','mailingstate','mailingcity'/*,'mailingpobox'*/,'mailingstreet']
+			}else{
+				var addressOrderAry = [/*otherzip,*/'othercountry','otherstate','othercity'/*,'otherpobox'*/,'otherstreet']
+			}
+			var mapParameter = otherLoc.getMapParameter(addressOrderAry)
+			otherLoc.openMapWindow(mapParameter);
+		}else{							// address area is normal type
+			mapParameter = removeHTMLFormatting(mapParameter);
+			window.open('http://maps.google.com/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8','goolemap','height=450,width=700,resizable=no,titlebar,location,top=200,left=250');
+		}
+//	mapParameter = removeHTMLFormatting(mapParameter);
+//	window.open('http://maps.google.com/maps?q='+mapParameter,'goolemap','height=450,width=700,resizable=no,titlebar,location,top=200,left=250');
+//JFV END
 }
 
 function set_return_contact_address(contact_id,contact_name, mailingstreet, otherstreet, mailingcity, othercity, mailingstate, otherstate, mailingcode, othercode, mailingcountry, othercountry,mailingpobox,otherpobox,formName) {
