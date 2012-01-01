@@ -13,7 +13,10 @@
 -->*}			
 <!-- Table to display the mails list -  Starts -->
 				<div id="navTemp" style="display:none">
-					<span style="float:left">{$ACCOUNT} &gt; {$MAILBOX}
+{* JFV - mailbox name encoding issue *}
+					<span style="float:left">{$ACCOUNT} &gt; {$MAILBOX_utf8}
+					{* <span style="float:left">{$ACCOUNT} &gt; {$MAILBOX} *}
+{* JFV END *}
 					{if $NUM_EMAILS neq 0}
                                                  {if $NUM_EMAILS neq 1}
                                                         ({$NUM_EMAILS} {$MOD.LBL_MESSAGES})

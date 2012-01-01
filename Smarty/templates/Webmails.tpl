@@ -110,7 +110,10 @@
 					        <td rowspan=3 valign="top">
 						 <table border=0 width="100%" cellspacing=0 cellspacing=0 class="MatrixLayer1">
 					 	 <tr>
-							<td width="79%" class="big mailSubHeader"><div id="nav"><span style="float:left">{$ACCOUNT} &gt; {$MAILBOX} {if $NUM_EMAILS neq 0}
+{* JFV - mailbox name encoding issue *}
+						 {*	<td width="79%" class="big mailSubHeader"><div id="nav"><span style="float:left">{$ACCOUNT} &gt; {$MAILBOX} {if $NUM_EMAILS neq 0} *}
+						 <td width="79%" class="big mailSubHeader"><div id="nav"><span style="float:left">{$ACCOUNT} &gt; {$MAILBOX_utf8} {if $NUM_EMAILS neq 0}
+{* JFV END *}
 						 {if $NUM_EMAILS neq 1}
 							({$NUM_EMAILS} {$MOD.LBL_MESSAGES})
 						 {else}

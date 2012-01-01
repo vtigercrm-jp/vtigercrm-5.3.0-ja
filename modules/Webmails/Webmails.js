@@ -426,14 +426,20 @@ function move_messages()
 				'index.php',
 				{queue: {position: 'end', scope: 'command'},
 					method: 'post',
-					postBody: 'module=Webmails&action=WebmailsAjax&mailbox='+mailbox+'&start='+start+'&command=move_msg&ajax=true&mailid='+nid.join(":")+'&mvbox='+mvmbox,
+// JFV - escape mailbox name
+					postBody: 'module=Webmails&action=WebmailsAjax&mailbox='+escape(mailbox)+'&start='+start+'&command=move_msg&ajax=true&mailid='+nid.join(":")+'&mvbox='+escape(mvmbox),
+//					postBody: 'module=Webmails&action=WebmailsAjax&mailbox='+mailbox+'&start='+start+'&command=move_msg&ajax=true&mailid='+nid.join(":")+'&mvbox='+mvmbox,
+// JFV END
 					onComplete: function(t) {
 						sh = $("show_msg");
 						var leftSide = findPosX(sh);
 					        var topSide = findPosY(sh);
 					        sh.style.left= leftSide + 400+'px';
 					        sh.style.top= topSide + 350 +'px';
-						sh.innerHTML = "Moving mail(s) from "+mailbox+" folder to "+mvmbox+" folder";
+// JFV - encoding related
+						sh.innerHTML = "Moving mail(s) from "+mailbox+" folder to "+$("mailbox_select").options[$("mailbox_select").selectedIndex].text+" folder";
+//						sh.innerHTML = "Moving mail(s) from "+mailbox+" folder to "+mvmbox+" folder";
+// JFV END
                                                 sh.style.display = "block";
 						sh.classname = "delete_email";
                                                 new Effect.Fade(sh,{queue: {position: 'end', scope: 'effect'},duration: '50'});
@@ -503,7 +509,10 @@ function runEmailCommand(com,id) {
                 var file="";
 	
 	if(move_mail == 1){
-		var qry_str = "&mvbox="+mvmbox;
+// JFV - escape mailbox name
+//		var qry_str = "&mvbox="+mvmbox;
+		var qry_str = "&mvbox="+escape(mvmbox);
+// JFV END
 		move_mail = 0;
 	}
 	else

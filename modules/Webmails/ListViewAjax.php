@@ -187,8 +187,17 @@ if (is_array($list)) {
 			if($tmpval[0] != ".")
 			{
 				if($box->messages==0) {$num=$box->messages;} else {$num=($box->messages-1);}
+// JFV - imap encoding issue
+				if (function_exists("mb_convert_encoding")) {
+				$boxes .= '<option value="'.$tmpval.'">'.mb_convert_encoding( $tmpval, "utf-8", "UTF7-IMAP" );
+				$folders .= '<li ><img src="themes/'.$theme.'/images/'.$img.'" align="absmiddle" />&nbsp;&nbsp;<a href="javascript:changeMbox(\''.$tmpval.'\');" class="small">'.mb_convert_encoding( $tmpval, "utf-8", "UTF7-IMAP" ).'</a>&nbsp;<span id="'.$tmpval.'_count" style="font-weight:bold">';
+				}else{
+// JFV END	
 				$boxes .= '<option value="'.$tmpval.'">'.$tmpval;
 				$folders .= '<li ><img src="themes/'.$theme.'/images/'.$img.'" align="absmiddle" />&nbsp;&nbsp;<a href="javascript:changeMbox(\''.$tmpval.'\');" class="small">'.$tmpval.'</a>&nbsp;<span id="'.$tmpval.'_count" style="font-weight:bold">';
+// JFV
+				}
+// JFV END		
 				if($box->unseen > 0)
 					$folders .= '(<span id="'.$tmpval.'_unread">'.$box->unseen.'</span>)</span></li>';
 				else
@@ -207,6 +216,9 @@ $smarty->assign("NAVIGATION", $navigationOutput);
 $smarty->assign("FOLDER_SELECT", $boxes);
 $smarty->assign("NUM_EMAILS", $numEmails);
 $smarty->assign("MAILBOX", $MailBox->mailbox);
+// JFV
+$smarty->assign("MAILBOX_utf8", (function_exists("mb_convert_encoding"))? mb_convert_encoding( $MailBox->mailbox, "utf-8", "UTF7-IMAP" ) : $MailBox->mailbox);
+// JFV END
 $smarty->assign("ACCOUNT", $MailBox->display_name);
 $smarty->assign("BOXLIST",$folders);
 $smarty->assign("MAIL_INFO",$js_array);
