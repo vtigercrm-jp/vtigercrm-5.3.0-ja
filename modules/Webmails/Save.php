@@ -29,7 +29,9 @@ $bcc_address = explode(";",$_REQUEST['bcc_list']);
 
 $start_message=vtlib_purify($_REQUEST["start_message"]);
 if($_REQUEST["mailbox"] && $_REQUEST["mailbox"] != "") {$mailbox=vtlib_purify($_REQUEST["mailbox"]);} else {$mailbox="INBOX";}
-
+//JFV - convert back html special char
+	$mailbox=htmlspecialchars_decode($mailbox);
+//JFV END
 $MailBox = new MailBox($mailbox);
 $mail = $MailBox->mbox;
 $email = new Webmails($MailBox->mbox, $_REQUEST["mailid"]);

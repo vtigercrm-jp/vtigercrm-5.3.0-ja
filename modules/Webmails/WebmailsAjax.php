@@ -33,8 +33,10 @@ if(isset($_REQUEST['file']) && $_REQUEST['file']!='' && !isset($_REQUEST['ajax']
 	exit();
 }
 $mailid = vtlib_purify($_REQUEST["mailid"]);
-// JFV - '&' of mailbox name is wrongly converted to %xx. temporally solution: it's ok to remove vtlib_purify?
-if(isset($_REQUEST["mailbox"]) && $_REQUEST["mailbox"] != "") {$mailbox=$_REQUEST["mailbox"];} else {$mailbox="INBOX";}
+//JFV - convert back html special char
+if(isset($_REQUEST["mailbox"]) && $_REQUEST["mailbox"] != "") {$mailbox=htmlspecialchars_decode(vtlib_purify($_REQUEST["mailbox"]));} else {$mailbox="INBOX";}
+// // JFV - '&' of mailbox name is wrongly converted to %xx. temporally solution: it's ok to remove vtlib_purify?
+// //if(isset($_REQUEST["mailbox"]) && $_REQUEST["mailbox"] != "") {$mailbox=$_REQUEST["mailbox"];} else {$mailbox="INBOX";}
 //if(isset($_REQUEST["mailbox"]) && $_REQUEST["mailbox"] != "") {$mailbox=vtlib_purify($_REQUEST["mailbox"]);} else {$mailbox="INBOX";}
 // JFV
 

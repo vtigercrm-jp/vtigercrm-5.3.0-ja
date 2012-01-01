@@ -32,7 +32,9 @@ $box_refresh=$temprow["box_refresh"];
 $mails_per_page=$temprow["mails_per_page"];
 
 if($_REQUEST["mailbox"] && $_REQUEST["mailbox"] != "") {$mailbox=vtlib_purify($_REQUEST["mailbox"]);} else {$mailbox="INBOX";}
-
+//JFV - convert back html special char
+	$mailbox=htmlspecialchars_decode($mailbox);
+//JFV END
 global $mbox;
 $mbox = getImapMbox($mailbox,$temprow);
 

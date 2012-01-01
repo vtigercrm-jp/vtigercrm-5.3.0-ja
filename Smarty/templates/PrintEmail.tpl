@@ -21,7 +21,10 @@
 	<body  onLoad=window.print()>
 		<table>
 			<tr>
-				<td class="lvtCol" width="15%" height="10px" style="padding: 1px;" align="left"><b>{$MOD.LBL_FROM}</b></td>
+{* JFV no new line for "sender" on mail printing *}
+{*				<td class="lvtCol" width="15%" height="10px" style="padding: 1px;" align="left"><b>{$MOD.LBL_FROM}</b></td> *}
+				<td class="lvtCol" width="15%" height="10px" style="padding: 1px;" align="left"><b><nobr>{$MOD.LBL_FROM}</nobr></b></td>
+{* JFV END *}
 				<td class="dvtCellLabel" style="padding: 1px;">&nbsp;{$FROM_MAIL}</td>
 			</tr>
 			<tr>

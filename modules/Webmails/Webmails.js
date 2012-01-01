@@ -52,7 +52,10 @@ function load_webmail(mid,hasAttachment) {
 	*/
 
 	oiframe = $("email_description");
-	oiframe.src = 'index.php?module=Webmails&action=body&theme='+theme+'&mailid='+mid+'&mailbox='+mailbox;
+// JFV - escape mailbox name
+//	oiframe.src = 'index.php?module=Webmails&action=body&theme='+theme+'&mailid='+mid+'&mailbox='+mailbox;
+	oiframe.src = 'index.php?module=Webmails&action=body&theme='+theme+'&mailid='+mid+'&mailbox='+encodeURIComponent(mailbox);
+//JFV END
         //$("body_area").appendChild(Builder.node('iframe',{src: 'index.php?module=Webmails&action=body&mailid='+mid+'&mailbox='+mailbox, width: '100%', height: '210', frameborder: '0'},'You must enable iframes'));
 
         tmp = document.getElementsByClassName("previewWindow");
@@ -89,7 +92,10 @@ function load_webmail(mid,hasAttachment) {
 	makeSelected(node.id)
 }
 function displayAttachments(mid) {
-        var url = "index.php?module=Webmails&action=dlAttachments&mailid="+mid+"&mailbox="+mailbox;
+// JFV - escape mailbox name
+//        var url = "index.php?module=Webmails&action=dlAttachments&mailid="+mid+"&mailbox="+mailbox;
+        var url = "index.php?module=Webmails&action=dlAttachments&mailid="+mid+"&mailbox="+encodeURIComponent(mailbox);
+//JFV END
         window.open(url,"DownloadAttachments",'menubar=no,toolbar=no,location=no,status=no,resizable=no,width=450,height=450');
 }
 function OpenComposer(id,mode)
@@ -103,19 +109,34 @@ function OpenComposer(id,mode)
                         url = 'index.php?module=Emails&action=EmailsAjax&file=EditView';
                         break;
                 case 'forward':
-                        url = 'index.php?module=Emails&action=EmailsAjax&mailid='+id+'&forward=true&webmail=true&file=EditView&mailbox='+mailbox;
+// JFV - escape mailbox name
+//                        url = 'index.php?module=Emails&action=EmailsAjax&mailid='+id+'&forward=true&webmail=true&file=EditView&mailbox='+mailbox;
+                        url = 'index.php?module=Emails&action=EmailsAjax&mailid='+id+'&forward=true&webmail=true&file=EditView&mailbox='+encodeURIComponent(mailbox);
+//JFV END
                         break;
                 case 'reply':
-                        url = 'index.php?module=Emails&action=EmailsAjax&mailid='+id+'&reply=single&webmail=true&file=EditView&mailbox='+mailbox;
+// JFV - escape mailbox name
+//                        url = 'index.php?module=Emails&action=EmailsAjax&mailid='+id+'&reply=single&webmail=true&file=EditView&mailbox='+mailbox;
+                        url = 'index.php?module=Emails&action=EmailsAjax&mailid='+id+'&reply=single&webmail=true&file=EditView&mailbox='+encodeURIComponent(mailbox);
+//JFV END
                         break;
                 case 'replyall':
-                        url = 'index.php?module=Emails&action=EmailsAjax&mailid='+id+'&reply=all&webmail=true&file=EditView&mailbox='+mailbox;
+// JFV - escape mailbox name
+//                        url = 'index.php?module=Emails&action=EmailsAjax&mailid='+id+'&reply=all&webmail=true&file=EditView&mailbox='+mailbox;
+                        url = 'index.php?module=Emails&action=EmailsAjax&mailid='+id+'&reply=all&webmail=true&file=EditView&mailbox='+encodeURIComponent(mailbox);
+//JFV END
                         break;
                 case 'attachments':
-                        url = 'index.php?module=Webmails&action=dlAttachments&mailid='+id+'&mailbox='+mailbox;
+// JFV - escape mailbox name
+//                        url = 'index.php?module=Webmails&action=dlAttachments&mailid='+id+'&mailbox='+mailbox;
+                        url = 'index.php?module=Webmails&action=dlAttachments&mailid='+id+'&mailbox='+encodeURIComponent(mailbox);
+//JFV END
                         break;
                 case 'full_view':
-                        url = 'index.php?module=Webmails&action=DetailView&record='+id+'&mailid='+id+'&mailbox='+mailbox;
+// JFV - escape mailbox name
+//                        url = 'index.php?module=Webmails&action=DetailView&record='+id+'&mailid='+id+'&mailbox='+mailbox;
+                        url = 'index.php?module=Webmails&action=DetailView&record='+id+'&mailid='+id+'&mailbox='+encodeURIComponent(mailbox);
+//JFV END
                         break;
                 }
         openPopUp('xComposeEmail',this,url,'createemailWin',830,662,'menubar=no,toolbar=no,location=no,status=no,resizable=yes,scrollbars=yes');
@@ -147,7 +168,10 @@ function add_to_vtiger(mid) {
                 'index.php',
                 {queue: {position: 'end', scope: 'command'},
                         method: 'post',
-                        postBody: 'module=Webmails&action=Save&mailid='+mid+'&ajax=true'+'&mailbox='+mailbox,
+// JFV - escape mailbox name
+//                        postBody: 'module=Webmails&action=Save&mailid='+mid+'&ajax=true'+'&mailbox='+mailbox,
+                        postBody: 'module=Webmails&action=Save&mailid='+mid+'&ajax=true'+'&mailbox='+encodeURIComponent(mailbox),
+// JFV END
                         onComplete: function(t) {
 				setTimeout('makeSelected("'+rowId+'");',500);
 				$("status").style.display="none";
@@ -178,7 +202,10 @@ function check_in_all_boxes(mymbox) {
                 'index.php',
                 {queue: {position: 'end', scope: 'command'},
                         method: 'post',
-                        postBody: 'module=Webmails&action=WebmailsAjax&command=check_mbox_all&mailbox='+mymbox+'&ajax=true&file=ListView',
+// JFV - escape mailbox name
+//                        postBody: 'module=Webmails&action=WebmailsAjax&command=check_mbox_all&mailbox='+mymbox+'&ajax=true&file=ListView',
+                        postBody: 'module=Webmails&action=WebmailsAjax&command=check_mbox_all&mailbox='+encodeURIComponent(mymbox)+'&ajax=true&file=ListView',
+// JFV END
                         onComplete: function(t) {
 				//alert(t.responseText);
 				if(t.responseText != "") {
@@ -427,7 +454,7 @@ function move_messages()
 				{queue: {position: 'end', scope: 'command'},
 					method: 'post',
 // JFV - escape mailbox name
-					postBody: 'module=Webmails&action=WebmailsAjax&mailbox='+escape(mailbox)+'&start='+start+'&command=move_msg&ajax=true&mailid='+nid.join(":")+'&mvbox='+escape(mvmbox),
+					postBody: 'module=Webmails&action=WebmailsAjax&mailbox='+encodeURIComponent(mailbox)+'&start='+start+'&command=move_msg&ajax=true&mailid='+nid.join(":")+'&mvbox='+encodeURIComponent(mvmbox),
 //					postBody: 'module=Webmails&action=WebmailsAjax&mailbox='+mailbox+'&start='+start+'&command=move_msg&ajax=true&mailid='+nid.join(":")+'&mvbox='+mvmbox,
 // JFV END
 					onComplete: function(t) {
@@ -436,8 +463,8 @@ function move_messages()
 					        var topSide = findPosY(sh);
 					        sh.style.left= leftSide + 400+'px';
 					        sh.style.top= topSide + 350 +'px';
-// JFV - encoding related
-						sh.innerHTML = "Moving mail(s) from "+mailbox+" folder to "+$("mailbox_select").options[$("mailbox_select").selectedIndex].text+" folder";
+// JFV - encoding related. mail moving message changed
+						sh.innerHTML = $("jfv_curr_mailbox").innerText+" &nbsp; ===> &nbsp; "+$("mailbox_select").options[$("mailbox_select").selectedIndex].text+" . . .";
 //						sh.innerHTML = "Moving mail(s) from "+mailbox+" folder to "+mvmbox+" folder";
 // JFV END
                                                 sh.style.display = "block";
@@ -511,7 +538,7 @@ function runEmailCommand(com,id) {
 	if(move_mail == 1){
 // JFV - escape mailbox name
 //		var qry_str = "&mvbox="+mvmbox;
-		var qry_str = "&mvbox="+escape(mvmbox);
+		var qry_str = "&mvbox="+encodeURIComponent(mvmbox);
 // JFV END
 		move_mail = 0;
 	}
@@ -523,7 +550,10 @@ function runEmailCommand(com,id) {
                 'index.php',
                 {queue: {position: 'end', scope: 'command'},
                         method: 'post',
-                        postBody: 'module=Webmails&action=WebmailsAjax&start='+start+'&command='+command+'&mailid='+id+'&file='+file+'&mailbox='+mailbox+qry_str+'&search_type='+$("search_type").value+'&search_input='+$("search_input").value,
+// JFV - escape mailbox name
+                        postBody: 'module=Webmails&action=WebmailsAjax&start='+start+'&command='+command+'&mailid='+id+'&file='+file+'&mailbox='+encodeURIComponent(mailbox)+qry_str+'&search_type='+$("search_type").value+'&search_input='+$("search_input").value,
+//                        postBody: 'module=Webmails&action=WebmailsAjax&start='+start+'&command='+command+'&mailid='+id+'&file='+file+'&mailbox='+mailbox+qry_str+'&search_type='+$("search_type").value+'&search_input='+$("search_input").value,
+// JFV END
                         onComplete: function(t) {
                                 resp = t.responseText;
 				id=resp;

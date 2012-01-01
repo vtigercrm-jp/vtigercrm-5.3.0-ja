@@ -76,4 +76,7 @@ imap_close($mail);
 
 header('Content-Length: ' . strlen($file));
 echo ($file);
+//JFV - avoid footer-like strins added after return to index.php
+exit;
+//JFV END
 ?>

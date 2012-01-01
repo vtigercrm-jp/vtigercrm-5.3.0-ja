@@ -17,6 +17,9 @@ else
 {
 	$mailbox="INBOX";
 }
+//JFV - convert back html special char
+	$mailbox=htmlspecialchars_decode($mailbox);
+//JFV END
 
 if(vtlib_purify($_REQUEST["start"]) && vtlib_purify($_REQUEST["start"] != "")) {
 	$start=vtlib_purify($_REQUEST["start"]);
@@ -181,7 +184,9 @@ var preview_id='';
 var move_mail,change_box,mvmbox;
 var theme = "<?php echo $theme;?>";
 addOnloadEvent(function() {
-		window.setTimeout("periodic_event()",box_refresh);
+// JFV - Temporary disable auto mail refresh
+//		window.setTimeout("periodic_event()",box_refresh);
+// JFV END
 	}
 );
 </script>
@@ -279,7 +284,27 @@ if (is_array($overview))
 		//we have to do this utf8 decode for the fields which may contains special characters -- Mickie - 02-02-07
 		$val->from = utf8_decode(utf8_encode(imap_utf8(addslashes($val->from))));
 		$val->to = utf8_decode(utf8_encode(imap_utf8(addslashes($val->to))));
+//JFV - for subject garbled issue reported by ayano, 
+		if ( function_exists("mb_decode_mimeheader") && function_exists("mb_internal_encoding") && function_exists("mb_convert_encoding")) {
+			if ( strtoupper(substr( $val->subject, 0, 13 )) == "=?ISO-2022-JP"  && @mb_convert_encoding(1, 'iso-2022-jp-ms')){
+				$jfv_subject = str_ireplace('?iso-2022-jp?', '?iso-2022-jp-ms?', $val->subject);
+			}elseif ( strtoupper(substr( $val->subject, 0, 11 )) == "=?SHIFT_JIS"  && @mb_convert_encoding(1, 'SJIS-win')){
+				$jfv_subject = str_ireplace('?shift_jis?', '?SJIS-win?', $val->subject);
+			}elseif ( strtoupper(substr( $val->subject, 0, 8 )) == "=?EUC-JP"  && @mb_convert_encoding(1, 'eucJP-win')){
+				$jfv_subject = str_ireplace('?euc-jp?', '?eucJP-win?', $val->subject);
+			}else{
+				$jfv_subject = $val->subject;
+			}
+			$jfv_default_internal_enc = mb_internal_encoding();
+			mb_internal_encoding("UTF-8");
+			$val->subject = mb_decode_mimeheader($jfv_subject);
+			mb_internal_encoding($jfv_default_internal_enc);
+		}else{
+//JFV END
 		$val->subject = utf8_decode(utf8_encode(imap_utf8($val->subject)));
+// JFV
+		}
+//JFV END
 		$to = str_replace("<",":",$val->to);
                 $to_list = str_replace(">","",$to);
                 $from = str_replace("<",":",$val->from);
@@ -307,7 +332,10 @@ $listview_header = array("<th class='tableHeadBg' width='10%'>".$mod_strings['LB
 $listview_entries = array();
 
 $displayed_msgs=0;
-$info = imap_status($MailBox->mbox, "{".$MailBox->imapServerAddress."}", SA_UNSEEN);
+// JFV - need $key ? just added because 5.2.1 localization added it.
+//$info = imap_status($MailBox->mbox, "{".$MailBox->imapServerAddress."}", SA_UNSEEN);
+$info = imap_status($MailBox->mbox, "{".$MailBox->imapServerAddress."}".$key, SA_UNSEEN);
+// JFV END
 $unread_msgs = $info->unseen;
 //$new_msgs=0;
 if(($numEmails) <= 0)
@@ -347,6 +375,11 @@ foreach($search_fields as $searchfield)
 }
 $search_html .= '</select>';
 
+//JFV - escape for javascript literal, TODO need to improve; how to deal with escape for html item name
+function js_esc($string){
+return strtr($string, array('\\'=>'\\\\',"'"=>"\\'",'"'=>'\\"',"\r"=>'\\r',"\n"=>'\\n','</'=>'<\/'));
+}
+//JFV END
 // Build folder list and move_to dropdown box
 $list = imap_getmailboxes($MailBox->mbox, "{".$MailBox->imapServerAddress."}", "*");
 sort($list);
@@ -379,7 +412,7 @@ if (is_array($list)) {
 				if($numEmails==0) {$num=$numEmails;} else {$num=($numEmails-1);}
 // JFV - imap encoding issue
 				if (function_exists("mb_convert_encoding")) {
-				$folders .= '<li style="padding-left:0px;"><img src="themes/'.$theme.'/images/'.$img.'"align="absmiddle" />&nbsp;&nbsp;<a href="javascript:changeMbox(\''.$tmpval.'\');" class="small">'.mb_convert_encoding( $tmpval, "utf-8", "UTF7-IMAP" ).'</a>&nbsp;&nbsp;<span id="'.$tmpval.'_count" style="font-weight:bold">';
+				$folders .= '<li style="padding-left:0px;"><img src="themes/'.$theme.'/images/'.$img.'"align="absmiddle" />&nbsp;&nbsp;<a href="javascript:changeMbox(\''.js_esc($tmpval).'\');" class="small">'.htmlentities(mb_convert_encoding( $tmpval, "utf-8", "UTF7-IMAP" ), ENT_QUOTES, 'UTF-8').'</a>&nbsp;&nbsp;<span id="'.js_esc($tmpval).'_count" style="font-weight:bold">';
 				}else{
 // JFV END
 				$folders .= '<li style="padding-left:0px;"><img src="themes/'.$theme.'/images/'.$img.'"align="absmiddle" />&nbsp;&nbsp;<a href="javascript:changeMbox(\''.$tmpval.'\');" class="small">'.$tmpval.'</a>&nbsp;&nbsp;<span id="'.$tmpval.'_count" style="font-weight:bold">';
@@ -399,8 +432,8 @@ if (is_array($list)) {
 				if($box->messages==0) {$num=$box->messages;} else {$num=($box->messages-1);}
 // JFV - imap encoding issue
 				if (function_exists("mb_convert_encoding")) {
-				$boxes .= '<option value="'.$tmpval.'">'.mb_convert_encoding( $tmpval, "utf-8", "UTF7-IMAP" );
-				$folders .= '<li ><img src="themes/'.$theme.'/images/'.$img.'" align="absmiddle" />&nbsp;&nbsp;<a href="javascript:changeMbox(\''.$tmpval.'\');" class="small">'.mb_convert_encoding( $tmpval, "utf-8", "UTF7-IMAP" ).'</a>&nbsp;<span id="'.$tmpval.'_count" style="font-weight:bold">';
+				$boxes .= '<option value="'.js_esc($tmpval).'">'.htmlentities(mb_convert_encoding( $tmpval, "utf-8", "UTF7-IMAP" ), ENT_QUOTES, 'UTF-8');
+				$folders .= '<li ><img src="themes/'.$theme.'/images/'.$img.'" align="absmiddle" />&nbsp;&nbsp;<a href="javascript:changeMbox(\''.js_esc($tmpval).'\');" class="small">'.htmlentities(mb_convert_encoding( $tmpval, "utf-8", "UTF7-IMAP" ), ENT_QUOTES, 'UTF-8').'</a>&nbsp;<span id="'.js_esc($tmpval).'_count" style="font-weight:bold">';
 				}else{
 // JFV END
 				$boxes .= '<option value="'.$tmpval.'">'.$tmpval;
@@ -437,7 +470,7 @@ $smarty->assign("FOLDER_SELECT", $boxes);
 $smarty->assign("NUM_EMAILS", $numEmails);
 $smarty->assign("MAILBOX", $MailBox->mailbox);
 // JFV
-$smarty->assign("MAILBOX_utf8", (function_exists("mb_convert_encoding"))? mb_convert_encoding( $MailBox->mailbox, "utf-8", "UTF7-IMAP" ) : $MailBox->mailbox);
+$smarty->assign("MAILBOX_utf8", (function_exists("mb_convert_encoding"))? htmlentities( mb_convert_encoding( $MailBox->mailbox, "utf-8", "UTF7-IMAP" ), ENT_QUOTES, 'UTF-8') : $MailBox->mailbox);
 // JFV END
 $smarty->assign("ACCOUNT", $MailBox->display_name);
 $smarty->assign("BOXLIST",$folders);

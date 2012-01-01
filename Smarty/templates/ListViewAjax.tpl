@@ -17,6 +17,10 @@
 					<span style="float:left">{$ACCOUNT} &gt; {$MAILBOX_utf8}
 					{* <span style="float:left">{$ACCOUNT} &gt; {$MAILBOX} *}
 {* JFV END *}
+{* JFV - define mailbox name, reference for js usage *}					 
+<span id='jfv_curr_mailbox' style='display:none'>{$MAILBOX_utf8}</span>
+{* JFV END *}
+
 					{if $NUM_EMAILS neq 0}
                                                  {if $NUM_EMAILS neq 1}
                                                         ({$NUM_EMAILS} {$MOD.LBL_MESSAGES})

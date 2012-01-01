@@ -20,6 +20,9 @@ $mailid=vtlib_purify($_REQUEST["mailid"]);
 if(isset($_REQUEST["mailbox"]) && $_REQUEST["mailbox"] != "")
 {
 	$mailbox=vtlib_purify($_REQUEST["mailbox"]);
+//JFV - convert back html special char
+	$mailbox=htmlspecialchars_decode($mailbox);
+//JFV END
 }
 else
 {
@@ -32,13 +35,56 @@ $status=imap_setflag_full($MailBox->mbox,$mailid,"\\Seen");
 $attach_tab=array();
 $email->loadMail($attach_tab);
 echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=".$email->charsets."\">\n";
+//JFV - for subject garbled issue reported by ayano, 
+		if ( function_exists("mb_decode_mimeheader") && function_exists("mb_internal_encoding") && function_exists("mb_convert_encoding")) {
+			if ( strtoupper(substr( $email->subject, 0, 13 )) == "=?ISO-2022-JP"  && @mb_convert_encoding(1, 'iso-2022-jp-ms')){
+				$jfv_subject = str_ireplace('?iso-2022-jp?', '?iso-2022-jp-ms?', $email->subject);
+			}elseif ( strtoupper(substr( $email->subject, 0, 11 )) == "=?SHIFT_JIS"  && @mb_convert_encoding(1, 'SJIS-win')){
+				$jfv_subject = str_ireplace('?shift_jis?', '?SJIS-win?', $email->subject);
+			}elseif ( strtoupper(substr( $email->subject, 0, 8 )) == "=?EUC-JP"  && @mb_convert_encoding(1, 'eucJP-win')){
+				$jfv_subject = str_ireplace('?euc-jp?', '?eucJP-win?', $email->subject);
+			}else{
+				$jfv_subject = $email->subject;
+			}
+			$jfv_default_internal_enc = mb_internal_encoding();
+			mb_internal_encoding("UTF-8");
+			$subject = mb_decode_mimeheader($jfv_subject);
+			mb_internal_encoding($jfv_default_internal_enc);
+		}else{
+//JFV END
 $subject = utf8_decode(utf8_encode(imap_utf8($email->subject)));
-$from = decode_header($email->from);
-$to = decode_header($email->to_header);
+// JFV
+		}
+//JFV END
+// JFV - use full from addr format, like  john lennon <john.lennon@example.com>
+//$from = decode_header($email->from);
+$from = '';
+$from .= decode_header($email->fromname);
+if(decode_header($email->fromname)!=''){
+	$from .= ' &lt;' . decode_header($email->from) . '&gt;';
+}else{
+	$from .= decode_header($email->from);
+}
+//$to = decode_header($email->to_header);
+$to = '';
+for($p=0;$p<count($email->to);$p++) {
+	if($to != ''){$to .= ', ';}
+	$to .= $email->to_name[$p];
+	if($email->to_name[$p]!=''){
+		$to .= '&lt;' . $email->to[$p] . '&gt;';
+	}else{
+		$to .= $email->to[$p];
+	}
+}
+// JFV END
 $cc = decode_header($email->cc_header);
 $date = decode_header($email->date);
 for($i=0;$i<count($email->attname);$i++){
-	$attachment_links .= $email->anchor_arr[$i].decode_header($email->attname[$i])."</a></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+//JFV adjust attachment link for full view mail
+//	$attachment_links .= $email->anchor_arr[$i].decode_header($email->attname[$i])."</a></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	$attachment_links .= "</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$email->anchor_arr[$i].decode_header($email->attname[$i])."</a>&nbsp;&nbsp;".$email->att_details[$i]['size']."K";
+	if($attachment_links_short != ''){$attachment_links_short .= ",";} 
+	$attachment_links_short .= "&nbsp;&nbsp;".$email->anchor_arr[$i].decode_header($email->attname[$i])."</a>";	
 }
 $content['body'] = $email->body;
 $content['attachtab'] = $email->attachtab;
@@ -65,6 +111,12 @@ else
         <?php } ?>
 	</td>
 	</tr>
+<?php //JFV - add att link to email
+if(!$_REQUEST['fullview'] && $attachment_links_short != '') {?>
+	<tr>
+		<td align="left">&nbsp;<b><?php echo $mod_strings['LBL_ATTACHMENT'];?>:</b><?php echo $attachment_links_short;?></td>
+	</tr>
+<?php } // JFV END?>		
 	<?php if(isset($_REQUEST['fullview']) && $attachment_links != '') {?>
 	<tr>
 		<td align="left">&nbsp;<b><?php echo $mod_strings['LBL_ATTACHMENT'];?>:</b><?php echo $attachment_links;?></td>
@@ -98,7 +150,9 @@ function view_part_detail($mail,$mailid,$part_no, &$transfer, &$msg_charset, &$c
 	return ($str);
 }
 //Need to put this along with the subject block*/
-echo $email->att;
+//JFV - not put attachment list on mail body, because it's looks like debug messsage?
+//echo $email->att;
+//JFV END
 if(!$_REQUEST['fullview'])
 	echo '<div style="overflow:auto;height:386px;width:737px;padding:5;">';
 else
@@ -146,7 +200,10 @@ while ($tmp = array_pop($content['attachtab']))
                         {
 			echo '<hr />';
 			echo '<center>';
-			echo '<img src="index.php?module=Webmails&action=get_img&mail=' . $mailid.'&mailbox='.$mailbox.'&num=' . $tmp['number'] . '&mime=' . $img_type . '&transfer=' . $tmp['transfer'] . '" />';
+//JFV - urlencode mailbox name for mail image display
+//			echo '<img src="index.php?module=Webmails&action=get_img&mail=' . $mailid.'&mailbox='.$mailbox.'&num=' . $tmp['number'] . '&mime=' . $img_type . '&transfer=' . $tmp['transfer'] . '" />';
+			echo '<img src="index.php?module=Webmails&action=get_img&mail=' . $mailid.'&mailbox='.urlencode($mailbox).'&num=' . $tmp['number'] . '&mime=' . $img_type . '&transfer=' . $tmp['transfer'] . '" />';
+//JFV END
 			echo '</center>';
 	}                
 }                    

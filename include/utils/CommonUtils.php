@@ -2179,6 +2179,9 @@ function sendNotificationToOwner($module,$focus)
 
 	if($module == "Accounts" || $module == "Potentials" || $module == "Contacts")
 	{
+//JFV - i18n module name for mail notification
+$mod_name = $app_strings[$mod_name];
+//JFV END	
 		$description = $app_strings['MSG_DEAR'].' '.$ownername.',<br><br>';
 
 		if(!empty($recseqnumber)) $recseqnumber = "[$recseqnumber]";

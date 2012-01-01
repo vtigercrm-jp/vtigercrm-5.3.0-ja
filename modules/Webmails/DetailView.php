@@ -17,6 +17,10 @@ global $mod_strings;
 if(isset($_REQUEST["mailbox"]) && $_REQUEST["mailbox"] != "") { $mailbox=vtlib_purify($_REQUEST["mailbox"]);} else { $mailbox = "INBOX";}
 if(isset($_REQUEST["mailid"]) && $_REQUEST["mailid"] != "") { $mailid=vtlib_purify($_REQUEST["mailid"]);} else { echo "ERROR";flush();exit();}
 
+//JFV - convert back html special char
+$mailbox=htmlspecialchars_decode($mailbox);
+//JFV END
+
 global $MailBox;
 $MailBox = new MailBox($mailbox);
 
@@ -31,7 +35,9 @@ echo '</td></tr>';
 $array_tab = Array();
 $webmail->loadMail($array_tab);
 
-echo '<tr><td align="center"><iframe src="index.php?module=Webmails&action=body&fullview=true&mailid='.$mailid.'&mailbox='.$mailbox.'" width="100%" height="600" frameborder="0" style="border:1px solid gray">'.$mod_strings['LBL_NO_IFRAMES_SUPPORTED'].'</iframe></td></tr>';
-
+//JFV urlencode mailbox name for mail iframe contents
+echo '<tr><td align="center"><iframe src="index.php?module=Webmails&action=body&fullview=true&mailid='.$mailid.'&mailbox='.urlencode($mailbox).'" width="100%" height="600" frameborder="0" style="border:1px solid gray">'.$mod_strings['LBL_NO_IFRAMES_SUPPORTED'].'</iframe></td></tr>';
+//echo '<tr><td align="center"><iframe src="index.php?module=Webmails&action=body&fullview=true&mailid='.$mailid.'&mailbox='.$mailbox.'" width="100%" height="600" frameborder="0" style="border:1px solid gray">'.$mod_strings['LBL_NO_IFRAMES_SUPPORTED'].'</iframe></td></tr>';
+//JFV END
 echo '</table>';
 ?>

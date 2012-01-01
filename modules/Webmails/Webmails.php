@@ -672,7 +672,25 @@ function mime_header_decode(&$header)
 			$element_charset = 'UTF-8';
 
 		if(empty($output_charset)) $output_charset = $default_charset;	
+// JFV - fix mail body garbled for special jis char
+		if (function_exists("mb_convert_encoding")) {
+			if(strtolower($element_charset) == 'iso-2022-jp' && @mb_convert_encoding(1, 'iso-2022-jp-ms')){
+				$element_converted = mb_convert_encoding( $source[$j]->text, $output_charset, 'iso-2022-jp-ms' );
+			}elseif(strtolower($element_charset) == 'shift_jis' && @mb_convert_encoding(1, 'SJIS-win')){
+				$element_converted = mb_convert_encoding( $source[$j]->text, $output_charset, 'SJIS-win' );
+			}elseif(strtolower($element_charset) == 'euc-jp' && @mb_convert_encoding(1, 'eucJP-win')){
+				$element_converted = mb_convert_encoding( $source[$j]->text, $output_charset, 'eucJP-win' );
+			}elseif(@mb_convert_encoding(1, $element_charset)){
+				$element_converted = mb_convert_encoding( $source[$j]->text, $output_charset, $element_charset);
+			}else{
+				$element_converted = function_exists(iconv) ? @iconv( $element_charset, $output_charset, $source[$j]->text): $source[$j]->text ;
+			}
+		}else{
+// JEV END		
 		$element_converted = function_exists(iconv) ? @iconv( $element_charset, $output_charset, $source[$j]->text): $source[$j]->text ;
+// JFV
+		}
+// JFV END
 		$result[$j]->text = $element_converted;
 		$result[$j]->charset = $output_charset;
 	}
@@ -694,7 +712,10 @@ function link_att(&$mail, $attach_tab, &$display_part_no,$ev)
 			if ($display_part_no == true)
 				//$link .= $tmp['number']-1 . '&nbsp;&nbsp;';
 			unset($att_name);
-			$att_name_array = imap_mime_header_decode($tmp['name']);
+//JFV - fix attachments name garbled
+//			$att_name_array = imap_mime_header_decode($tmp['name']);
+			$att_name_array = $this->mime_header_decode($tmp['name']);
+//JFV END
 			for ($i=0; $i<count($att_name_array); $i++) {
 				$att_name .= $att_name_array[$i]->text;
 			}
@@ -779,7 +800,9 @@ function convertMailData2Html($maildata, $cutafter = 0)
 				$body = imap_qprint($body);
 			if ($tmpvar['transfer'] == 'BASE64')
 				$body = base64_decode($body);
-			$body = remove_stuff($body, $tmpvar['mime']);
+//JFV - fix mail body garbled caused by formatting before encoding conversion
+//			$body = remove_stuff($body, $tmpvar['mime']);
+//JFV END
 			$body_charset =  ($tmpvar['charset'] == "default") ? $this->detect_charset($body) : $tmpvar['charset'];
 
 
@@ -800,8 +823,30 @@ function convertMailData2Html($maildata, $cutafter = 0)
 			}
 			$this->charsets = $body_charset;
 			if(empty($GLOBALS['charset'])) $GLOBALS['charset'] = $default_charset;
+// JFV - fix mail body garbled for special jis char
+			if (function_exists("mb_convert_encoding")) {
+				if(strtolower($body_charset) == 'iso-2022-jp' && @mb_convert_encoding(1, 'iso-2022-jp-ms')){
+					$body_converted = mb_convert_encoding( $body, $GLOBALS['charset'], 'iso-2022-jp-ms' );
+				}elseif(strtolower($body_charset) == 'shift_jis' && @mb_convert_encoding(1, 'SJIS-win')){
+					$body_converted = mb_convert_encoding( $body, $GLOBALS['charset'], 'SJIS-win' );
+				}elseif(strtolower($body_charset) == 'euc-jp' && @mb_convert_encoding(1, 'eucJP-win')){
+					$body_converted = mb_convert_encoding( $body, $GLOBALS['charset'], 'eucJP-win' );
+				}elseif(@mb_convert_encoding(1, $body_charset)){
+					$body_converted = mb_convert_encoding( $body, $GLOBALS['charset'], $body_charset);
+				}else{
+					$body_converted = function_exists(iconv) ? @iconv( $body_charset, $GLOBALS['charset'], $body) : $body;
+				}
+// JEV END			
+			}else{
 			$body_converted = function_exists(iconv) ? @iconv( $body_charset, $GLOBALS['charset'], $body) : $body;
+// JFV
+			}
+// JFV END
 			$body = ($body_converted===FALSE) ? $body : $body_converted;
+
+//JFV - fix mail body garbled caused by formatting before encoding conversion
+			$body = remove_stuff($body, $tmpvar['mime']);
+//JFV END
 			$tmpvar['charset'] = ($body_converted===FALSE) ? $body_charset : $GLOBALS['charset'];
 		}
 		else
@@ -856,29 +901,60 @@ function convertMailData2Html($maildata, $cutafter = 0)
 		$from_array = $this->mime_header_decode($from_header);
 		for ($j = 0; $j < count($from_array); $j++)
 			$from .= $from_array[$j]->text;
+// JFV - assign decoded fromaddr
+		$this->fromaddr = $from;
+// JFV END
+// JFV - fix fromname, to_name encoding	
+		$fromname_header = str_replace('x-unknown', $msg_charset, $ref_contenu_message->from[0]->personal);
+		$fromname_array = $this->mime_header_decode($fromname_header);
+		for ($j = 0; $j < count($fromname_array); $j++)
+			$fromname .= $fromname_array[$j]->text;
+		$this->fromname = $fromname;
+		
+		for($p=0;$p<count($this->to_name);$p++) {
+			$to_name_header = str_replace('x-unknown', $msg_charset, $this->to_name[$p]);
+			$to_name_array = $this->mime_header_decode($to_name_header);
+			$to_name = '';
+			for ($j = 0; $j < count($to_name_array); $j++)
+				$to_name .= $to_name_array[$j]->text;
+			$this->to_name[$p] = $to_name;
+		}
+
+// JFV END			
 		//fixed the issue #3235
-		$toheader = @imap_fetchheader($this->mbox, $this->mailid);
+//JFV TODO:   #3235 above is only a temp solution: http://trac.vtiger.com/cgi-bin/trac.cgi/ticket/3235 			
+/*		$toheader = @imap_fetchheader($this->mbox, $this->mailid);
 	        $to_arr = explode("To:",$toheader);
 	        if(!stripos($to_arr[1],'mime')){
 	                $to_add = stripos($to_arr[1],"CC:")?explode("CC:",$to_arr[1]):explode("Subject:",$to_arr[1]);
 	                $to_header = trim($to_add[0]);
 		}
-		else
+		else*/
+//JFV END
 			$to_header = str_replace('x-unknown', $msg_charset, $ref_contenu_message->toaddress);
 		$to_array = $this->mime_header_decode($to_header);
 		for ($j = 0; $j < count($to_array); $j++)
 			$to .= $to_array[$j]->text;
 		$to = str_replace(',', ', ', $to);
-		$this->to_header = $to_header;
+//JFV - careless typo or forgot to change variable name?
+//		$this->to_header = $to_header;
+		$this->to_header = $to;
+//JFV END
 		$cc_header = isset($ref_contenu_message->ccaddress) ? $ref_contenu_message->ccaddress : '';
 		$cc_header = str_replace('x-unknown', $msg_charset, $cc_header);
-		$cc_array = isset($ref_contenu_message->ccaddress) ? imap_mime_header_decode($cc_header) :0;
+//JFV - fix cc name garbled
+//		$cc_array = isset($ref_contenu_message->ccaddress) ? imap_mime_header_decode($cc_header) :0;
+		$cc_array = isset($ref_contenu_message->ccaddress) ? $this->mime_header_decode($cc_header) :0;
+//JFV END
 		if ($cc_array != 0) {
 			for ($j = 0; $j < count($cc_array); $j++)
 				$cc .= $cc_array[$j]->text;
 		}
 		$cc = str_replace(',', ', ', $cc);
-		$this->cc_header = $cc_header;
+//JFV - careless typo or forgot to change variable name?
+//		$this->cc_header = $cc_header;
+		$this->cc_header = $cc;
+//JFV END
 		$reply_to_header = isset($ref_contenu_message->reply_toaddress) ? $ref_contenu_message->reply_toaddress : '';
 		$reply_to_header = str_replace('x-unknown', $msg_charset, $reply_to_header);
 		$reply_to_array = isset($ref_contenu_message->reply_toaddress) ? imap_mime_header_decode($reply_to_header) : 0;
