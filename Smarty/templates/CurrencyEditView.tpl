@@ -106,9 +106,15 @@
 						<select name="currency_name" id="currency_name" class="small" onChange='updateSymbolAndCode();'>
 					{foreach key=header item=currency from=$CURRENCIES}
 			        	        {if $header eq $CURRENCY_NAME}
-			        	        	<option value="{$header}" selected>{$header|@getTranslatedCurrencyString}({$currency.1})</option>
+{* JFV - add ENG currency name to currency selection
+			        	        	<option value="{$header}" selected>{$header|@getTranslatedCurrencyString}({$currency.1})</option> *}
+									<option value="{$header}" selected>{$header} / {$header|@getTranslatedCurrencyString}({$currency.1})</option>
+{* JFV END *}
 			        	        {else}
-			        	        	<option value="{$header}" >{$header|@getTranslatedCurrencyString}({$currency.1})</option>
+{* JFV - add ENG currency name to currency selection
+			        	        	<option value="{$header}" >{$header|@getTranslatedCurrencyString}({$currency.1})</option> *}
+									<option value="{$header}" >{$header} / {$header|@getTranslatedCurrencyString}({$currency.1})</option>
+{* JFV END *}
 			        	        {/if}
    					{/foreach}
  						</select>
