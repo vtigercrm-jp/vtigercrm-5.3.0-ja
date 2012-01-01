@@ -215,7 +215,15 @@ class Vtiger_MailScannerInfo {
 			if($fldcount) {
 				$folderinfo = Array();
 				for($index = 0; $index < $fldcount; ++$index) {
+// JFV - imap encoding issue, folder name garbled in mail converter folder selection page
+					if (function_exists("mb_convert_encoding")) {
+					$foldername = htmlspecialchars( mb_convert_encoding(htmlspecialchars_decode ($adb->query_result($fldres, $index, 'foldername'),ENT_QUOTES), "utf-8", "UTF7-IMAP" ),ENT_QUOTES ,"UTF-8");
+					}else{
+// JFV END
 					$foldername = $adb->query_result($fldres, $index, 'foldername');
+// JFV
+					}
+// JFV END
 					$folderid   = $adb->query_result($fldres, $index, 'folderid');
 					$lastscan   = $adb->query_result($fldres, $index, 'lastscan');
 					$rescan     = $adb->query_result($fldres, $index, 'rescan');
