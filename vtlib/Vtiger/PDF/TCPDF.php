@@ -69,6 +69,17 @@ class Vtiger_PDF_TCPDF extends TCPDF {
 		if($family == '') {
 			$family = $this->FontFamily;
 		}
+// JFV - CJK font assingment
+		else{
+		// $family='FreeSerif'; 
+		// $family='arialunicid0'; // Arial Uni CID0 (Japanese) 
+		 $family='kozgopromedium'; // Kozuka Gorhic Pro M (Japanese) 
+		// $family='kozminproregular'; // Kozuka Mincho Pro M (Japanese) 
+		// $family='hysmyeongjostdmedium'; // HYSMyeongJoStd-Medium (Korean) 
+		// $family='msungstdlight'; // MSungStd-Light (Traditional Chinese) 
+		// $family='stsongstdlight'; // STSongStd-Light (Simplified Chinese) 
+		}
+// JFV END
 		//Select a font; size given in points
 		if ($size == 0) {
 			$size = $this->FontSizePt;
