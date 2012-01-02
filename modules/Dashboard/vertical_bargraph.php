@@ -50,8 +50,15 @@ function vertical_graph($referdata,$refer_code,$width,$height,$left,$right,$top,
 // JFV END
 
 //If the datax value of a string is greater, adding '\n' to it so that it'll cme inh 2nd line
+//JFV - disable x axis label length limit
+		if($lang_crm != 'ja'){
 		 if(strlen($name)>=15)
                         $name=substr($name, 0, 15);
+		}else{
+			$name = str_replace("ー", "｜", $name);  // replace for 90 degree angle
+			$name = '  ' . $name;  // padding space for x axis label
+		}
+// JFV END
 		if($pos>=2)
 		{
 			$val=explode(" ",$name);
@@ -83,7 +90,16 @@ function vertical_graph($referdata,$refer_code,$width,$height,$left,$right,$top,
 	$canvas =& Image_Canvas::factory('png', array('width' => $width, 'height' => $height, 'usemap' => true));
 	$imagemap = $canvas->getImageMap();
 	$graph =& Image_Graph::factory('graph', $canvas);
+
+//JFV - assign specific font for ja
+	if($lang_crm == 'ja'){
+	$font =& $graph->addNew('font', 'KochiG');
+	}else{
+//JFV END
 	$font =& $graph->addNew('font', calculate_font_name($lang_crm));
+//JFV
+	}
+//JFV END
 	// set the font size to 12
 	$font->setSize(8);
 
@@ -193,7 +209,16 @@ function vertical_graph($referdata,$refer_code,$width,$height,$left,$right,$top,
 	$xaxis->setDataPreprocessor($array_data);
 	$xaxis->forceMinimum(0);
 	$xaxis->forceMaximum(2*count($datay));
+// JFV - font angle adjustment
+	if($lang_crm == 'ja'){
+	$xaxis->setFontSize(10);
+	$xaxis->setFontAngle(270);
+	}else{
+// JFV END
 	$xaxis->setFontAngle('vertical');
+// JFV
+	}
+// JFV END
 	$xaxis->setLabelInterval(1);
 	$xaxis->setTickOptions(0,0);
 	$xaxis->setLabelInterval(2,2);

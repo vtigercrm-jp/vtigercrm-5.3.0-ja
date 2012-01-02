@@ -34,3 +34,5 @@ Verdana Bold,verdanab.ttf
 Verdana Bold Italic,verdanaz.ttf
 Verdana Italic,verdanai.ttf
 Uigothic,ipagui.ttf
+KochiG,kochi-gothic-subst.ttf
+KochiM,kochi-mincho-subst.ttf
