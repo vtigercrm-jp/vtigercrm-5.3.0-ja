@@ -9,6 +9,28 @@
   *
   ********************************************************************************/
 
+// JFV - convert mail header date string
+function jfv_convert_mail_header_date($date)
+{
+	$jfv_dtstr = $date;
+	$jfv_timestamp =  strtotime($date);
+	if ($jfv_timestamp != -1 && $jfv_timestamp != FALSE){
+		$jfv_dtstr = date('Y/m/d  G:i',$jfv_timestamp);
+	}
+	return  $jfv_dtstr;
+}
+// JFV END
+//JFV - create mail list from
+function jfv_create_mail_from_name($from)
+{
+	$jfv_from = str_replace("\\\\","\\",$from);
+	$jfv_from = str_replace("\\\'","\'",$jfv_from);
+	$jfv_from = str_replace("\\\"","\"",$jfv_from);
+	$jfv_from = preg_replace("/<[^>]*>/","",$jfv_from);
+	$jfv_from = trim($jfv_from,"\" ");
+	return $jfv_from;
+}
+// JFV END
 
 // draw a row for the listview entry
 function show_msg($mails,$start_message)
@@ -103,17 +125,20 @@ function show_msg($mails,$start_message)
 	{
 // JFV - fix wrongly truncationed utf8 string
 		if (function_exists("mb_strimwidth")) {
-		$listview_entries[$num][] = '<td nowrap align="left" style="cursor:pointer;" id="deleted_subject_'.$num.'" onclick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\'); "><s><a href="javascript:;" >'.mb_strimwidth($mails[$start_message]->subject,0,40, '...', "UTF-8").'</a></s></td>';
+		$listview_entries[$num][] = '<td nowrap align="left" style="cursor:pointer;" id="deleted_subject_'.$num.'" onclick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\'); "><s><a href="javascript:;" >'.mb_strimwidth($mails[$start_message]->subject,0,50, '...', "UTF-8").'</a></s></td>';
 		}else{
 // JFV END
 		$listview_entries[$num][] = '<td nowrap align="left" style="cursor:pointer;" id="deleted_subject_'.$num.'" onclick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\'); "><s><a href="javascript:;" >'.substr($mails[$start_message]->subject,0,40).'</a></s></td>';
 // JFV
 		}
 // JFV END
-		$listview_entries[$num][] = '<td nowrap align="left" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" nowrap id="deleted_date_'.$num.'"><s>'.substr($mails[$start_message]->date,0,25).'</s></td>';
+// JFV - change mail date time format on mail list
+//		$listview_entries[$num][] = '<td nowrap align="left" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" nowrap id="deleted_date_'.$num.'"><s>'.substr($mails[$start_message]->date,0,25).'</s></td>';
+		$listview_entries[$num][] = '<td nowrap align="left" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" nowrap id="deleted_date_'.$num.'"><s>'.jfv_convert_mail_header_date($mails[$start_message]->date).'</s></td>';
+// JFV END
 // JFV - fix wrongly truncationed utf8 string
 		if (function_exists("mb_strimwidth")) {
-		$listview_entries[$num][] = '<td nowrap align="left" id="deleted_from_'.$num.'" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');"><s>'.mb_strimwidth($from,0,20, '...', "UTF-8").'</s></td>';
+		$listview_entries[$num][] = '<td nowrap align="left" id="deleted_from_'.$num.'" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');"><s>'.mb_strimwidth(jfv_create_mail_from_name($from),0,25, '...', "UTF-8").'</s></td>';
 		}else{
 // JFV END
 		$listview_entries[$num][] = '<td nowrap align="left" id="deleted_from_'.$num.'" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');"><s>'.substr($from,0,20).'</s></td>';
@@ -125,17 +150,20 @@ function show_msg($mails,$start_message)
 	{
 // JFV - fix wrongly truncationed utf8 string
 		if (function_exists("mb_strimwidth")) {
-		$listview_entries[$num][] = '<td nowrap align="left" onclick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" style="cursor:pointer;" ><a href="javascript:;" id="ndeleted_subject_'.$num.'"><font id="fnt_subject_'.$num.'" color="green">'.mb_strimwidth($mails[$start_message]->subject,0,40, '...', "UTF-8").'</font></a></td>';
+		$listview_entries[$num][] = '<td nowrap align="left" onclick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" style="cursor:pointer;" ><a href="javascript:;" id="ndeleted_subject_'.$num.'"><font id="fnt_subject_'.$num.'" color="green">'.mb_strimwidth($mails[$start_message]->subject,0,50, '...', "UTF-8").'</font></a></td>';
 		}else{
 // JFV END
 		$listview_entries[$num][] = '<td nowrap align="left" onclick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" style="cursor:pointer;" ><a href="javascript:;" id="ndeleted_subject_'.$num.'"><font id="fnt_subject_'.$num.'" color="green">'.substr($mails[$start_message]->subject,0,40).'</font></a></td>';
 // JFV
 		}
 // JFV END
-		$listview_entries[$num][] = '<td nowrap align="left" nowrap id="ndeleted_date_'.$num.'" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" ><font id="fnt_date_'.$num.'" color="green">'.substr($mails[$start_message]->date,0,25).' &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font></td>';
+// JFV - change mail date time format on mail list
+//		$listview_entries[$num][] = '<td nowrap align="left" nowrap id="ndeleted_date_'.$num.'" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" ><font id="fnt_date_'.$num.'" color="green">'.substr($mails[$start_message]->date,0,25).' &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font></td>';
+		$listview_entries[$num][] = '<td nowrap align="left" nowrap id="ndeleted_date_'.$num.'" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" ><font id="fnt_date_'.$num.'" color="green">'.jfv_convert_mail_header_date($mails[$start_message]->date).' &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</font></td>';
+// JFV END
 // JFV - fix wrongly truncationed utf8 string
 		if (function_exists("mb_strimwidth")) {
-		$listview_entries[$num][] = '<td  nowrap align="left" id="ndeleted_from_'.$num.'"><font id="fnt_from_'.$num.'" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" >'.mb_strimwidth($from,0,20, '...', "UTF-8").'</font></td>';
+		$listview_entries[$num][] = '<td  nowrap align="left" id="ndeleted_from_'.$num.'"><font id="fnt_from_'.$num.'" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" >'.mb_strimwidth(jfv_create_mail_from_name($from),0,25, '...', "UTF-8").'</font></td>';
 		}else{
 // JFV END
 		$listview_entries[$num][] = '<td  nowrap align="left" id="ndeleted_from_'.$num.'"><font id="fnt_from_'.$num.'" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" >'.substr($from,0,20).'</font></td>';
@@ -167,17 +195,20 @@ function show_msg($mails,$start_message)
 		//Added to shown the original UTF-8 characters - Mickie - 30-11-06 - Ends
 // JFV - fix wrongly truncationed utf8 string
 		if (function_exists("mb_strimwidth")) {
-			$listview_entries[$num][] = '<td nowrap align="left" onclick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" style="cursor:pointer;" ><a href="javascript:;" id="ndeleted_subject_'.$num.'">'.mb_strimwidth($mails[$start_message]->subject, 0, 40, '...', "UTF-8").'</a></td>';
+		$listview_entries[$num][] = '<td nowrap align="left" onclick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" style="cursor:pointer;" ><a href="javascript:;" id="ndeleted_subject_'.$num.'">'.mb_strimwidth($mails[$start_message]->subject, 0, 50, '...', "UTF-8").'</a></td>';
 		}else{
 // JFV END
 		$listview_entries[$num][] = '<td nowrap align="left" onclick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" style="cursor:pointer;" ><a href="javascript:;" id="ndeleted_subject_'.$num.'">'.substr($mails[$start_message]->subject,0,40).'</a></td>';
 // JFV
 		}
 // JFV END
-		$listview_entries[$num][] = '<td npwrap align="left" nowrap id="ndeleted_date_'.$num.'" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" >'.substr($mails[$start_message]->date,0,25).'</td>';
+// JFV - change mail date time format on mail list
+//		$listview_entries[$num][] = '<td npwrap align="left" nowrap id="ndeleted_date_'.$num.'" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" >'.substr($mails[$start_message]->date,0,25).'</td>';
+		$listview_entries[$num][] = '<td npwrap align="left" nowrap id="ndeleted_date_'.$num.'" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" >'.jfv_convert_mail_header_date($mails[$start_message]->date).'</td>';
+// JFV END
 // JFV - fix wrongly truncationed utf8 string
 		if (function_exists("mb_strimwidth")) {
-		$listview_entries[$num][] = '<td nowrap align="left" id="ndeleted_from_'.$num.'" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" >'.mb_strimwidth($from,0,20, '...', "UTF-8").'</td>';
+		$listview_entries[$num][] = '<td nowrap align="left" id="ndeleted_from_'.$num.'" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" >'.mb_strimwidth(jfv_create_mail_from_name($from)."12345123451234512345",0,25, '...', "UTF-8").'</td>';
 		}else{
 // JFV END
 		$listview_entries[$num][] = '<td nowrap align="left" id="ndeleted_from_'.$num.'" style="cursor:pointer;" onClick="load_webmail(\''.$num.'\', \''.$enableDownlaodAttachment.'\');" >'.substr($from,0,20).'</td>';

@@ -100,12 +100,23 @@ else
 <!-- Table to display the Header details (From, To, Subject and date) - Starts -->
 					
                                         <table <?php echo $class_str;?> width="100%" border="0" cellpadding="0" cellspacing="0">
-                                                <tr align="left"><td width="100%" align="left">&nbsp;<b><?php echo $mod_strings['LBL_FROM'];?></b><?php echo $from;?></td></tr>
-                                                <tr><td  width="100%" align="left">&nbsp;<b><?php echo $mod_strings['LBL_TO'];?></b><?php echo $to;?></td></tr>
-<tr><td width="100%" align="left">&nbsp;<b><?php echo $mod_strings['LBL_CC'];?></b><?php echo $cc;?></td></tr>
+                                                <tr align="left"><td width="100%" align="left">&nbsp;<b><?php echo $mod_strings['LBL_FROM'];?></b><?php // JFV - add blank ?><?php echo "&nbsp"; ?><?php // JFV END ?><?php echo $from;?></td></tr>
+                                                <tr><td  width="100%" align="left">&nbsp;<b><?php echo $mod_strings['LBL_TO'];?></b><?php // JFV - add blank ?><?php echo "&nbsp"; ?><?php // JFV END ?><?php echo $to;?></td></tr>
+<tr><td width="100%" align="left">&nbsp;<b><?php echo $mod_strings['LBL_CC'];?></b><?php // JFV - add blank ?><?php echo "&nbsp"; ?><?php // JFV END ?><?php echo $cc;?></td></tr>
 
-                                                <tr><td align="left" width="100%">&nbsp;<b><?php echo $mod_strings['LBL_SUBJECT'];?></b><?php echo $subject;?></td></tr>
-	<tr><td align="left" width="100%">&nbsp;<b><?php echo $mod_strings['LBL_DATE'];?></b><?php echo substr($date,0,25);?>
+                                                <tr><td align="left" width="100%">&nbsp;<b><?php echo $mod_strings['LBL_SUBJECT'];?></b><?php // JFV - add blank ?><?php echo "&nbsp"; ?><?php // JFV END ?><?php echo $subject;?></td></tr>
+<?php // JFV - date time string formating ?>
+	<tr><td align="left" width="100%">&nbsp;<b><?php echo $mod_strings['LBL_DATE'];?>
+	</b>
+	<?php
+	$jfv_dtstr = $date;
+	$jfv_timestamp =  strtotime($date);
+	if ($jfv_timestamp != -1 && $jfv_timestamp != FALSE){
+		$jfv_dtstr = date('Y/m/d  G:i',$jfv_timestamp) . "&nbsp; ( " . $date . " )";
+	}
+	echo  $jfv_dtstr;
+	?>
+<?php // JFV END ?>
         <?php if(!$_REQUEST['fullview']) {?>
         <span style="float:right"  colspan="2"><a href="javascript:;" onclick="OpenComposer('<?php echo $mailid;?>','full_view')"><?php echo $mod_strings['LBL_FULL_EMAIL_VIEW'] ?></a></span>
         <?php } ?>
