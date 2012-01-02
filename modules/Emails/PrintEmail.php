@@ -68,7 +68,27 @@ $status=imap_setflag_full($MailBox->mbox,$mailid,"\\Seen");
 $attach_tab=array();
 $email->loadMail($attach_tab);
 echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=".$email->charsets."\">\n";
+//JFV - for subject garbled issue reported by ayano, 
+		if ( function_exists("mb_decode_mimeheader") && function_exists("mb_internal_encoding") && function_exists("mb_convert_encoding")) {
+			if ( strtoupper(substr( $email->subject, 0, 13 )) == "=?ISO-2022-JP"  && @mb_convert_encoding(1, 'iso-2022-jp-ms')){
+				$jfv_subject = str_ireplace('?iso-2022-jp?', '?iso-2022-jp-ms?', $email->subject);
+			}elseif ( strtoupper(substr( $email->subject, 0, 11 )) == "=?SHIFT_JIS"  && @mb_convert_encoding(1, 'SJIS-win')){
+				$jfv_subject = str_ireplace('?shift_jis?', '?SJIS-win?', $email->subject);
+			}elseif ( strtoupper(substr( $email->subject, 0, 8 )) == "=?EUC-JP"  && @mb_convert_encoding(1, 'eucJP-win')){
+				$jfv_subject = str_ireplace('?euc-jp?', '?eucJP-win?', $email->subject);
+			}else{
+				$jfv_subject = $email->subject;
+			}
+	$jfv_default_internal_enc = mb_internal_encoding();
+	mb_internal_encoding("UTF-8");
+	$subject = mb_decode_mimeheader($jfv_subject);
+	mb_internal_encoding($jfv_default_internal_enc);
+}else{
+//JFV END
 $subject = utf8_decode(utf8_encode(imap_utf8($email->subject)));
+// JFV
+}
+//JFV END
 $from = decode_header($email->from);
 $to = decode_header($email->to[0]);
 $cc = decode_header($email->cc_header);

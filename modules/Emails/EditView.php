@@ -178,7 +178,28 @@ if(isset($_REQUEST["mailid"]) && $_REQUEST["mailid"] != "") {
 	$smarty->assign('mailbox',$mailbox);
 	$temp_id = $MailBox->boxinfo['mail_id'];
 	$smarty->assign('from_add',$temp_id);
+//JFV - for subject garbled issue reported by ayano, 
+		if ( function_exists("mb_decode_mimeheader") && function_exists("mb_internal_encoding") && function_exists("mb_convert_encoding")) {
+			if ( strtoupper(substr( $webmail->subject, 0, 13 )) == "=?ISO-2022-JP"  && @mb_convert_encoding(1, 'iso-2022-jp-ms')){
+				$jfv_subject = str_ireplace('?iso-2022-jp?', '?iso-2022-jp-ms?', $webmail->subject);
+			}elseif ( strtoupper(substr( $webmail->subject, 0, 11 )) == "=?SHIFT_JIS"  && @mb_convert_encoding(1, 'SJIS-win')){
+				$jfv_subject = str_ireplace('?shift_jis?', '?SJIS-win?', $webmail->subject);
+			}elseif ( strtoupper(substr( $webmail->subject, 0, 8 )) == "=?EUC-JP"  && @mb_convert_encoding(1, 'eucJP-win')){
+				$jfv_subject = str_ireplace('?euc-jp?', '?eucJP-win?', $webmail->subject);
+			}else{
+				$jfv_subject = $webmail->subject;
+			}
+			$jfv_default_internal_enc = mb_internal_encoding();
+			mb_internal_encoding("UTF-8");
+			$webmail->subject = mb_decode_mimeheader($jfv_subject);
+			mb_internal_encoding($jfv_default_internal_enc);
+		}else{
+//JFV END
+
 	$webmail->subject = utf8_decode(utf8_encode(imap_utf8($webmail->subject)));
+// JFV
+		}
+//JFV END	
 	if($_REQUEST["reply"] == "all") {
 		$smarty->assign('TO_MAIL',$webmail->from.",");	
 		//added to remove the emailid of webmail client from cc list....to fix the issue #3818
