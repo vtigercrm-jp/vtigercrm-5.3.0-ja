@@ -119,8 +119,20 @@ function getParentLink($parent_id)
 	{
 		$sql = "select firstname,lastname from vtiger_contactdetails where contactid=?";
 		$res = $adb->pquery($sql, array($parent_id));
+// JFV - chg first name and last name order for dashboard display
+//global $current_language; // JFV - in 5.2.1, this value always get en_us, so use lang_crm instead.
+global $lang_crm;
+if( in_array(strtolower($lang_crm), array('ja','zh_cn', 'zh_tw'))){
+		$parentname = $adb->query_result($res,0,'lastname');
+		$parentname .= ' '.$adb->query_result($res,0,'firstname');
+}else{
+// JFV END
 		$parentname = $adb->query_result($res,0,'firstname');
 		$parentname .= ' '.$adb->query_result($res,0,'lastname');
+// JFV
+}
+// JFV END
+
 	        $parent_name = '<a href="index.php?action=DetailView&module='.$parent_module.'&record='.$parent_id.'">'.$parentname.'</a>';
 	}
 	if($parent_module == 'Accounts')
