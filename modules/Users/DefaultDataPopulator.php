@@ -2014,7 +2014,7 @@ $body='<table width="700" cellspacing="0" cellpadding="0" border="0" align="cent
 // JFV - set Japanese language info into vtiger_language table and set it as default, during default data populator operation. Default user language becomes ja
 //	$vtlanguage->register('en_us','US English','English',true,true,true);
 	$vtlanguage->register('en_us','US English','English',false,true,true);
-	$vtlanguage->register('ja','Japanese ( “ú–{Œê )','Japanese',true,true,true);
+	$vtlanguage->register('ja','Japanese (æ—¥æœ¬èªž)','Japanese',true,true,true);
 // JFV END
 	$this->initWebservices();
 
