@@ -59,6 +59,8 @@
                             <td class="small cellLabel"><strong>{$MOD.LBL_ORGANIZATION_LOGO}</strong></td>
                             <td class="small cellText" style="background-image: url({$ORGANIZATIONLOGOPATH}/{$ORGANIZATIONLOGONAME}); background-position: left; background-repeat: no-repeat;" width="48" height="48" border="0"></td>
                           </tr>
+{*// JFV - change address display order *}
+{*
                           <tr>
                             <td class="small cellLabel"><strong>{$MOD.LBL_ORGANIZATION_ADDRESS}</strong></td>
                             <td class="small cellText">{$ORGANIZATIONADDRESS}</td>
@@ -79,6 +81,28 @@
                             <td class="small cellLabel"><strong>{$MOD.LBL_ORGANIZATION_COUNTRY}</strong></td>
                             <td class="small cellText">{$ORGANIZATIONCOUNTRY}</td>
                           </tr>
+*}
+                          <tr>
+                            <td class="small cellLabel"><strong>{$MOD.LBL_ORGANIZATION_COUNTRY}</strong></td>
+                            <td class="small cellText">{$ORGANIZATIONCOUNTRY}</td>
+                          </tr>
+                          <tr> 
+                            <td class="small cellLabel"><strong>{$MOD.LBL_ORGANIZATION_CODE}</strong></td>
+                            <td class="small cellText">{$ORGANIZATIONCODE}</td>
+                          </tr>
+                          <tr>
+                            <td class="small cellLabel"><strong>{$MOD.LBL_ORGANIZATION_STATE}</strong></td>
+                            <td class="small cellText">{$ORGANIZATIONSTATE}</td>
+                          </tr>
+                          <tr>
+                            <td class="small cellLabel"><strong>{$MOD.LBL_ORGANIZATION_CITY}</strong></td>
+                            <td class="small cellText">{$ORGANIZATIONCITY}</td>
+                          </tr>
+                          <tr>
+                            <td class="small cellLabel"><strong>{$MOD.LBL_ORGANIZATION_ADDRESS}</strong></td>
+                            <td class="small cellText">{$ORGANIZATIONADDRESS}</td>
+                          </tr>
+{*// JFV END*}
                           <tr>
                             <td class="small cellLabel"><strong>{$MOD.LBL_ORGANIZATION_PHONE}</strong></td>
                             <td class="small cellText">{$ORGANIZATIONPHONE}</td>
