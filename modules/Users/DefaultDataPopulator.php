@@ -217,24 +217,38 @@ class DefaultDataPopulator extends CRMEntity {
 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'modifiedtime','vtiger_crmentity',1,'70','modifiedtime','Modified Time',1,0,'',100,21,9,2,'T~O',3,null,'BAS',0)");
 
 		//Block 11
-		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_street','vtiger_accountbillads',1,'21','bill_street','Billing Address',1,2,'',100,1,11,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_street','vtiger_accountshipads',1,'21','ship_street','Shipping Address',1,2,'',100,2,11,1,'V~O',1,null,'BAS',1)");
+// JFV - change address display order
+// 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_street','vtiger_accountbillads',1,'21','bill_street','Billing Address',1,2,'',100,1,11,1,'V~O',1,null,'BAS',1)");
+ 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_street','vtiger_accountbillads',1,'21','bill_street','Billing Address',1,2,'',100,9,11,1,'V~O',1,null,'BAS',1)");
+// 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_street','vtiger_accountshipads',1,'21','ship_street','Shipping Address',1,2,'',100,2,11,1,'V~O',1,null,'BAS',1)");
+ 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_street','vtiger_accountshipads',1,'21','ship_street','Shipping Address',1,2,'',100,10,11,1,'V~O',1,null,'BAS',1)");
+ 		
+// 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_city','vtiger_accountbillads',1,'1','bill_city','Billing City',1,2,'',100,5,11,1,'V~O',1,null,'BAS',1)");
+ 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_city','vtiger_accountbillads',1,'1','bill_city','Billing City',1,2,'',100,7,11,1,'V~O',1,null,'BAS',1)");
+// 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_city','vtiger_accountshipads',1,'1','ship_city','Shipping City',1,2,'',100,6,11,1,'V~O',1,null,'BAS',1)");
+ 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_city','vtiger_accountshipads',1,'1','ship_city','Shipping City',1,2,'',100,8,11,1,'V~O',1,null,'BAS',1)");
 		
-		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_city','vtiger_accountbillads',1,'1','bill_city','Billing City',1,2,'',100,5,11,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_city','vtiger_accountshipads',1,'1','ship_city','Shipping City',1,2,'',100,6,11,1,'V~O',1,null,'BAS',1)");
+// 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_state','vtiger_accountbillads',1,'1','bill_state','Billing State',1,2,'',100,7,11,1,'V~O',1,null,'BAS',1)");
+ 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_state','vtiger_accountbillads',1,'1','bill_state','Billing State',1,2,'',100,5,11,1,'V~O',1,null,'BAS',1)");
+// 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_state','vtiger_accountshipads',1,'1','ship_state','Shipping State',1,2,'',100,8,11,1,'V~O',1,null,'BAS',1)");
+ 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_state','vtiger_accountshipads',1,'1','ship_state','Shipping State',1,2,'',100,6,11,1,'V~O',1,null,'BAS',1)");
 		
-		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_state','vtiger_accountbillads',1,'1','bill_state','Billing State',1,2,'',100,7,11,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_state','vtiger_accountshipads',1,'1','ship_state','Shipping State',1,2,'',100,8,11,1,'V~O',1,null,'BAS',1)");
+// 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_code','vtiger_accountbillads',1,'1','bill_code','Billing Code',1,2,'',100,9,11,1,'V~O',1,null,'BAS',1)");
+ 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_code','vtiger_accountbillads',1,'1','bill_code','Billing Code',1,2,'',100,3,11,1,'V~O',1,null,'BAS',1)");
+// 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_code','vtiger_accountshipads',1,'1','ship_code','Shipping Code',1,2,'',100,10,11,1,'V~O',1,null,'BAS',1)");
+ 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_code','vtiger_accountshipads',1,'1','ship_code','Shipping Code',1,2,'',100,4,11,1,'V~O',1,null,'BAS',1)");
 		
-		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_code','vtiger_accountbillads',1,'1','bill_code','Billing Code',1,2,'',100,9,11,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_code','vtiger_accountshipads',1,'1','ship_code','Shipping Code',1,2,'',100,10,11,1,'V~O',1,null,'BAS',1)");
-		
-		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_country','vtiger_accountbillads',1,'1','bill_country','Billing Country',1,2,'',100,11,11,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_country','vtiger_accountshipads',1,'1','ship_country','Shipping Country',1,2,'',100,12,11,1,'V~O',1,null,'BAS',1)");
+// 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_country','vtiger_accountbillads',1,'1','bill_country','Billing Country',1,2,'',100,11,11,1,'V~O',1,null,'BAS',1)");
+ 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_country','vtiger_accountbillads',1,'1','bill_country','Billing Country',1,2,'',100,1,11,1,'V~O',1,null,'BAS',1)");
+// 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_country','vtiger_accountshipads',1,'1','ship_country','Shipping Country',1,2,'',100,12,11,1,'V~O',1,null,'BAS',1)");
+ 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_country','vtiger_accountshipads',1,'1','ship_country','Shipping Country',1,2,'',100,2,11,1,'V~O',1,null,'BAS',1)");
 
-		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_pobox','vtiger_accountbillads',1,'1','bill_pobox','Billing Po Box',1,2,'',100,3,11,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_pobox','vtiger_accountshipads',1,'1','ship_pobox','Shipping Po Box',1,2,'',100,4,11,1,'V~O',1,null,'BAS',1)");
-
+// 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_pobox','vtiger_accountbillads',1,'1','bill_pobox','Billing Po Box',1,2,'',100,3,11,1,'V~O',1,null,'BAS',1)");
+ 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'bill_pobox','vtiger_accountbillads',1,'1','bill_pobox','Billing Po Box',1,2,'',10011,11,1,'V~O',1,null,'BAS',1)");
+// 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_pobox','vtiger_accountshipads',1,'1','ship_pobox','Shipping Po Box',1,2,'',100,4,11,1,'V~O',1,null,'BAS',1)");
+ 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'ship_pobox','vtiger_accountshipads',1,'1','ship_pobox','Shipping Po Box',1,2,'',100,12,11,1,'V~O',1,null,'BAS',1)");
+// JFV END
+		
 		//Block12
 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'description','vtiger_crmentity',1,'19','description','Description',1,2,'',100,1,12,1,'V~O',1,null,'BAS',1)");
  
@@ -244,11 +258,17 @@ class DefaultDataPopulator extends CRMEntity {
 		//Block13 -- Start
 
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'salutation','vtiger_leaddetails',1,'55','salutationtype','Salutation',1,0,'',100,1,13,3,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'firstname','vtiger_leaddetails',1,'55','firstname','First Name',1,0,'',100,2,13,1,'V~O',2,1,'BAS',1)");
+// JFV - change firstname and lastname order to japan/china way
+//		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'firstname','vtiger_leaddetails',1,'55','firstname','First Name',1,0,'',100,2,13,1,'V~O',2,1,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'firstname','vtiger_leaddetails',1,'55','firstname','First Name',1,0,'',100,4,13,1,'V~O',2,1,'BAS',1)");
+// JFV END
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'lead_no','vtiger_leaddetails',1,'4','lead_no','Lead No',1,0,'',100,3,13,1,'V~O',3,null,'BAS',0)");
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'phone','vtiger_leadaddress',1,'11','phone','Phone',1,2,'',100,5,13,1,'V~O',2,4,'BAS',1)");
 
-		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'lastname','vtiger_leaddetails',1,'255','lastname','Last Name',1,0,'',100,4,13,1,'V~M',0,2,'BAS',1)");
+// JFV - change firstname and lastname order to japan/china way
+//		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'lastname','vtiger_leaddetails',1,'255','lastname','Last Name',1,0,'',100,4,13,1,'V~M',0,2,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'lastname','vtiger_leaddetails',1,'255','lastname','Last Name',1,0,'',100,2,13,1,'V~M',0,2,'BAS',1)");
+// JFV END
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'mobile','vtiger_leadaddress',1,'1','mobile','Mobile',1,2,'',100,7,13,1,'V~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'company','vtiger_leaddetails',1,'2','company','Company',1,2,'',100,6,13,1,'V~M',2,3,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'fax','vtiger_leadaddress',1,'1','fax','Fax',1,2,'',100,9,13,1,'V~O',1,null,'BAS',1)");
@@ -268,12 +288,20 @@ class DefaultDataPopulator extends CRMEntity {
 		//Block13 -- End
 
 		//Block15 -- Start
-		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'lane','vtiger_leadaddress',1,'21','lane','Street',1,2,'',100,1,15,1,'V~O',1,null,'BAS',1)");
+// JFV - change address display order
+//		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'lane','vtiger_leadaddress',1,'21','lane','Street',1,2,'',100,1,15,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'lane','vtiger_leadaddress',1,'21','lane','Street',1,2,'',100,4,15,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'code','vtiger_leadaddress',1,'1','code','Postal Code',1,2,'',100,3,15,1,'V~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'code','vtiger_leadaddress',1,'1','code','Postal Code',1,2,'',100,3,15,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'city','vtiger_leadaddress',1,'1','city','City',1,2,'',100,4,15,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'country','vtiger_leadaddress',1,'1','country','Country',1,2,'',100,5,15,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'state','vtiger_leadaddress',1,'1','state','State',1,2,'',100,6,15,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'pobox','vtiger_leadaddress',1,'1','pobox','Po Box',1,2,'',100,2,15,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'city','vtiger_leadaddress',1,'1','city','City',1,2,'',100,4,15,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'city','vtiger_leadaddress',1,'1','city','City',1,2,'',100,2,15,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'country','vtiger_leadaddress',1,'1','country','Country',1,2,'',100,5,15,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'country','vtiger_leadaddress',1,'1','country','Country',1,2,'',100,1,15,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'state','vtiger_leadaddress',1,'1','state','State',1,2,'',100,6,15,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'state','vtiger_leadaddress',1,'1','state','State',1,2,'',100,5,15,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'pobox','vtiger_leadaddress',1,'1','pobox','Po Box',1,2,'',100,2,15,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'pobox','vtiger_leadaddress',1,'1','pobox','Po Box',1,2,'',100,6,15,1,'V~O',1,null,'BAS',1)");
+// JFV END
 		//Block15 --End
 
 		//Block16 -- Start
@@ -286,10 +314,16 @@ class DefaultDataPopulator extends CRMEntity {
 		//Block4 -- Start
 
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'salutation','vtiger_contactdetails',1,'55','salutationtype','Salutation',1,0,'',100,1,4,3,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'firstname','vtiger_contactdetails',1,'55','firstname','First Name',1,0,'',100,2,4,1,'V~O',2,1,'BAS',1)");
+// JFV - change firstname and lastname order to japan/china way
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'firstname','vtiger_contactdetails',1,'55','firstname','First Name',1,0,'',100,2,4,1,'V~O',2,1,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'firstname','vtiger_contactdetails',1,'55','firstname','First Name',1,0,'',100,4,4,1,'V~O',2,1,'BAS',1)");
+// JFV END
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'contact_no','vtiger_contactdetails',1,'4','contact_no','Contact Id',1,0,'',100,3,4,1,'V~O',3,null,'BAS',0)");
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'phone','vtiger_contactdetails',1,'11','phone','Office Phone',1,2,'',100,5,4,1,'V~O',2,4,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'lastname','vtiger_contactdetails',1,'255','lastname','Last Name',1,0,'',100,4,4,1,'V~M',0,2,'BAS',1)");
+// JFV - change firstname and lastname order to japan/china way
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'lastname','vtiger_contactdetails',1,'255','lastname','Last Name',1,0,'',100,4,4,1,'V~M',0,2,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'lastname','vtiger_contactdetails',1,'255','lastname','Last Name',1,0,'',100,2,4,1,'V~M',0,2,'BAS',1)");
+// JFV END
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mobile','vtiger_contactdetails',1,'1','mobile','Mobile',1,2,'',100,7,4,1,'V~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'accountid','vtiger_contactdetails',1,'51','account_id','Account Name',1,0,'',100,6,4,1,'I~O',2,3,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'homephone','vtiger_contactsubdetails',1,'11','homephone','Home Phone',1,2,'',100,9,4,1,'V~O',1,null,'ADV',1)");
@@ -323,18 +357,32 @@ class DefaultDataPopulator extends CRMEntity {
 
 		//Block 7 -- Start
 
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingstreet','vtiger_contactaddress',1,'21','mailingstreet','Mailing Street',1,2,'',100,1,7,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'otherstreet','vtiger_contactaddress',1,'21','otherstreet','Other Street',1,2,'',100,2,7,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingcity','vtiger_contactaddress',1,'1','mailingcity','Mailing City',1,2,'',100,5,7,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'othercity','vtiger_contactaddress',1,'1','othercity','Other City',1,2,'',100,6,7,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingstate','vtiger_contactaddress',1,'1','mailingstate','Mailing State',1,2,'',100,7,7,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'otherstate','vtiger_contactaddress',1,'1','otherstate','Other State',1,2,'',100,8,7,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingzip','vtiger_contactaddress',1,'1','mailingzip','Mailing Zip',1,2,'',100,9,7,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'otherzip','vtiger_contactaddress',1,'1','otherzip','Other Zip',1,2,'',100,10,7,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingcountry','vtiger_contactaddress',1,'1','mailingcountry','Mailing Country',1,2,'',100,11,7,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'othercountry','vtiger_contactaddress',1,'1','othercountry','Other Country',1,2,'',100,12,7,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingpobox','vtiger_contactaddress',1,'1','mailingpobox','Mailing Po Box',1,2,'',100,3,7,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'otherpobox','vtiger_contactaddress',1,'1','otherpobox','Other Po Box',1,2,'',100,4,7,1,'V~O',1,null,'BAS',1)");
+// JFV - change address display order
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingstreet','vtiger_contactaddress',1,'21','mailingstreet','Mailing Street',1,2,'',100,1,7,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingstreet','vtiger_contactaddress',1,'21','mailingstreet','Mailing Street',1,2,'',100,9,7,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'otherstreet','vtiger_contactaddress',1,'21','otherstreet','Other Street',1,2,'',100,2,7,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'otherstreet','vtiger_contactaddress',1,'21','otherstreet','Other Street',1,2,'',100,10,7,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingcity','vtiger_contactaddress',1,'1','mailingcity','Mailing City',1,2,'',100,5,7,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingcity','vtiger_contactaddress',1,'1','mailingcity','Mailing City',1,2,'',100,7,7,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'othercity','vtiger_contactaddress',1,'1','othercity','Other City',1,2,'',100,6,7,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'othercity','vtiger_contactaddress',1,'1','othercity','Other City',1,2,'',100,8,7,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingstate','vtiger_contactaddress',1,'1','mailingstate','Mailing State',1,2,'',100,7,7,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingstate','vtiger_contactaddress',1,'1','mailingstate','Mailing State',1,2,'',100,5,7,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'otherstate','vtiger_contactaddress',1,'1','otherstate','Other State',1,2,'',100,8,7,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'otherstate','vtiger_contactaddress',1,'1','otherstate','Other State',1,2,'',100,6,7,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingzip','vtiger_contactaddress',1,'1','mailingzip','Mailing Zip',1,2,'',100,9,7,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingzip','vtiger_contactaddress',1,'1','mailingzip','Mailing Zip',1,2,'',100,3,7,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'otherzip','vtiger_contactaddress',1,'1','otherzip','Other Zip',1,2,'',100,10,7,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'otherzip','vtiger_contactaddress',1,'1','otherzip','Other Zip',1,2,'',100,4,7,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingcountry','vtiger_contactaddress',1,'1','mailingcountry','Mailing Country',1,2,'',100,11,7,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingcountry','vtiger_contactaddress',1,'1','mailingcountry','Mailing Country',1,2,'',100,1,7,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'othercountry','vtiger_contactaddress',1,'1','othercountry','Other Country',1,2,'',100,12,7,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'othercountry','vtiger_contactaddress',1,'1','othercountry','Other Country',1,2,'',100,2,7,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingpobox','vtiger_contactaddress',1,'1','mailingpobox','Mailing Po Box',1,2,'',100,3,7,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mailingpobox','vtiger_contactaddress',1,'1','mailingpobox','Mailing Po Box',1,2,'',100,11,7,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'otherpobox','vtiger_contactaddress',1,'1','otherpobox','Other Po Box',1,2,'',100,4,7,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'otherpobox','vtiger_contactaddress',1,'1','otherpobox','Other Po Box',1,2,'',100,12,7,1,'V~O',1,null,'BAS',1)");
+// JFV END
 		//Block7 -- End
 
 		//ContactImageInformation
@@ -621,14 +669,22 @@ class DefaultDataPopulator extends CRMEntity {
 		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'modifiedtime','vtiger_crmentity',1,'70','modifiedtime','Modified Time',1,0,'',100,9,$vendorbasicinfo,2,'T~O',3,null,'BAS',0)");
 		
 		//Block 46
-		
-		$this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'street','vtiger_vendor',1,'21','street','Street',1,2,'',100,1,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
-		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'pobox','vtiger_vendor',1,'1','pobox','Po Box',1,2,'',100,2,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
-		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'city','vtiger_vendor',1,'1','city','City',1,2,'',100,3,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
-		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'state','vtiger_vendor',1,'1','state','State',1,2,'',100,4,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
-		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'postalcode','vtiger_vendor',1,'1','postalcode','Postal Code',1,2,'',100,5,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
-		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'country','vtiger_vendor',1,'1','country','Country',1,2,'',100,6,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
-		
+
+// JFV - change address display order
+//		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'street','vtiger_vendor',1,'21','street','Street',1,2,'',100,1,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
+		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'street','vtiger_vendor',1,'21','street','Street',1,2,'',100,4,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
+//		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'pobox','vtiger_vendor',1,'1','pobox','Po Box',1,2,'',100,2,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
+		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'pobox','vtiger_vendor',1,'1','pobox','Po Box',1,2,'',100,6,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
+//		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'city','vtiger_vendor',1,'1','city','City',1,2,'',100,3,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
+		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'city','vtiger_vendor',1,'1','city','City',1,2,'',100,2,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
+//		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'state','vtiger_vendor',1,'1','state','State',1,2,'',100,4,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
+		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'state','vtiger_vendor',1,'1','state','State',1,2,'',100,5,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
+//		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'postalcode','vtiger_vendor',1,'1','postalcode','Postal Code',1,2,'',100,5,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
+		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'postalcode','vtiger_vendor',1,'1','postalcode','Postal Code',1,2,'',100,3,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
+//		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'country','vtiger_vendor',1,'1','country','Country',1,2,'',100,6,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
+		 $this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'country','vtiger_vendor',1,'1','country','Country',1,2,'',100,1,$vendoraddressblock,1,'V~O',1,null,'ADV',1)");
+// JFV END
+
 		//Block 47
 		
 		$this->db->query("insert into vtiger_field values (18,".$this->db->getUniqueID("vtiger_field").",'description','vtiger_crmentity',1,'19','description','Description',1,2,'',100,1,$vendordescriptionblock,1,'V~O',1,null,'ADV',1)");
@@ -685,24 +741,38 @@ class DefaultDataPopulator extends CRMEntity {
 		
 		 //Block 53
 		
-		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_street','vtiger_quotesbillads',1,'24','bill_street','Billing Address',1,2,'',100,1,$quotesaddressblock,1,'V~M',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_street','vtiger_quotesshipads',1,'24','ship_street','Shipping Address',1,2,'',100,2,$quotesaddressblock,1,'V~M',3,null,'BAS',1)");
+// JFV - change address display order
+//		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_street','vtiger_quotesbillads',1,'24','bill_street','Billing Address',1,2,'',100,1,$quotesaddressblock,1,'V~M',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_street','vtiger_quotesbillads',1,'24','bill_street','Billing Address',1,2,'',100,9,$quotesaddressblock,1,'V~M',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_street','vtiger_quotesshipads',1,'24','ship_street','Shipping Address',1,2,'',100,2,$quotesaddressblock,1,'V~M',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_street','vtiger_quotesshipads',1,'24','ship_street','Shipping Address',1,2,'',100,10,$quotesaddressblock,1,'V~M',3,null,'BAS',1)");
 		
-		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_city','vtiger_quotesbillads',1,'1','bill_city','Billing City',1,2,'',100,5,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_city','vtiger_quotesshipads',1,'1','ship_city','Shipping City',1,2,'',100,6,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_city','vtiger_quotesbillads',1,'1','bill_city','Billing City',1,2,'',100,5,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_city','vtiger_quotesbillads',1,'1','bill_city','Billing City',1,2,'',100,7,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_city','vtiger_quotesshipads',1,'1','ship_city','Shipping City',1,2,'',100,6,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_city','vtiger_quotesshipads',1,'1','ship_city','Shipping City',1,2,'',100,8,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
 		
-		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_state','vtiger_quotesbillads',1,'1','bill_state','Billing State',1,2,'',100,7,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_state','vtiger_quotesshipads',1,'1','ship_state','Shipping State',1,2,'',100,8,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_state','vtiger_quotesbillads',1,'1','bill_state','Billing State',1,2,'',100,7,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_state','vtiger_quotesbillads',1,'1','bill_state','Billing State',1,2,'',100,5,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_state','vtiger_quotesshipads',1,'1','ship_state','Shipping State',1,2,'',100,8,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_state','vtiger_quotesshipads',1,'1','ship_state','Shipping State',1,2,'',100,6,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
 		
-		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_code','vtiger_quotesbillads',1,'1','bill_code','Billing Code',1,2,'',100,9,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_code','vtiger_quotesshipads',1,'1','ship_code','Shipping Code',1,2,'',100,10,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_code','vtiger_quotesbillads',1,'1','bill_code','Billing Code',1,2,'',100,9,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_code','vtiger_quotesbillads',1,'1','bill_code','Billing Code',1,2,'',100,3,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_code','vtiger_quotesshipads',1,'1','ship_code','Shipping Code',1,2,'',100,10,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_code','vtiger_quotesshipads',1,'1','ship_code','Shipping Code',1,2,'',100,4,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
 		
 		
-		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_country','vtiger_quotesbillads',1,'1','bill_country','Billing Country',1,2,'',100,11,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_country','vtiger_quotesshipads',1,'1','ship_country','Shipping Country',1,2,'',100,12,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_country','vtiger_quotesbillads',1,'1','bill_country','Billing Country',1,2,'',100,11,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_country','vtiger_quotesbillads',1,'1','bill_country','Billing Country',1,2,'',100,1,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_country','vtiger_quotesshipads',1,'1','ship_country','Shipping Country',1,2,'',100,12,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_country','vtiger_quotesshipads',1,'1','ship_country','Shipping Country',1,2,'',100,2,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
 		
-		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_pobox','vtiger_quotesbillads',1,'1','bill_pobox','Billing Po Box',1,2,'',100,3,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_pobox','vtiger_quotesshipads',1,'1','ship_pobox','Shipping Po Box',1,2,'',100,4,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_pobox','vtiger_quotesbillads',1,'1','bill_pobox','Billing Po Box',1,2,'',100,3,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'bill_pobox','vtiger_quotesbillads',1,'1','bill_pobox','Billing Po Box',1,2,'',100,11,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_pobox','vtiger_quotesshipads',1,'1','ship_pobox','Shipping Po Box',1,2,'',100,4,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'ship_pobox','vtiger_quotesshipads',1,'1','ship_pobox','Shipping Po Box',1,2,'',100,12,$quotesaddressblock,1,'V~O',3,null,'BAS',1)");
+// JFV END
 		 //Block55
 		
 		 $this->db->query("insert into vtiger_field values (20,".$this->db->getUniqueID("vtiger_field").",'description','vtiger_crmentity',1,'19','description','Description',1,2,'',100,1,$quotedescription,1,'V~O',3,null,'ADV',1)");
@@ -745,26 +815,39 @@ class DefaultDataPopulator extends CRMEntity {
 		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'conversion_rate','vtiger_purchaseorder',1,'1','conversion_rate','Conversion Rate',1,2,1,100,20,$pobasicblock,3,'N~O',3,null,'BAS',1)");
 		
 		 //Block 59
-		
-		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_street','vtiger_pobillads',1,'24','bill_street','Billing Address',1,2,'',100,1,$poaddressblock,1,'V~M',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_street','vtiger_poshipads',1,'24','ship_street','Shipping Address',1,2,'',100,2,$poaddressblock,1,'V~M',3,null,'BAS',1)");
-		
-		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_city','vtiger_pobillads',1,'1','bill_city','Billing City',1,2,'',100,5,$poaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_city','vtiger_poshipads',1,'1','ship_city','Shipping City',1,2,'',100,6,$poaddressblock,1,'V~O',3,null,'BAS',1)");
-		
-		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_state','vtiger_pobillads',1,'1','bill_state','Billing State',1,2,'',100,7,$poaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_state','vtiger_poshipads',1,'1','ship_state','Shipping State',1,2,'',100,8,$poaddressblock,1,'V~O',3,null,'BAS',1)");
-		
-		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_code','vtiger_pobillads',1,'1','bill_code','Billing Code',1,2,'',100,9,$poaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_code','vtiger_poshipads',1,'1','ship_code','Shipping Code',1,2,'',100,10,$poaddressblock,1,'V~O',3,null,'BAS',1)");
-		
 
-		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_country','vtiger_pobillads',1,'1','bill_country','Billing Country',1,2,'',100,11,$poaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_country','vtiger_poshipads',1,'1','ship_country','Shipping Country',1,2,'',100,12,$poaddressblock,1,'V~O',3,null,'BAS',1)");
-		
-		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_pobox','vtiger_pobillads',1,'1','bill_pobox','Billing Po Box',1,2,'',100,3,$poaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_pobox','vtiger_poshipads',1,'1','ship_pobox','Shipping Po Box',1,2,'',100,4,$poaddressblock,1,'V~O',3,null,'BAS',1)");
-		  
+// JFV - change address display order
+//		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_street','vtiger_pobillads',1,'24','bill_street','Billing Address',1,2,'',100,1,$poaddressblock,1,'V~M',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_street','vtiger_pobillads',1,'24','bill_street','Billing Address',1,2,'',100,9,$poaddressblock,1,'V~M',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_street','vtiger_poshipads',1,'24','ship_street','Shipping Address',1,2,'',100,2,$poaddressblock,1,'V~M',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_street','vtiger_poshipads',1,'24','ship_street','Shipping Address',1,2,'',100,10,$poaddressblock,1,'V~M',3,null,'BAS',1)");
+		 
+//		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_city','vtiger_pobillads',1,'1','bill_city','Billing City',1,2,'',100,5,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_city','vtiger_pobillads',1,'1','bill_city','Billing City',1,2,'',100,7,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_city','vtiger_poshipads',1,'1','ship_city','Shipping City',1,2,'',100,6,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_city','vtiger_poshipads',1,'1','ship_city','Shipping City',1,2,'',100,8,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+		 
+//		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_state','vtiger_pobillads',1,'1','bill_state','Billing State',1,2,'',100,7,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_state','vtiger_pobillads',1,'1','bill_state','Billing State',1,2,'',100,5,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_state','vtiger_poshipads',1,'1','ship_state','Shipping State',1,2,'',100,8,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_state','vtiger_poshipads',1,'1','ship_state','Shipping State',1,2,'',100,6,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+		 
+//		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_code','vtiger_pobillads',1,'1','bill_code','Billing Code',1,2,'',100,9,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_code','vtiger_pobillads',1,'1','bill_code','Billing Code',1,2,'',100,3,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_code','vtiger_poshipads',1,'1','ship_code','Shipping Code',1,2,'',100,10,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_code','vtiger_poshipads',1,'1','ship_code','Shipping Code',1,2,'',100,4,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+		 
+
+//		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_country','vtiger_pobillads',1,'1','bill_country','Billing Country',1,2,'',100,11,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_country','vtiger_pobillads',1,'1','bill_country','Billing Country',1,2,'',100,1,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_country','vtiger_poshipads',1,'1','ship_country','Shipping Country',1,2,'',100,12,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_country','vtiger_poshipads',1,'1','ship_country','Shipping Country',1,2,'',100,2,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+		 
+//		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_pobox','vtiger_pobillads',1,'1','bill_pobox','Billing Po Box',1,2,'',100,3,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'bill_pobox','vtiger_pobillads',1,'1','bill_pobox','Billing Po Box',1,2,'',100,11,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_pobox','vtiger_poshipads',1,'1','ship_pobox','Shipping Po Box',1,2,'',100,4,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'ship_pobox','vtiger_poshipads',1,'1','ship_pobox','Shipping Po Box',1,2,'',100,12,$poaddressblock,1,'V~O',3,null,'BAS',1)");
+// JFV END		  
 		 //Block61
 		 $this->db->query("insert into vtiger_field values (21,".$this->db->getUniqueID("vtiger_field").",'description','vtiger_crmentity',1,'19','description','Description',1,2,'',100,1,$podescription,1,'V~O',3,null,'ADV',1)");
 		
@@ -810,25 +893,39 @@ class DefaultDataPopulator extends CRMEntity {
 		
 		 //Block 65
 		
-		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_street','vtiger_sobillads',1,'24','bill_street','Billing Address',1,2,'',100,1,$soaddressblock,1,'V~M',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_street','vtiger_soshipads',1,'24','ship_street','Shipping Address',1,2,'',100,2,$soaddressblock,1,'V~M',3,null,'BAS',1)");
+// JFV - change address display order
+//		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_street','vtiger_sobillads',1,'24','bill_street','Billing Address',1,2,'',100,1,$soaddressblock,1,'V~M',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_street','vtiger_sobillads',1,'24','bill_street','Billing Address',1,2,'',100,9,$soaddressblock,1,'V~M',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_street','vtiger_soshipads',1,'24','ship_street','Shipping Address',1,2,'',100,2,$soaddressblock,1,'V~M',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_street','vtiger_soshipads',1,'24','ship_street','Shipping Address',1,2,'',100,10,$soaddressblock,1,'V~M',3,null,'BAS',1)");
 		
-		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_city','vtiger_sobillads',1,'1','bill_city','Billing City',1,2,'',100,5,$soaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_city','vtiger_soshipads',1,'1','ship_city','Shipping City',1,2,'',100,6,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_city','vtiger_sobillads',1,'1','bill_city','Billing City',1,2,'',100,5,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_city','vtiger_sobillads',1,'1','bill_city','Billing City',1,2,'',100,7,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_city','vtiger_soshipads',1,'1','ship_city','Shipping City',1,2,'',100,6,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_city','vtiger_soshipads',1,'1','ship_city','Shipping City',1,2,'',100,8,$soaddressblock,1,'V~O',3,null,'BAS',1)");
 		
-		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_state','vtiger_sobillads',1,'1','bill_state','Billing State',1,2,'',100,7,$soaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_state','vtiger_soshipads',1,'1','ship_state','Shipping State',1,2,'',100,8,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_state','vtiger_sobillads',1,'1','bill_state','Billing State',1,2,'',100,7,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_state','vtiger_sobillads',1,'1','bill_state','Billing State',1,2,'',100,5,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_state','vtiger_soshipads',1,'1','ship_state','Shipping State',1,2,'',100,8,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_state','vtiger_soshipads',1,'1','ship_state','Shipping State',1,2,'',100,6,$soaddressblock,1,'V~O',3,null,'BAS',1)");
 		
-		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_code','vtiger_sobillads',1,'1','bill_code','Billing Code',1,2,'',100,9,$soaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_code','vtiger_soshipads',1,'1','ship_code','Shipping Code',1,2,'',100,10,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_code','vtiger_sobillads',1,'1','bill_code','Billing Code',1,2,'',100,9,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_code','vtiger_sobillads',1,'1','bill_code','Billing Code',1,2,'',100,3,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_code','vtiger_soshipads',1,'1','ship_code','Shipping Code',1,2,'',100,10,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_code','vtiger_soshipads',1,'1','ship_code','Shipping Code',1,2,'',100,4,$soaddressblock,1,'V~O',3,null,'BAS',1)");
 		
 		
-		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_country','vtiger_sobillads',1,'1','bill_country','Billing Country',1,2,'',100,11,$soaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_country','vtiger_soshipads',1,'1','ship_country','Shipping Country',1,2,'',100,12,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_country','vtiger_sobillads',1,'1','bill_country','Billing Country',1,2,'',100,11,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_country','vtiger_sobillads',1,'1','bill_country','Billing Country',1,2,'',100,1,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_country','vtiger_soshipads',1,'1','ship_country','Shipping Country',1,2,'',100,12,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_country','vtiger_soshipads',1,'1','ship_country','Shipping Country',1,2,'',100,2,$soaddressblock,1,'V~O',3,null,'BAS',1)");
 		
-		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_pobox','vtiger_sobillads',1,'1','bill_pobox','Billing Po Box',1,2,'',100,3,$soaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_pobox','vtiger_soshipads',1,'1','ship_pobox','Shipping Po Box',1,2,'',100,4,$soaddressblock,1,'V~O',3,null,'BAS',1)");
-		  
+//		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_pobox','vtiger_sobillads',1,'1','bill_pobox','Billing Po Box',1,2,'',100,3,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'bill_pobox','vtiger_sobillads',1,'1','bill_pobox','Billing Po Box',1,2,'',100,11,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_pobox','vtiger_soshipads',1,'1','ship_pobox','Shipping Po Box',1,2,'',100,4,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'ship_pobox','vtiger_soshipads',1,'1','ship_pobox','Shipping Po Box',1,2,'',100,12,$soaddressblock,1,'V~O',3,null,'BAS',1)");
+// JFV END
+
 		//Block67
 		 $this->db->query("insert into vtiger_field values (22,".$this->db->getUniqueID("vtiger_field").",'description','vtiger_crmentity',1,'19','description','Description',1,2,'',100,1,$sodescription,1,'V~O',3,null,'ADV',1)");
 		
@@ -883,24 +980,38 @@ class DefaultDataPopulator extends CRMEntity {
 		
 		 //Block 71
 		
-		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_street','vtiger_invoicebillads',1,'24','bill_street','Billing Address',1,2,'',100,1,$invoiceaddressblock,1,'V~M',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_street','vtiger_invoiceshipads',1,'24','ship_street','Shipping Address',1,2,'',100,2,$invoiceaddressblock,1,'V~M',3,null,'BAS',1)");
+// JFV - change address display order
+//		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_street','vtiger_invoicebillads',1,'24','bill_street','Billing Address',1,2,'',100,1,$invoiceaddressblock,1,'V~M',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_street','vtiger_invoicebillads',1,'24','bill_street','Billing Address',1,2,'',100,9,$invoiceaddressblock,1,'V~M',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_street','vtiger_invoiceshipads',1,'24','ship_street','Shipping Address',1,2,'',100,2,$invoiceaddressblock,1,'V~M',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_street','vtiger_invoiceshipads',1,'24','ship_street','Shipping Address',1,2,'',100,10,$invoiceaddressblock,1,'V~M',3,null,'BAS',1)");
 		
-		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_city','vtiger_invoicebillads',1,'1','bill_city','Billing City',1,2,'',100,5,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_city','vtiger_invoiceshipads',1,'1','ship_city','Shipping City',1,2,'',100,6,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_city','vtiger_invoicebillads',1,'1','bill_city','Billing City',1,2,'',100,5,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_city','vtiger_invoicebillads',1,'1','bill_city','Billing City',1,2,'',100,7,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_city','vtiger_invoiceshipads',1,'1','ship_city','Shipping City',1,2,'',100,6,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_city','vtiger_invoiceshipads',1,'1','ship_city','Shipping City',1,2,'',100,8,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
 		
-		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_state','vtiger_invoicebillads',1,'1','bill_state','Billing State',1,2,'',100,7,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_state','vtiger_invoiceshipads',1,'1','ship_state','Shipping State',1,2,'',100,8,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_state','vtiger_invoicebillads',1,'1','bill_state','Billing State',1,2,'',100,7,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_state','vtiger_invoicebillads',1,'1','bill_state','Billing State',1,2,'',100,5,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_state','vtiger_invoiceshipads',1,'1','ship_state','Shipping State',1,2,'',100,8,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_state','vtiger_invoiceshipads',1,'1','ship_state','Shipping State',1,2,'',100,6,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
 		
-		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_code','vtiger_invoicebillads',1,'1','bill_code','Billing Code',1,2,'',100,9,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_code','vtiger_invoiceshipads',1,'1','ship_code','Shipping Code',1,2,'',100,10,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_code','vtiger_invoicebillads',1,'1','bill_code','Billing Code',1,2,'',100,9,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_code','vtiger_invoicebillads',1,'1','bill_code','Billing Code',1,2,'',100,3,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_code','vtiger_invoiceshipads',1,'1','ship_code','Shipping Code',1,2,'',100,10,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_code','vtiger_invoiceshipads',1,'1','ship_code','Shipping Code',1,2,'',100,4,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
 		
 		
-		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_country','vtiger_invoicebillads',1,'1','bill_country','Billing Country',1,2,'',100,11,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_country','vtiger_invoiceshipads',1,'1','ship_country','Shipping Country',1,2,'',100,12,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_country','vtiger_invoicebillads',1,'1','bill_country','Billing Country',1,2,'',100,11,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_country','vtiger_invoicebillads',1,'1','bill_country','Billing Country',1,2,'',100,1,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_country','vtiger_invoiceshipads',1,'1','ship_country','Shipping Country',1,2,'',100,12,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_country','vtiger_invoiceshipads',1,'1','ship_country','Shipping Country',1,2,'',100,2,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
 		
-		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_pobox','vtiger_invoicebillads',1,'1','bill_pobox','Billing Po Box',1,2,'',100,3,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
-		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_pobox','vtiger_invoiceshipads',1,'1','ship_pobox','Shipping Po Box',1,2,'',100,4,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_pobox','vtiger_invoicebillads',1,'1','bill_pobox','Billing Po Box',1,2,'',100,3,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'bill_pobox','vtiger_invoicebillads',1,'1','bill_pobox','Billing Po Box',1,2,'',100,11,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+//		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_pobox','vtiger_invoiceshipads',1,'1','ship_pobox','Shipping Po Box',1,2,'',100,4,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'ship_pobox','vtiger_invoiceshipads',1,'1','ship_pobox','Shipping Po Box',1,2,'',100,12,$invoiceaddressblock,1,'V~O',3,null,'BAS',1)");
+// JFV END
 		
 		//Block73
 		 $this->db->query("insert into vtiger_field values (23,".$this->db->getUniqueID("vtiger_field").",'description','vtiger_crmentity',1,'19','description','Description',1,2,'',100,1,$invoicedescription,1,'V~O',3,null,'ADV',1)");
@@ -915,9 +1026,13 @@ class DefaultDataPopulator extends CRMEntity {
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'is_admin','vtiger_users',1,'156','is_admin','Admin',1,0,'',3,2,$userloginandroleblockid,1,'V~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'user_password','vtiger_users',1,'99','user_password','Password',1,0,'',30,3,$userloginandroleblockid,4,'P~M',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'confirm_password','vtiger_users',1,'99','confirm_password','Confirm Password',1,0,'',30,5,$userloginandroleblockid,4,'P~M',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'first_name','vtiger_users',1,'1','first_name','First Name',1,0,'',30,7,$userloginandroleblockid,1,'V~O',1,null,'BAS',1)");
+// JFV - change firstname and lastname order to japan/china way
+//		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'first_name','vtiger_users',1,'1','first_name','First Name',1,0,'',30,7,$userloginandroleblockid,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'first_name','vtiger_users',1,'1','first_name','First Name',1,0,'',30,11,$userloginandroleblockid,1,'V~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'last_name','vtiger_users',1,'2','last_name','Last Name',1,0,'',30,9,$userloginandroleblockid,1,'V~M',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'roleid','vtiger_user2role',1,'98','roleid','Role',1,0,'',200,11,$userloginandroleblockid,1,'V~M',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'roleid','vtiger_user2role',1,'98','roleid','Role',1,0,'',200,11,$userloginandroleblockid,1,'V~M',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'roleid','vtiger_user2role',1,'98','roleid','Role',1,0,'',200,7,$userloginandroleblockid,1,'V~M',1,null,'BAS',1)");
+// JFV END
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'email1','vtiger_users',1,'104','email1','Email',1,0,'',100,4,$userloginandroleblockid,1,'E~M',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'status','vtiger_users',1,'115','status','Status',1,0,'',100,6,$userloginandroleblockid,1,'V~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'activity_view','vtiger_users',1,'16','activity_view','Default Activity View',1,0,'',100,12,$userloginandroleblockid,1,'V~O',1,null,'BAS',1)");
@@ -938,11 +1053,18 @@ class DefaultDataPopulator extends CRMEntity {
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'date_format','vtiger_users',1,'16','date_format','Date Format',1,0,'',30,12,$usermoreinfoblock,1,'V~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'signature','vtiger_users',1,'21','signature','Signature',1,0,'',250,13,$usermoreinfoblock,1,'V~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'description','vtiger_users',1,'21','description','Documents',1,0,'',250,14,$usermoreinfoblock,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'address_street','vtiger_users',1,'21','address_street','Street Address',1,0,'',250,1,$useraddressblock,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'address_city','vtiger_users',1,'1','address_city','City',1,0,'',100,3,$useraddressblock,1,'V~O',1,null,'BAS',1)");
+// JFV - change address display order
+//		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'address_street','vtiger_users',1,'21','address_street','Street Address',1,0,'',250,1,$useraddressblock,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'address_street','vtiger_users',1,'21','address_street','Street Address',1,0,'',250,4,$useraddressblock,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'address_city','vtiger_users',1,'1','address_city','City',1,0,'',100,3,$useraddressblock,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'address_city','vtiger_users',1,'1','address_city','City',1,0,'',100,2,$useraddressblock,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'address_state','vtiger_users',1,'1','address_state','State',1,0,'',100,5,$useraddressblock,1,'V~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'address_state','vtiger_users',1,'1','address_state','State',1,0,'',100,5,$useraddressblock,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'address_postalcode','vtiger_users',1,'1','address_postalcode','Postal Code',1,0,'',100,4,$useraddressblock,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'address_country','vtiger_users',1,'1','address_country','Country',1,0,'',100,2,$useraddressblock,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'address_postalcode','vtiger_users',1,'1','address_postalcode','Postal Code',1,0,'',100,4,$useraddressblock,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'address_postalcode','vtiger_users',1,'1','address_postalcode','Postal Code',1,0,'',100,3,$useraddressblock,1,'V~O',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'address_country','vtiger_users',1,'1','address_country','Country',1,0,'',100,2,$useraddressblock,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'address_country','vtiger_users',1,'1','address_country','Country',1,0,'',100,1,$useraddressblock,1,'V~O',1,null,'BAS',1)");
+		// JFV EN
 		$this->db->query("insert into vtiger_field values(29,".$this->db->getUniqueID("vtiger_field").",'accesskey','vtiger_users',1,3,'accesskey','Webservice Access Key',1,0,'',100,2,$useradvanceblock,2,'V~O',1,null,'BAS',1);");
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'time_zone','vtiger_users',1,'16','time_zone','Time Zone',1,0,'',200,15,$usermoreinfoblock,1,'V~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'currency_id','vtiger_users',1,'117','currency_id','Currency',1,0,'',100,1,$usercurrencyinfoblock,1,'I~O',1,null,'BAS',1)");
