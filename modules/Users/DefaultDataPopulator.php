@@ -258,11 +258,17 @@ class DefaultDataPopulator extends CRMEntity {
 		//Block13 -- Start
 
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'salutation','vtiger_leaddetails',1,'55','salutationtype','Salutation',1,0,'',100,1,13,3,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'firstname','vtiger_leaddetails',1,'55','firstname','First Name',1,0,'',100,2,13,1,'V~O',2,1,'BAS',1)");
+// JFV - change firstname and lastname order to japan/china way
+//		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'firstname','vtiger_leaddetails',1,'55','firstname','First Name',1,0,'',100,2,13,1,'V~O',2,1,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'firstname','vtiger_leaddetails',1,'55','firstname','First Name',1,0,'',100,4,13,1,'V~O',2,1,'BAS',1)");
+// JFV END
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'lead_no','vtiger_leaddetails',1,'4','lead_no','Lead No',1,0,'',100,3,13,1,'V~O',3,null,'BAS',0)");
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'phone','vtiger_leadaddress',1,'11','phone','Phone',1,2,'',100,5,13,1,'V~O',2,4,'BAS',1)");
 
-		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'lastname','vtiger_leaddetails',1,'255','lastname','Last Name',1,0,'',100,4,13,1,'V~M',0,2,'BAS',1)");
+// JFV - change firstname and lastname order to japan/china way
+//		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'lastname','vtiger_leaddetails',1,'255','lastname','Last Name',1,0,'',100,4,13,1,'V~M',0,2,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'lastname','vtiger_leaddetails',1,'255','lastname','Last Name',1,0,'',100,2,13,1,'V~M',0,2,'BAS',1)");
+// JFV END
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'mobile','vtiger_leadaddress',1,'1','mobile','Mobile',1,2,'',100,7,13,1,'V~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'company','vtiger_leaddetails',1,'2','company','Company',1,2,'',100,6,13,1,'V~M',2,3,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'fax','vtiger_leadaddress',1,'1','fax','Fax',1,2,'',100,9,13,1,'V~O',1,null,'BAS',1)");
@@ -308,10 +314,16 @@ class DefaultDataPopulator extends CRMEntity {
 		//Block4 -- Start
 
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'salutation','vtiger_contactdetails',1,'55','salutationtype','Salutation',1,0,'',100,1,4,3,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'firstname','vtiger_contactdetails',1,'55','firstname','First Name',1,0,'',100,2,4,1,'V~O',2,1,'BAS',1)");
+// JFV - change firstname and lastname order to japan/china way
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'firstname','vtiger_contactdetails',1,'55','firstname','First Name',1,0,'',100,2,4,1,'V~O',2,1,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'firstname','vtiger_contactdetails',1,'55','firstname','First Name',1,0,'',100,4,4,1,'V~O',2,1,'BAS',1)");
+// JFV END
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'contact_no','vtiger_contactdetails',1,'4','contact_no','Contact Id',1,0,'',100,3,4,1,'V~O',3,null,'BAS',0)");
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'phone','vtiger_contactdetails',1,'11','phone','Office Phone',1,2,'',100,5,4,1,'V~O',2,4,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'lastname','vtiger_contactdetails',1,'255','lastname','Last Name',1,0,'',100,4,4,1,'V~M',0,2,'BAS',1)");
+// JFV - change firstname and lastname order to japan/china way
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'lastname','vtiger_contactdetails',1,'255','lastname','Last Name',1,0,'',100,4,4,1,'V~M',0,2,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'lastname','vtiger_contactdetails',1,'255','lastname','Last Name',1,0,'',100,2,4,1,'V~M',0,2,'BAS',1)");
+// JFV END
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'mobile','vtiger_contactdetails',1,'1','mobile','Mobile',1,2,'',100,7,4,1,'V~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'accountid','vtiger_contactdetails',1,'51','account_id','Account Name',1,0,'',100,6,4,1,'I~O',2,3,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'homephone','vtiger_contactsubdetails',1,'11','homephone','Home Phone',1,2,'',100,9,4,1,'V~O',1,null,'ADV',1)");
@@ -1014,9 +1026,13 @@ class DefaultDataPopulator extends CRMEntity {
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'is_admin','vtiger_users',1,'156','is_admin','Admin',1,0,'',3,2,$userloginandroleblockid,1,'V~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'user_password','vtiger_users',1,'99','user_password','Password',1,0,'',30,3,$userloginandroleblockid,4,'P~M',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'confirm_password','vtiger_users',1,'99','confirm_password','Confirm Password',1,0,'',30,5,$userloginandroleblockid,4,'P~M',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'first_name','vtiger_users',1,'1','first_name','First Name',1,0,'',30,7,$userloginandroleblockid,1,'V~O',1,null,'BAS',1)");
+// JFV - change firstname and lastname order to japan/china way
+//		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'first_name','vtiger_users',1,'1','first_name','First Name',1,0,'',30,7,$userloginandroleblockid,1,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'first_name','vtiger_users',1,'1','first_name','First Name',1,0,'',30,11,$userloginandroleblockid,1,'V~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'last_name','vtiger_users',1,'2','last_name','Last Name',1,0,'',30,9,$userloginandroleblockid,1,'V~M',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'roleid','vtiger_user2role',1,'98','roleid','Role',1,0,'',200,11,$userloginandroleblockid,1,'V~M',1,null,'BAS',1)");
+//		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'roleid','vtiger_user2role',1,'98','roleid','Role',1,0,'',200,11,$userloginandroleblockid,1,'V~M',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'roleid','vtiger_user2role',1,'98','roleid','Role',1,0,'',200,7,$userloginandroleblockid,1,'V~M',1,null,'BAS',1)");
+// JFV END
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'email1','vtiger_users',1,'104','email1','Email',1,0,'',100,4,$userloginandroleblockid,1,'E~M',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'status','vtiger_users',1,'115','status','Status',1,0,'',100,6,$userloginandroleblockid,1,'V~O',1,null,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (29,".$this->db->getUniqueID("vtiger_field").",'activity_view','vtiger_users',1,'16','activity_view','Default Activity View',1,0,'',100,12,$userloginandroleblockid,1,'V~O',1,null,'BAS',1)");
