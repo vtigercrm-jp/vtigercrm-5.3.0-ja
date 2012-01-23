@@ -13,7 +13,10 @@
 {if $FOLDER->mails()}
 <tr>
 	<td>
-		<span class="moduleName" >{$FOLDER->name()}</span>
+{* JFV - convert imap7 encoding *}
+{*		<span class="moduleName" >{$FOLDER->name()}</span>*}
+		<span class="moduleName" >{$FOLDER->name()|jfv_utf72uft8}</span>
+{* JFV END *}
 	</td>
 	<td align="right" colspan="4">
 		<table>
@@ -48,7 +51,10 @@
 				<select class='small' id="moveFolderList" onchange="MailManager.moveMail(this);">
 					<option value="">{'LBL_MOVE_TO'|@getTranslatedString:$MODULE}</option>
 					{foreach item=folder from=$FOLDERLIST}
-						<option value="{$folder}" >{$folder}</option>
+{* JFV - convert imap7 encoding *}
+{*						<option value="{$folder}" >{$folder}</option>*}
+						<option value="{$folder}" >{$folder|jfv_utf72uft8}</option>
+{* JFV END *}
 					{/foreach}
 				</select>
 			</td>
@@ -78,15 +84,21 @@
 		 id="_mailrow_{$MAIL->msgNo()}" onmouseover='MailManager.highLightListMail(this);' onmouseout='MailManager.unHighLightListMail(this);'>
 		<td width="3%"><input type='checkbox' value = "{$MAIL->msgNo()}" name = 'mc_box' class='small'
                               onclick='MailManager.toggleSelectMail(this.checked, this);'></td>
-		<td width="27%" onclick="MailManager.mail_open('{$FOLDER->name()}', {$MAIL->msgNo()});">{$MAIL->from(30)}</td>
+{* JFV - convert imap7 encoding *}
+{*		<td width="27%" onclick="MailManager.mail_open('{$FOLDER->name()}', {$MAIL->msgNo()});">{$MAIL->from(30)}</td>*}
+		<td width="27%" onclick="MailManager.mail_open('{$FOLDER->name()}', {$MAIL->msgNo()});">{$MAIL->from()|jfv_decode_imap_header|escape}</td>
+{* JFV END *}
 		<td onclick="MailManager.mail_open('{$FOLDER->name()}', {$MAIL->msgNo()});">{$MAIL->subject()}</td>
-		<td width="17%" align="right" onclick="MailManager.mail_open('{$FOLDER->name()}', {$MAIL->msgNo()});">{$MAIL->date(true)}</td>
+{* JFV - change date time display format *}
+{*		<td width="17%" align="right" onclick="MailManager.mail_open('{$FOLDER->name()}', {$MAIL->msgNo()});">{$MAIL->date(true)}</td>*}
+		<td width="17%" align="right" onclick="MailManager.mail_open('{$FOLDER->name()}', {$MAIL->msgNo()});">{$MAIL->_date|jfv_convert_mail_header_date}</td>
+{* JFV END *}
 	</tr>
 	{foreachelse}
 </table>
 <table cellpadding="0" cellspacing="0" border="0" width="100%">
 <tr>
-	<td><a href='#{$FOLDER->name()}' onclick="MailManager.folder_open('{$FOLDER->name()}');"><b>{$FOLDER->name()}</b></a></td>
+	<td><a href='#{$FOLDER->name()}' onclick="MailManager.folder_open('{$FOLDER->name()}');"><b>{$FOLDER->name()|jfv_utf72uft8}</b></a></td>
 </tr>
 <tr>
 	<td>{'LBL_No_Mails_Found'|@getTranslatedString}</td>

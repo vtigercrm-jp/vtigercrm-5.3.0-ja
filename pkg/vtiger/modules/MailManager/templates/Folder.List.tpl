@@ -19,7 +19,10 @@
         <tr>
             <td>
                 <a class="mm_folder" id='_mailfolder_{$FOLDER->name()}' href='#{$FOLDER->name()}' onclick="MailManager.clearSearchString(); MailManager.folder_open('{$FOLDER->name()}'); "
-                >{if $FOLDER->unreadCount()}<b>{$FOLDER->name()} ({$FOLDER->unreadCount()})</b>{else}{$FOLDER->name()}{/if}</a>
+{* JFV - convert imap7 encoding *}
+{*                >{if $FOLDER->unreadCount()}<b>{$FOLDER->name()} ({$FOLDER->unreadCount()})</b>{else}{$FOLDER->name()}{/if}</a> *}
+                >{if $FOLDER->unreadCount()}<b>{$FOLDER->name()|jfv_utf72uft8} ({$FOLDER->unreadCount()})</b>{else}{$FOLDER->name()|jfv_utf72uft8}{/if}</a>
+{* JFV END *}
             </td>
         </tr>
         {/foreach}

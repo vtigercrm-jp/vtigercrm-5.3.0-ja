@@ -112,6 +112,9 @@ class MailManager_Model_Message extends Vtiger_MailRecord  {
         	// filename may be given as 'Filename' or 'Name' or both
 	        $filename = ($params['filename'])? $params['filename'] : $params['name'];
 			// filename may be encoded, so see imap_mime_header_decode()
+// JFV - decode attachment name
+	        $filename = @self::__mime_decode($filename);
+// JFV END
 			if(!$this->_attachments) $this->_attachments = Array();
 			$this->_attachments[$filename] = $data;  // TODO: this is a problem if two files have same name
 	    }

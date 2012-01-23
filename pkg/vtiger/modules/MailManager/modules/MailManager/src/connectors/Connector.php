@@ -326,7 +326,10 @@ class MailManager_Connector {
 	 * @param Integer $maxLimit - Number of mails
 	 */
 	function searchMails($query, $folder, $start, $maxLimit) {
-		$nos = imap_search($this->mBox, $query);
+// JFV - enable UTF imap search
+//		$nos = imap_search($this->mBox, $query);
+		$nos = imap_search($this->mBox, $query, SE_FREE, 'UTF-8');
+// JFV END
 
 		if (!empty($nos)) {
 			$nmsgs = count($nos);
@@ -363,7 +366,10 @@ class MailManager_Connector {
 			$list = @imap_list($this->mBox, $this->mBoxBaseUrl, '*');
 			if (is_array($list)) {
 				foreach ($list as $val) {
-					$folderList[] =  preg_replace("/{(.*?)}/", "", imap_utf7_decode($val));
+// JFV - no decode in here
+					$folderList[] =  preg_replace("/{(.*?)}/", "", $val);
+//					$folderList[] =  preg_replace("/{(.*?)}/", "", imap_utf7_decode($val));
+// JFV END
 				}
 			}
 		}

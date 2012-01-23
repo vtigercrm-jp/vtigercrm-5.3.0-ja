@@ -219,12 +219,18 @@ if (typeof(MailManager) == 'undefined') {
                         '_operation': 'mail',
                         '_operationarg' : 'move',
                         '_msgno' : encodeURIComponent(temp),
-                        '_folder' : encodeURIComponent(currentFolderName),
+// JFV - encoding issue, not encode because encoded twice...
+//                        '_folder' : encodeURIComponent(currentFolderName),
+                        '_folder' : currentFolderName,
+// JFV END
                         '_moveFolder' : encodeURIComponent(moveToFolderName)
                     };
                     MailManager.Request('index.php?'+MailManager._baseurl() , params, callbackFunction).
                     then( function () {
-                        MailManager.folder_open(currentFolderName);
+// JFV - encoding issue, not encode because encoded twice...
+//                  	MailManager.folder_open(currentFolderName);
+                        MailManager.folder_open(decodeURIComponent(currentFolderName));
+// JFV END
                         MailManager.progress_hide();
                         MailManager.show_error(MailManager.i18n('JSLBL_MAIL_MOVED'));
                     });
@@ -396,8 +402,11 @@ if (typeof(MailManager) == 'undefined') {
             if(jQuery('#search_type').val()) {
                 query += "&type=" + encodeURIComponent(jQuery('#search_type').val());
             }
-            MailManager.progress_show(MailManager.i18n('JSLBL_Loading'), ' ' + name + '...');
-			
+// JFV - endocing issue, why need twice encodeURIComponent?
+//            MailManager.progress_show(MailManager.i18n('JSLBL_Loading'), ' ' + name + '...');
+            MailManager.progress_show(MailManager.i18n('JSLBL_Loading'), '...');
+            name=encodeURIComponent(name);
+// JFV END
             new Ajax.Request('index.php', {
                 method: 'post',
                 postBody: MailManager._baseurl() + "_operation=folder&_operationarg=open&_folder=" + encodeURIComponent(name)  +
@@ -509,8 +518,10 @@ if (typeof(MailManager) == 'undefined') {
 			
             jQuery('#_mailrow_' + msgno).removeClass('mm_bold');
             jQuery('#_mailrow_' + msgno).addClass('mm_normal');
-			
-            new Ajax.Request('index.php', {
+// JFV - endocing issue, why need twice encodeURIComponent?
+			folder = encodeURIComponent(folder);
+// JFV END
+			new Ajax.Request('index.php', {
                 method: 'post',
                 postBody: MailManager._baseurl() + "_operation=mail&_operationarg=open&_folder=" + encodeURIComponent(folder) + "&_msgno=" + encodeURIComponent(msgno),
                 onComplete: function(transport){

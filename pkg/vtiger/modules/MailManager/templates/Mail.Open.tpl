@@ -114,7 +114,10 @@
 			<td>
 				{foreach item=ATTACHVALUE key=ATTACHNAME from=$MAIL->attachments(false) name="attach"}
 					<img border=0 src="{'attachments.gif'|@vtiger_imageurl:$THEME}">
-					<a href="index.php?module={$MODULE}&action={$MODULE}Ajax&file=index&_operation=mail&_operationarg=attachment_dld&_muid={$MAIL->muid()}&_atname={$ATTACHNAME|@escape:'htmlall':'UTF-8'}">{$ATTACHNAME}</a>
+{* JFV - attachment name related *}
+{* 					<a href="index.php?module={$MODULE}&action={$MODULE}Ajax&file=index&_operation=mail&_operationarg=attachment_dld&_muid={$MAIL->muid()}&_atname={$ATTACHNAME|@escape:'htmlall':'UTF-8'}">{$ATTACHNAME}</a>*}
+					<a href="index.php?module={$MODULE}&action={$MODULE}Ajax&file=index&_operation=mail&_operationarg=attachment_dld&_muid={$MAIL->muid()}&_atname={$ATTACHNAME|@escape:'url':'UTF-8'}">{$ATTACHNAME}</a>
+{* JFV END *}
 					&nbsp;
 				{/foreach}
 					<input type="hidden" id="_mail_attachmentcount_" value="{$smarty.foreach.attach.total}" >

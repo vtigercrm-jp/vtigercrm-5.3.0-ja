@@ -138,7 +138,7 @@ class Vtiger_MailRecord {
 				return $input;
 			} else {
 // JFV - fix mailscanner body garbled for special jis char
-				if(strtolower(trim($from)) && @mb_convert_encoding(1, 'iso-2022-jp-ms')) {
+				if(strtolower(trim($from)) == 'iso-2022-jp' && @mb_convert_encoding(1, 'iso-2022-jp-ms')) {
 					$from = 'iso-2022-jp-ms';
 				}elseif(strtolower(trim($from)) == 'shift_jis' && @mb_convert_encoding(1, 'SJIS-win')){
 					$from = 'SJIS-win';
