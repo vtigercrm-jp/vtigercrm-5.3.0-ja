@@ -199,7 +199,74 @@ class MailManager_MailController extends MailManager_Controller {
                     header("Content-type: application/octet-stream");
                     header("Pragma: public");
                     header("Cache-Control: private");
-                    header("Content-Disposition: attachment; filename=$attachmentName");
+// JFV - convert attachment file name encoding
+//                    header("Content-Disposition: attachment; filename=$attachmentName");
+// refer - http://linux.ohwada.jp/modules/smartsection/item.php?itemid=516
+                    $name = $attachmentName;
+                    // ブラウザを判定する
+                    $ua = $_SERVER['HTTP_USER_AGENT'];
+                    
+                    $browser = 'unknown';
+                    if (strstr($ua, 'MSIE') && !strstr($ua, 'Opera')) {
+                    	$browser = 'msie';
+                    } elseif (strstr($ua, 'Opera')) {
+                    	$browser = 'opera';
+                    } elseif (strstr($ua, 'Firefox')) {
+                    	$browser = 'firefox';
+                    } elseif (strstr($ua, "Chrome")) {
+                    	$browser = 'chrome';
+                    } elseif (strstr($ua, "Safari")) {
+                    	$browser = 'safari';
+                    }
+                    
+                    // 英数字だけかを判定する
+                    $ascii = mb_convert_encoding($name, "US-ASCII", "UTF-8");
+                    if ( $ascii == $name ) {
+                    	$browser = 'ascii';
+                    }
+                    
+                    // ブラウザに応じた処理
+                    switch ( $browser )
+                    {
+                    	// urlencode する
+                    	case 'ascii':
+                    		$name = str_replace(' ','_',$name);
+                    		$name = rawurlencode($name);
+                    		break;
+                    
+                    		// SJIS に変換する
+                    	case 'msie':
+                    		$name = mb_convert_encoding($name, "SJIS", "UTF-8");
+                    		break;
+                    
+                    		// RFC2231形式を使用する
+                    	case 'firefox':
+                    	case 'chrome':
+                    	case 'opera':
+                    		$name = "utf-8'ja'".rawurlencode($name);
+                    		$is_rfc2231 = true;
+                    		break;
+                    
+                    		// UTF-8 のまま
+                    	case 'safari':
+                    		break;
+                    
+                    		// 諦めて代替えを使う
+                    	default:
+//                    		$name = $name_alt;
+	                    	$name = str_replace(' ','_',$name);
+	                    	$name = rawurlencode($name);
+	                    	break;
+                    }
+
+                    if ( $is_rfc2231 ) {
+                    	$dis = 'Content-Disposition: attachment; filename*=';
+                    } else {
+                    	$dis = 'Content-Disposition: attachment; filename=';
+                    }
+                    
+                    header($dis . $name );
+// JFV END
                     echo $attachment[$attachmentName];
                 } else {
                     header("Content-Disposition: attachment; filename=INVALIDFILE");
