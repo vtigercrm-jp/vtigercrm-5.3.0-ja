@@ -146,6 +146,15 @@ class Users extends CRMEntity {
         $this->column_fields['currency_code'] = '';
         $this->column_fields['currency_symbol'] = '';
         $this->column_fields['conv_rate'] = '';
+// JFV - set default values for user
+        $this->column_fields['currency_grouping_pattern'] = '123,456,789';
+        $this->column_fields['currency_decimal_separator'] = '.';
+        $this->column_fields['currency_grouping_separator'] = ' ';
+        $this->column_fields['currency_symbol_placement'] = '$1.0';
+        $this->column_fields['time_zone'] = 'Asia/Tokyo';
+        $this->column_fields['language'] = 'ja';
+        $this->column_fields['date_format'] = 'yyyy-mm-dd';
+// JFV END
 		$this->log->debug("Exiting Users() method ...");
 	}
 
