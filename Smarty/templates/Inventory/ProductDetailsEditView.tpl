@@ -229,14 +229,20 @@ function displayCoords(currObj,obj,mode,curr_row)
 
 	<!-- column 3 - Quantity in Stock - starts -->
 	{if $MODULE eq 'Quotes' || $MODULE eq 'SalesOrder' || $MODULE eq 'Invoice'}
-	   <td class="crmTableRow small lineOnTop" valign="top"><span id="{$qtyInStock}">{$data.$qtyInStock}</span></td>
+{* JFV : omit tail zero digits *}	
+{* 	   <td class="crmTableRow small lineOnTop" valign="top"><span id="{$qtyInStock}">{$data.$qtyInStock}</span></td> *}
+	   <td class="crmTableRow small lineOnTop" valign="top"><span id="{$qtyInStock}">{$data.$qtyInStock|regex_replace:"/\.?0+$/":""}</span></td>
+{* JFV END *}
 	{/if}
 	<!-- column 3 - Quantity in Stock - ends -->
 
 
 	<!-- column 4 - Quantity - starts -->
 	<td class="crmTableRow small lineOnTop" valign="top">
-		<input id="{$qty}" name="{$qty}" type="text" class="small " style="width:50px" onfocus="this.className='detailedViewTextBoxOn'" onBlur="settotalnoofrows(); calcTotal(); loadTaxes_Ajax('{$row_no}');{if $MODULE eq 'Invoice' && $entityType neq 'Services'} stock_alert('{$row_no}');{/if}" onChange="setDiscount(this,'{$row_no}')" value="{$data.$qty}"/><br><span id="stock_alert{$row_no}"></span>
+{* JFV : omit tail zero digits *}	
+{* 		<input id="{$qty}" name="{$qty}" type="text" class="small " style="width:50px" onfocus="this.className='detailedViewTextBoxOn'" onBlur="settotalnoofrows(); calcTotal(); loadTaxes_Ajax('{$row_no}');{if $MODULE eq 'Invoice' && $entityType neq 'Services'} stock_alert('{$row_no}');{/if}" onChange="setDiscount(this,'{$row_no}')" value="{$data.$qty}"/><br><span id="stock_alert{$row_no}"></span> *}
+		<input id="{$qty}" name="{$qty}" type="text" class="small " style="width:50px" onfocus="this.className='detailedViewTextBoxOn'" onBlur="settotalnoofrows(); calcTotal(); loadTaxes_Ajax('{$row_no}');{if $MODULE eq 'Invoice' && $entityType neq 'Services'} stock_alert('{$row_no}');{/if}" onChange="setDiscount(this,'{$row_no}')" value="{$data.$qty|regex_replace:"/\.?0+$/":""}"/><br><span id="stock_alert{$row_no}"></span>
+{* JFV END *}
 	</td>
 	<!-- column 4 - Quantity - ends -->
 
@@ -245,7 +251,10 @@ function displayCoords(currObj,obj,mode,curr_row)
 		<table width="100%" cellpadding="0" cellspacing="0">
 		   <tr>
 			<td align="right">
-				<input id="{$listPrice}" name="{$listPrice}" value="{$data.$listPrice}" type="text" class="small " style="width:70px" onBlur="calcTotal(); setDiscount(this,'{$row_no}');callTaxCalc('{$row_no}');"/>&nbsp;<img src="{'pricebook.gif'|@vtiger_imageurl:$THEME}" onclick="priceBookPickList(this,'{$row_no}')">
+{* JFV : omit tail zero digits *}	
+{* 				<input id="{$listPrice}" name="{$listPrice}" value="{$data.$listPrice}" type="text" class="small " style="width:70px" onBlur="calcTotal(); setDiscount(this,'{$row_no}');callTaxCalc('{$row_no}');"/>&nbsp;<img src="{'pricebook.gif'|@vtiger_imageurl:$THEME}" onclick="priceBookPickList(this,'{$row_no}')"> *}
+				<input id="{$listPrice}" name="{$listPrice}" value="{$data.$listPrice|regex_replace:"/\.?0+$/":""}" type="text" class="small " style="width:70px" onBlur="calcTotal(); setDiscount(this,'{$row_no}');callTaxCalc('{$row_no}');"/>&nbsp;<img src="{'pricebook.gif'|@vtiger_imageurl:$THEME}" onclick="priceBookPickList(this,'{$row_no}')">
+{* JFV END *}
 			</td>
 		   </tr>
 		   <tr>
@@ -268,7 +277,10 @@ function displayCoords(currObj,obj,mode,curr_row)
 					   </tr>
 					   <tr>
 						<td align="left" nowrap><input type="radio" name="discount{$row_no}" onclick="setDiscount(this,'{$row_no}'); callTaxCalc('{$row_no}'); calcTotal();" {$data.$checked_discount_amount}>&nbsp;{$APP.LBL_DIRECT_PRICE_REDUCTION}</td>
-						<td align="right"><input type="text" id="discount_amount{$row_no}" name="discount_amount{$row_no}" size="5" value="{$data.$discount_amount}" {$data.$style_discount_amount} onBlur="setDiscount(this,{$row_no}); callTaxCalc('{$row_no}'); calcTotal();"></td>
+{* JFV : omit tail zero digits *}	
+{* 						<td align="right"><input type="text" id="discount_amount{$row_no}" name="discount_amount{$row_no}" size="5" value="{$data.$discount_amount}" {$data.$style_discount_amount} onBlur="setDiscount(this,{$row_no}); callTaxCalc('{$row_no}'); calcTotal();"></td> *}
+						<td align="right"><input type="text" id="discount_amount{$row_no}" name="discount_amount{$row_no}" size="5" value="{$data.$discount_amount|regex_replace:"/\.?0+$/":""}" {$data.$style_discount_amount} onBlur="setDiscount(this,{$row_no}); callTaxCalc('{$row_no}'); calcTotal();"></td>
+{* JFV END *}
 					   </tr>
 					</table>
 				</div>
@@ -286,7 +298,10 @@ function displayCoords(currObj,obj,mode,curr_row)
 					<!-- we will form the table with all taxes -->
 					<table width="100%" border="0" cellpadding="5" cellspacing="0" class="small" id="tax_table{$row_no}">
 					   <tr>
-						<td id="tax_div_title{$row_no}" nowrap align="left" ><b>Set Tax for : {$data.$totalAfterDiscount}</b></td>
+{* JFV : omit tail zero digits *}	
+{* 						<td id="tax_div_title{$row_no}" nowrap align="left" ><b>Set Tax for : {$data.$totalAfterDiscount}</b></td> *}
+						<td id="tax_div_title{$row_no}" nowrap align="left" ><b>Set Tax for : {$data.$totalAfterDiscount|regex_replace:"/\.?0+$/":""}</b></td>
+{* JFV END *}
 						<td>&nbsp;</td>
 						<td align="right"><img src="{'close.gif'|@vtiger_imageurl:$THEME}" border="0" onClick="fnHidePopDiv('tax_div{$row_no}')" style="cursor:pointer;"></td>
 					   </tr>
@@ -298,7 +313,10 @@ function displayCoords(currObj,obj,mode,curr_row)
 					   {assign var="popup_tax_rowname" value="popup_tax_row"|cat:$row_no}
 					   <tr>
 						<td align="left" class="lineOnTop">
-							<input type="text" class="small" size="5" name="{$taxname}" id="{$taxname}" value="{$tax_data.percentage}" onBlur="calcCurrentTax('{$taxname}',{$row_no},{$tax_row_no})">&nbsp;%
+{* JFV : omit tail zero digits *}	
+{* 							<input type="text" class="small" size="5" name="{$taxname}" id="{$taxname}" value="{$tax_data.percentage}" onBlur="calcCurrentTax('{$taxname}',{$row_no},{$tax_row_no})">&nbsp;% *}
+							<input type="text" class="small" size="5" name="{$taxname}" id="{$taxname}" value="{$tax_data.percentage|regex_replace:"/\.?0+$/":""}" onBlur="calcCurrentTax('{$taxname}',{$row_no},{$tax_row_no})">&nbsp;%
+{* JFV END *}
 							<input type="hidden" id="{$tax_id_name}" value="{$taxname}">
 						</td>
 						<td align="center" class="lineOnTop">{$tax_data.taxlabel}</td>
@@ -326,13 +344,19 @@ function displayCoords(currObj,obj,mode,curr_row)
 			<td id="productTotal{$row_no}" align="right">{$data.$productTotal}</td>
 		   </tr>
 		   <tr>
-			<td id="discountTotal{$row_no}" align="right">{$data.$discountTotal}</td>
+{* JFV : omit tail zero digits *}	
+{* 			<td id="discountTotal{$row_no}" align="right">{$data.$discountTotal}</td> *}
+			<td id="discountTotal{$row_no}" align="right">{$data.$discountTotal|regex_replace:"/\.?0+$/":""}</td>
+{* JFV END *}
 		   </tr>
 		   <tr>
 			<td id="totalAfterDiscount{$row_no}" align="right">{$data.$totalAfterDiscount}</td>
 		   </tr>
 		   <tr>
-			<td id="taxTotal{$row_no}" align="right">{$data.$taxTotal}</td>
+{* JFV : omit tail zero digits *}	
+{* 			<td id="taxTotal{$row_no}" align="right">{$data.$taxTotal}</td> *}
+			<td id="taxTotal{$row_no}" align="right">{$data.$taxTotal|regex_replace:"/\.?0+$/":""}</td>
+{* JFV END *}
 		   </tr>
 		</table>
 	</td>
@@ -340,7 +364,10 @@ function displayCoords(currObj,obj,mode,curr_row)
 
 	<!-- column 7 - Net Price - starts -->
 	<td valign="bottom" class="crmTableRow small lineOnTop" align="right">
-		<span id="netPrice{$row_no}"><b>{$data.$netPrice}</b></span>
+{* JFV : omit tail zero digits *}	
+{* 		<span id="netPrice{$row_no}"><b>{$data.$netPrice}</b></span> *}
+		<span id="netPrice{$row_no}"><b>{$data.$netPrice|regex_replace:"/\.?0+$/":""}</b></span>
+{* JFV END *}
 	</td>
 	<!-- column 7 - Net Price - ends -->
 
@@ -399,7 +426,10 @@ so we will get that array, parse that array and fill the details
 			   </tr>
 			   <tr>
 				<td align="left" nowrap><input type="radio" name="discount_final" onclick="setDiscount(this,'_final');  calcTotal(); calcGroupTax();" {$FINAL.checked_discount_amount_final}>&nbsp;{$APP.LBL_DIRECT_PRICE_REDUCTION}</td>
-				<td align="right"><input type="text" id="discount_amount_final" name="discount_amount_final" size="5" value="{$FINAL.discount_amount_final}" {$FINAL.style_discount_amount_final} onBlur="setDiscount(this,'_final');  calcGroupTax(); calcTotal();"></td>
+{* JFV : omit tail zero digits *}	
+{* 				<td align="right"><input type="text" id="discount_amount_final" name="discount_amount_final" size="5" value="{$FINAL.discount_amount_final}" {$FINAL.style_discount_amount_final} onBlur="setDiscount(this,'_final');  calcGroupTax(); calcTotal();"></td> *}
+				<td align="right"><input type="text" id="discount_amount_final" name="discount_amount_final" size="5" value="{$FINAL.discount_amount_final|regex_replace:"/\.?0+$/":""}" {$FINAL.style_discount_amount_final} onBlur="setDiscount(this,'_final');  calcGroupTax(); calcTotal();"></td>
+{* JFV END *}
 			   </tr>
 			</table>
 		</div>
@@ -428,7 +458,10 @@ so we will get that array, parse that array and fill the details
 
 					   <tr>
 						<td align="left" class="lineOnTop">
-							<input type="text" class="small" size="5" name="{$tax_detail.taxname}_group_percentage" id="group_tax_percentage{$smarty.foreach.group_tax_loop.iteration}" value="{$tax_detail.percentage}" onBlur="calcTotal()">&nbsp;%
+{* JFV : omit tail zero digits *}	
+{* 							<input type="text" class="small" size="5" name="{$tax_detail.taxname}_group_percentage" id="group_tax_percentage{$smarty.foreach.group_tax_loop.iteration}" value="{$tax_detail.percentage}" onBlur="calcTotal()">&nbsp;% *}
+							<input type="text" class="small" size="5" name="{$tax_detail.taxname}_group_percentage" id="group_tax_percentage{$smarty.foreach.group_tax_loop.iteration}" value="{$tax_detail.percentage|regex_replace:"/\.?0+$/":""}" onBlur="calcTotal()">&nbsp;%
+{* JFV END *}
 						</td>
 						<td align="center" class="lineOnTop">{$tax_detail.taxlabel}</td>
 						<td align="right" class="lineOnTop">
@@ -458,7 +491,10 @@ so we will get that array, parse that array and fill the details
 		(+)&nbsp;<b>{$APP.LBL_SHIPPING_AND_HANDLING_CHARGES} </b>
 	</td>
 	<td class="crmTableRow small" align="right">
-		<input id="shipping_handling_charge" name="shipping_handling_charge" type="text" class="small" style="width:40px" align="right" value="{$FINAL.shipping_handling_charge}" onBlur="calcSHTax();">
+{* JFV : omit tail zero digits *}	
+{* 		<input id="shipping_handling_charge" name="shipping_handling_charge" type="text" class="small" style="width:40px" align="right" value="{$FINAL.shipping_handling_charge}" onBlur="calcSHTax();"> *}
+		<input id="shipping_handling_charge" name="shipping_handling_charge" type="text" class="small" style="width:40px" align="right" value="{$FINAL.shipping_handling_charge|regex_replace:"/\.?0+$/":""}" onBlur="calcSHTax();">
+{* JFV END *}
 	</td>
    </tr>
 
@@ -480,7 +516,10 @@ so we will get that array, parse that array and fill the details
 
 					   <tr>
 						<td align="left" class="lineOnTop">
-							<input type="text" class="small" size="3" name="{$tax_detail.taxname}_sh_percent" id="sh_tax_percentage{$smarty.foreach.sh_loop.iteration}" value="{$tax_detail.percentage}" onBlur="calcSHTax()">&nbsp;%
+{* JFV : omit tail zero digits *}	
+{* 							<input type="text" class="small" size="3" name="{$tax_detail.taxname}_sh_percent" id="sh_tax_percentage{$smarty.foreach.sh_loop.iteration}" value="{$tax_detail.percentage}" onBlur="calcSHTax()">&nbsp;% *}
+							<input type="text" class="small" size="3" name="{$tax_detail.taxname}_sh_percent" id="sh_tax_percentage{$smarty.foreach.sh_loop.iteration}" value="{$tax_detail.percentage|regex_replace:"/\.?0+$/":""}" onBlur="calcSHTax()">&nbsp;%
+{* JFV END *}
 						</td>
 						<td align="center" class="lineOnTop">{$tax_detail.taxlabel}</td>
 						<td align="right" class="lineOnTop">
@@ -510,7 +549,10 @@ so we will get that array, parse that array and fill the details
 		</select>
 	</td>
 	<td class="crmTableRow small" align="right">
-		<input id="adjustment" name="adjustment" type="text" class="small" style="width:40px" align="right" value="{$FINAL.adjustment}" onBlur="calcTotal();">
+{* JFV : omit tail zero digits *}	
+{* 		<input id="adjustment" name="adjustment" type="text" class="small" style="width:40px" align="right" value="{$FINAL.adjustment}" onBlur="calcTotal();"> *}
+		<input id="adjustment" name="adjustment" type="text" class="small" style="width:40px" align="right" value="{$FINAL.adjustment|regex_replace:"/\.?0+$/":""}" onBlur="calcTotal();">
+{* JFV END *}
 	</td>
    </tr>
 

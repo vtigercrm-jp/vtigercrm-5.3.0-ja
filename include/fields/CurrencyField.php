@@ -186,7 +186,12 @@ class CurrencyField {
      */
 	private function _formatCurrencyValue($value) {
 
-        $currencyPattern = $this->currencyFormat;
+// JFV - avoid exponent notation for currency value, refer http://blog.raxus.co.jp/article/105109533.html
+		$value = sprintf("%.".$this->numberOfDecimal."f", $value);
+		$value = ereg_replace("0+$", '', $value);
+		$value = ereg_replace("\.$", '', $value);
+// JFV END
+		$currencyPattern = $this->currencyFormat;
         $currencySeparator = $this->currencySeparator;
         $decimalSeparator  = $this->decimalSeparator;
 		if(empty($currencySeparator)) $currencySeparator = ' ';

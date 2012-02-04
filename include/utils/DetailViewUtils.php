@@ -1276,7 +1276,10 @@ function getDetailAssociatedProducts($module, $focus) {
 			for ($tax_count = 0; $tax_count < count($tax_details); $tax_count++) {
 				$tax_name = $tax_details[$tax_count]['taxname'];
 				$tax_label = $tax_details[$tax_count]['taxlabel'];
-				$tax_value = getInventoryProductTaxValue($focus->id, $productid, $tax_name);
+// JFV - omit tail zero digits
+//				$tax_value = getInventoryProductTaxValue($focus->id, $productid, $tax_name);
+				$tax_value = jfv_omitTailZero(getInventoryProductTaxValue($focus->id, $productid, $tax_name));
+// JFV END
 
 				$individual_taxamount = $totalAfterDiscount * $tax_value / 100;
 				$taxtotal = $taxtotal + $individual_taxamount;
@@ -1306,9 +1309,15 @@ function getDetailAssociatedProducts($module, $focus) {
 
 
 		if ($module != 'PurchaseOrder') {
-			$output .= '<td class="crmTableRow small lineOnTop">' . $qtyinstock . '</td>';
+// JFV - omit tail zero
+//			$output .= '<td class="crmTableRow small lineOnTop">' . $qtyinstock . '</td>';
+			$output .= '<td class="crmTableRow small lineOnTop">' . jfv_omitTailZero($qtyinstock) . '</td>';
+// JFV END
 		}
-		$output .= '<td class="crmTableRow small lineOnTop">' . $qty . '</td>';
+// JFV - omit tail zero
+//		$output .= '<td class="crmTableRow small lineOnTop">' . $qty . '</td>';
+		$output .= '<td class="crmTableRow small lineOnTop">' . jfv_omitTailZero($qty) . '</td>';
+// JFV END
 		$output .= '
 			<td class="crmTableRow small lineOnTop" align="right">
 				<table width="100%" border="0" cellpadding="5" cellspacing="0">

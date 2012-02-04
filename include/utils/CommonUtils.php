@@ -3657,4 +3657,13 @@ function getModuleSequenceNumber($module,$recordId){
 	}
 	return $moduleSeqNo;
 }
+
+// JFV - function to omit tail zero digits, refer http://blog.raxus.co.jp/article/105109533.html
+function jfv_omitTailZero($value){
+		$value = sprintf("%f", $value);
+		$value = ereg_replace("0+$", '', $value);
+		$value = ereg_replace("\.$", '', $value);
+		return $value;
+}
+// JFV END
 ?>

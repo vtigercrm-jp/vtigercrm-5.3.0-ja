@@ -283,13 +283,17 @@ function roundValue(val) {
    val = val.toString();
    
    if (val.indexOf(".")<0) {
-      val+=".00"
+// JFV - omit tail zero digits
+//      val+=".00"
+// JFV END
    } else {
       var dec=val.substring(val.indexOf(".")+1,val.length)
       if (dec.length>2)
          val=val.substring(0,val.indexOf("."))+"."+dec.substring(0,2)
-      else if (dec.length==1)
-         val=val+"0"
+// JFV - omit tail zero digits
+//      else if (dec.length==1)
+//         val=val+"0"
+// JFV END
    }
    
    return val;
