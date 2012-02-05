@@ -151,6 +151,9 @@ for($i = 0; $i < $company_name_count; $i++) {
 	$account->column_fields["industry"] = $comboFieldArray['industry_dom'][$key];
 
 	$account->column_fields["account_type"] = "Customer";
+// JFV - default "Email Opt Out" to true, account not receive mail
+	$account->column_fields["emailoptout"] = "1";
+// JFV END
 
 	$account->save("Accounts");
 	
@@ -234,6 +237,9 @@ for($i=0; $i<10; $i++)
 	
 	$account_key = array_rand($account_ids);
 	$contact->column_fields["account_id"] = $account_ids[$account_key];
+// JFV - default "Email Opt Out" to true, contact not receive mail
+	$contact->column_fields["emailoptout"] = "1";
+// JFV END
 
 	//$contact->saveentity("Contacts");
 	$contact->save("Contacts");

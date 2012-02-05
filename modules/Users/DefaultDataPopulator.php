@@ -213,7 +213,10 @@ class DefaultDataPopulator extends CRMEntity {
 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'annualrevenue','vtiger_account',1,'71','annual_revenue','Annual Revenue',1,2,'',100,18,9,1,'N~O',1,null,'ADV',1)");
 // JFV END		
 		//Added vtiger_field emailoptout for vtiger_accounts -- after 4.2 patch2
-		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'emailoptout','vtiger_account',1,'56','emailoptout','Email Opt Out',1,2,'',100,17,9,1,'C~O',1,null,'ADV',1)");
+// JFV - default "Email Opt Out" to true, account not receive mail
+//		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'emailoptout','vtiger_account',1,'56','emailoptout','Email Opt Out',1,2,'',100,17,9,1,'C~O',1,null,'ADV',1)");
+		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'emailoptout','vtiger_account',1,'56','emailoptout','Email Opt Out',1,2,'1',100,17,9,1,'C~O',1,null,'ADV',1)");
+// JFV END
 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'notify_owner','vtiger_account',1,56,'notify_owner','Notify Owner',1,2,'',10,20,9,1,'C~O',1,NULL,'ADV',1)");
 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'smownerid','vtiger_crmentity',1,'53','assigned_user_id','Assigned To',1,0,'',100,19,9,1,'V~M',0,4,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'createdtime','vtiger_crmentity',1,'70','createdtime','Created Time',1,0,'',100,22,9,2,'T~O',3,null,'BAS',0)");
@@ -345,7 +348,10 @@ class DefaultDataPopulator extends CRMEntity {
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'secondaryemail','vtiger_contactdetails',1,'13','secondaryemail','Secondary Email',1,2,'',100,20,4,1,'E~O',1,null,'ADV',1)");
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'assistantphone','vtiger_contactsubdetails',1,'11','assistantphone','Assistant Phone',1,2,'',100,19,4,1,'V~O',1,null,'ADV',1)");
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'donotcall','vtiger_contactdetails',1,'56','donotcall','Do Not Call',1,2,'',100,22,4,1,'C~O',1,null,'ADV',1)");
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'emailoptout','vtiger_contactdetails',1,'56','emailoptout','Email Opt Out',1,2,'',100,21,4,1,'C~O',1,null,'ADV',1)");
+// JFV - default "Email Opt Out" to true, contact not receive mail
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'emailoptout','vtiger_contactdetails',1,'56','emailoptout','Email Opt Out',1,2,'',100,21,4,1,'C~O',1,null,'ADV',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'emailoptout','vtiger_contactdetails',1,'56','emailoptout','Email Opt Out',1,2,'1',100,21,4,1,'C~O',1,null,'ADV',1)");
+// JFV END
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'smownerid','vtiger_crmentity',1,'53','assigned_user_id','Assigned To',1,0,'',100,24,4,1,'V~M',0,6,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'reference','vtiger_contactdetails',1,'56','reference','Reference',1,2,'',10,23,4,1,'C~O',1,null,'ADV',1)");
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'notify_owner','vtiger_contactdetails',1,'56','notify_owner','Notify Owner',1,2,'',10,26,4,1,'C~O',1,null,'ADV',1)");
