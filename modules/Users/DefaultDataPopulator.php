@@ -208,7 +208,10 @@ class DefaultDataPopulator extends CRMEntity {
 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'industry','vtiger_account',1,'15','industry','industry',1,2,'',100,13,9,1,'V~O',1,null,'ADV',1)");
 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'siccode','vtiger_account',1,'1','siccode','SIC Code',1,2,'',100,16,9,1,'V~O',1,null,'ADV',1)");
 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'account_type','vtiger_account',1,'15','accounttype','Type',1,2,'',100,15,9,1,'V~O',1,null,'ADV',1)");
-		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'annualrevenue','vtiger_account',1,'71','annual_revenue','Annual Revenue',1,2,'',100,18,9,1,'I~O',1,null,'ADV',1)");
+// JFV - extend number range, chg type from Integer to Decimal		
+//		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'annualrevenue','vtiger_account',1,'71','annual_revenue','Annual Revenue',1,2,'',100,18,9,1,'I~O',1,null,'ADV',1)");
+		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'annualrevenue','vtiger_account',1,'71','annual_revenue','Annual Revenue',1,2,'',100,18,9,1,'N~O',1,null,'ADV',1)");
+// JFV END		
 		//Added vtiger_field emailoptout for vtiger_accounts -- after 4.2 patch2
 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'emailoptout','vtiger_account',1,'56','emailoptout','Email Opt Out',1,2,'',100,17,9,1,'C~O',1,null,'ADV',1)");
 		$this->db->query("insert into vtiger_field values (6,".$this->db->getUniqueID("vtiger_field").",'notify_owner','vtiger_account',1,56,'notify_owner','Notify Owner',1,2,'',10,20,9,1,'C~O',1,NULL,'ADV',1)");
@@ -278,7 +281,10 @@ class DefaultDataPopulator extends CRMEntity {
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'website','vtiger_leadsubdetails',1,'17','website','Website',1,2,'',100,13,13,1,'V~O',1,null,'ADV',1)");
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'industry','vtiger_leaddetails',1,'15','industry','Industry',1,2,'',100,12,13,1,'V~O',1,null,'ADV',1)");
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'leadstatus','vtiger_leaddetails',1,'15','leadstatus','Lead Status',1,2,'',100,15,13,1,'V~O',1,null,'BAS',1)");
-		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'annualrevenue','vtiger_leaddetails',1,'71','annualrevenue','Annual Revenue',1,2,'',100,14,13,1,'I~O',1,null,'ADV',1)");
+// JFV - extend number range, chg type from Integer to Decimal
+//		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'annualrevenue','vtiger_leaddetails',1,'71','annualrevenue','Annual Revenue',1,2,'',100,14,13,1,'I~O',1,null,'ADV',1)");
+		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'annualrevenue','vtiger_leaddetails',1,'71','annualrevenue','Annual Revenue',1,2,'',100,14,13,1,'N~O',1,null,'ADV',1)");
+// JFV END
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'rating','vtiger_leaddetails',1,'15','rating','Rating',1,2,'',100,17,13,1,'V~O',1,null,'ADV',1)");
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'noofemployees','vtiger_leaddetails',1,'1','noofemployees','No Of Employees',1,2,'',100,16,13,1,'I~O',1,null,'ADV',1)");
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'smownerid','vtiger_crmentity',1,'53','assigned_user_id','Assigned To',1,0,'',100,19,13,1,'V~M',0,6,'BAS',1)");

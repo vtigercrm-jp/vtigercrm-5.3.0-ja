@@ -356,7 +356,10 @@
 		</field>
 		<field name="account_type" type="C" size="200" />
 		<field name="industry" type="C" size="200" />
-		<field name="annualrevenue" type="I" size="19">
+<!-- JFV : extend number range, chg type from Integer to Decimal -->
+<!-- 		<field name="annualrevenue" type="I" size="19"> -->
+		<field name="annualrevenue" type="N" size="25">
+<!-- JFV END -->
 			<default value="0" />
 		</field>
 		<field name="rating" type="C" size="200" />
@@ -631,7 +634,10 @@
 		<field name="company" type="C" size="100">
 			<notnull />
 		</field>
-		<field name="annualrevenue" type="I" size="19">
+<!-- JFV : extend number range, chg type from Integer to Decimal -->
+<!-- 		<field name="annualrevenue" type="I" size="19"> -->
+		<field name="annualrevenue" type="N" size="25">
+<!-- JFV END -->
 			<default value="0" />
 		</field>
 		<field name="industry" type="C" size="200" />
