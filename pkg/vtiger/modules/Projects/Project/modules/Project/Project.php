@@ -603,7 +603,9 @@ class Project extends CRMEntity {
 				$percentage = str_replace("%","",$rec_related_projecttasks['projecttaskprogress']);
 			}
 
-            $rec_related_projecttasks['projecttaskname'] = iconv($default_charset, "ISO-8859-2//TRANSLIT",$rec_related_projecttasks['projecttaskname']);		
+// JFV - experimental - avoid garbled chars
+//            $rec_related_projecttasks['projecttaskname'] = iconv($default_charset, "ISO-8859-2//TRANSLIT",$rec_related_projecttasks['projecttaskname']);		
+// JFV END
 			$g->addTask($rec_related_projecttasks['projecttaskid'],$rec_related_projecttasks['startdate'],$rec_related_projecttasks['enddate'],$percentage,$rec_related_projecttasks['projecttaskname']);
 		}
 		
@@ -614,7 +616,9 @@ class Project extends CRMEntity {
 											array($record)) or die("Please install the ProjectMilestone and ProjectTasks modules first.");
 		
 		while($rec_related_projectmilestones = $adb->fetchByAssoc($related_projectmilestones)){
-            $rec_related_projectmilestones['projectmilestonename'] = iconv($default_charset, "ISO-8859-2//TRANSLIT",$rec_related_projectmilestones['projectmilestonename']);
+// JFV - experimental - avoid garbled chars
+//            $rec_related_projectmilestones['projectmilestonename'] = iconv($default_charset, "ISO-8859-2//TRANSLIT",$rec_related_projectmilestones['projectmilestonename']);
+// JFV END
             $g->addMilestone($rec_related_projectmilestones['projectmilestoneid'],$rec_related_projectmilestones['projectmilestonedate'],$rec_related_projectmilestones['projectmilestonename']);
 		}
 		

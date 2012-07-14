@@ -773,7 +773,16 @@ class BURAK_Gantt {
 		$months = array();
 		$s = $this->gantt_start;
 		while($s <= ($this->gantt_end+1)){
-			$label = gmstrftime("%b %Y",$s);
+// JFV - change chart grid's year month format
+//			$label = gmstrftime("%b %Y",$s);
+			global $lang_crm;
+			if($lang_crm == 'ja'){
+				$label = gmstrftime("%Y/%m",$s);
+			}else{
+				$label = gmstrftime("%b %Y",$s);
+			}
+// JFV END
+			
 			if(!array_key_exists($label,$months)){
 				$months[$label] = 1;
 			}else{
@@ -906,7 +915,11 @@ class BURAK_Gantt {
 		$pos = $this->data_gantt[$id]["pos"];
 		imagefilledrectangle($this->im,$pos["x1"],$pos["y1"],$pos["x2"],$pos["y2"], $this->colors["task"]);
 		$d = $this->data_gantt[$id]["label"];
-		imagestring($this->im,2,($pos["x1"]+5),($pos["y1"]-$this->heights["task"]-3),$d,$this->colors["font"]);
+// JFV - experimental - avoid garbled char in project chart
+//		imagestring($this->im,2,($pos["x1"]+5),($pos["y1"]-$this->heights["task"]-3),$d,$this->colors["font"]);
+		$jfv_font = dirname(__FILE__).'/../../Image/Canvas/Fonts/ipagui.ttf';
+		imagettftext($this->im,9,0,($pos["x1"]+5),($pos["y1"]-$this->heights["task"]+9),$this->colors["font"],$jfv_font,$d);
+// JFV END
 		// border
 		imagerectangle($this->im,$pos["x1"],$pos["y1"],$pos["x2"],$pos["y2"],$this->colors["line"]);
 		// progress
@@ -922,18 +935,35 @@ class BURAK_Gantt {
 	
 	function drawMilestone($id){
 		$pos = $this->data_gantt[$id]["pos"];
+// JFV - adjust milestone icon position
+//		$vertices = array(
+//			$pos["x1"],
+//			$pos["y1"],
+//			$pos["x2"],
+//			$pos["y2"],
+//			$pos["x3"],
+//			$pos["y3"],
+//			$pos["x4"],
+//			$pos["y4"]
+//		);
 		$vertices = array(
-			$pos["x1"],
+			$pos["x1"]+7,
 			$pos["y1"],
-			$pos["x2"],
+			$pos["x2"]+7,
 			$pos["y2"],
-			$pos["x3"],
+			$pos["x3"]+7,
 			$pos["y3"],
-			$pos["x4"],
+			$pos["x4"]+7,
 			$pos["y4"]
 		);
+// JFV END
 		imagefilledpolygon($this->im,$vertices,4,$this->colors["milestone"]);
-		imagestring($this->im,2,($pos["x3"]+5),($pos["y2"]-$this->heights["task"]-3),$this->data_gantt[$id]["label"],$this->colors["font"]);
+// JFV - experimental - avoid garbled char in project chart
+//		imagestring($this->im,2,($pos["x3"]+5),($pos["y2"]-$this->heights["task"]-3),$this->data_gantt[$id]["label"],$this->colors["font"]);
+//		imagestring($this->im,2,($pos["x1"]+5),($pos["y1"]-$this->heights["task"]-3),$d,$this->colors["font"]);
+		$jfv_font = dirname(__FILE__).'/../../Image/Canvas/Fonts/ipagui.ttf';
+		imagettftext($this->im,9,0,($pos["x3"]+1),($pos["y2"]-$this->heights["task"]+9),$this->colors["font"],$jfv_font,$this->data_gantt[$id]["label"]);
+// JFV END
 	}
 	
 	/**
