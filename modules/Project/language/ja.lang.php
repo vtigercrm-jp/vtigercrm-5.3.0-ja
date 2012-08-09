@@ -67,6 +67,10 @@ $mod_strings = Array(
 	'Project Milestones' => 'プロジェクト マイルストーン',
 	'Project Tasks' => 'プロジェクト タスク',
 	'Project Team' => 'プロジェクト チーム',
+// JFV - manually added 20110714
+	'Add Project Task' => '( 追加 ) プロジェクト タスク',
+	'Add Note' => '( 追加 ) ドキュメント',
+// JFV END
 );
 
 ?>

@@ -47,6 +47,9 @@ $mod_strings = Array(
     'Project Task Name' => 'タスク名',
     'Project Task No' => 'タスク No',
     'Project Task Number' => 'タスク コード',
+// JFV - manually added 20110714
+	'Add Note' => '( 追加 ) ドキュメント',
+// JFV END
 );
 
 ?>
