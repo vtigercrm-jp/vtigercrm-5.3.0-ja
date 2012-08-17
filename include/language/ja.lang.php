@@ -21,6 +21,7 @@
  ********************************************************************************/
 $app_strings = array (
 // JFV - add missing strings
+'Send SMS' => 'SMS 送信',
 'Language' => '言語',
 'Digit Grouping Pattern' => '数字グループ パターン',
 'Decimal Separator' => '小数点記号',
