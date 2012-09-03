@@ -54,7 +54,10 @@ class DefaultDataPopulator extends CRMEntity {
 		$this->db->query("INSERT INTO vtiger_tab(tabid,name,presence,tabsequence,tablabel,customized,ownedby,isentitytype) VALUES (25,'Reports',0,22,'Reports',0,1,0)");
 		$this->db->query("INSERT INTO vtiger_tab(tabid,name,presence,tabsequence,tablabel,customized,ownedby,isentitytype) VALUES (26,'Campaigns',0,23,'Campaigns',0,0,1)");
 		$this->db->query("INSERT INTO vtiger_tab(tabid,name,presence,tabsequence,tablabel,customized,ownedby,isentitytype) VALUES (27,'Portal',0,24,'Portal',0,1,0)");
-		$this->db->query("INSERT INTO vtiger_tab(tabid,name,presence,tabsequence,tablabel,customized,ownedby,isentitytype) VALUES (28,'Webmails',0,25,'Webmails',0,1,1)");
+// JFV - disable webmails
+//		$this->db->query("INSERT INTO vtiger_tab(tabid,name,presence,tabsequence,tablabel,customized,ownedby,isentitytype) VALUES (28,'Webmails',0,25,'Webmails',0,1,1)");
+		$this->db->query("INSERT INTO vtiger_tab(tabid,name,presence,tabsequence,tablabel,customized,ownedby,isentitytype) VALUES (28,'Webmails',1,25,'Webmails',0,1,1)");
+// JFV END
 		$this->db->query("insert into vtiger_tab(tabid,name,presence,tabsequence,tablabel,customized,ownedby,isentitytype) values (29,'Users',0,26,'Users',0,1,0)");
 		
 		// Populate the vtiger_blocks vtiger_table
