@@ -87,10 +87,20 @@ function getNewLeads($maxval,$calCnt)
 	if ($noofrows > 0) {
 		for($i=0;$i<$noofrows && $i<$maxval;$i++) 
 		{
+// JFV - change firstname and lastname order for dashbaord display
+	global $lang_crm;
+	if( in_array(strtolower($lang_crm), array('ja','zh_cn', 'zh_tw'))){
+			$open_lead_list[] = Array('leadname' => $adb->query_result($list_result,$i,'lastname').' '.$adb->query_result($list_result,$i,'firstname'),
+					'company' => $adb->query_result($list_result,$i,'company'),
+					'id' => $adb->query_result($list_result,$i,'leadid'),
+					);
+	}else{
 			$open_lead_list[] = Array('leadname' => $adb->query_result($list_result,$i,'firstname').' '.$adb->query_result($list_result,$i,'lastname'),
 					'company' => $adb->query_result($list_result,$i,'company'),
 					'id' => $adb->query_result($list_result,$i,'leadid'),
 					);
+	}
+// JFV END
 		}
 	}
 	
