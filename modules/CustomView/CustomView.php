@@ -241,7 +241,13 @@ class CustomView extends CRMEntity{
 			{
 				$cvrow['viewname'] = $app_strings['COMBO_ALL'];
 			}
-			
+// JFV - localize custom view name
+			else{
+				global $current_language;
+				$current_module_strings = return_module_language($current_language, "CustomView");
+			    $cvrow['viewname'] = $current_module_strings['JFV_cv_name'][$cvrow['viewname']]?$current_module_strings['JFV_cv_name'][$cvrow['viewname']]:$cvrow['viewname'];
+			}
+// JFV END
 			$option = '';
 			$viewname = $cvrow['viewname'];
 			if ($cvrow['status'] == CV_STATUS_DEFAULT || $cvrow['userid'] == $current_user->id) {

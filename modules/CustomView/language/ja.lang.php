@@ -279,5 +279,30 @@ $mod_strings = Array(
 'LBL_STATUS_PUBLIC_DENY'=>'却下',
 
 'LBL_ADVANCED_FILTER' => 'ルール',
+
+// JFV - add missing strings
+'JFV_cv_name' =>
+array (
+	'Hot Leads' => '有望な見込み客',
+	'This Month Leads' => '今月の更新見込み客',
+	'Prospect Accounts' => '潜在顧客企業',
+	'New This Week' => '今週の新規顧客企業',
+	'Contacts Address' => '顧客担当者の住所',
+	'Todays Birthday' => '今日が誕生日の顧客担当者',
+	'Potentials Won' => '受注獲得案件',
+	'Prospecting' => '開拓中の案件',
+	'Open Tickets' => '未完了のサポート依頼',
+	'High Prioriy Tickets' => '優先度＝高のサポート依頼',
+	'Open Quotes' => '進行中の見積り',
+	'Rejected Quotes' => '却下された見積り',
+	'Drafted FAQ' => '草稿の回答事例',
+	'Published FAQ' => '公開中の回答事例',
+	'Open Purchase Orders' => '未完了の購買発注',
+	'Received Purchase Orders' => '入荷済みの購買発注',
+	'Open Invoices' => '未完了の請求書',
+	'Paid Invoices' => '領収済みの請求書',
+	'Pending Sales Orders' => '処理待ちの販売受注',
+),
+// JFV END
 ); 
 ?>

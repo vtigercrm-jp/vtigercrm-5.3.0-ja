@@ -108,7 +108,7 @@ function getKeyMetrics($maxval,$calCnt)
 			$value=array();
 // JFV - fix wrongly truncationed utf8 string
 			if (function_exists("mb_strimwidth")) {
-				$CVname = mb_strimwidth($metriclist['name'], 0, 20, '...', "UTF-8");
+				$CVname = mb_strimwidth($current_module_strings['JFV_cv_name'][$metriclist['name']]?$current_module_strings['JFV_cv_name'][$metriclist['name']]:$metriclist['name'], 0, 20, '...', "UTF-8");
 			}else{
 // JFV END
 			$CVname = (strlen($metriclist['name']) > 20) ? (substr($metriclist['name'],0,20).'...') : $metriclist['name'];
