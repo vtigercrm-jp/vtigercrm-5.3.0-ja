@@ -118,8 +118,8 @@ $mod_strings = Array(
 'LBL_ALL'=>'すべて',
 'LBL_CONTACTED'=>'接触済み',
 'LBL_LOST'=>'消滅',
-'LBL_HOT'=>'関係優良',
-'LBL_COLD'=>'関係冷却化',
+'LBL_HOT'=>'高有望度 (Hot)',
+'LBL_COLD'=>'低有望度 (Cold)',
 
 // Added for 4GA
 'LBL_TOOL_FORM_TITLE'=>'見込み客ツール',
@@ -218,16 +218,16 @@ $mod_strings = Array(
 'Word of mouth'=>'口コミ',
 
 'Attempted to Contact'=>'接触試行中',
-'Cold'=>'関係冷却化',
+'Cold'=>'低有望度 (Cold)',
 'Contact in Future'=>'将来接触予定',
 'Contacted'=>'接触済み',
-'Hot'=>'関係優良',
+'Hot'=>'高有望度 (Hot)',
 'Junk Lead'=>'価値無し',
 'Lost Lead'=>'消失',
 'Not Contacted'=>'未接触',
 'Pre Qualified'=>'事前審査通過',
 'Qualified'=>'審査通過',
-'Warm'=>'関係良',
+'Warm'=>'中有望度 (Warm)',
 
 // Added/Updated for vtiger CRM 5.0.4
 

@@ -31,6 +31,8 @@ $app_strings = array (
 'Time Zone' => 'タイムゾーン',
 'Language' => '言語',
 'Theme' => 'テーマ',
+'Projects' => 'プロジェクト',
+'Assets' => '資産',
 // JFV END
 'LBL_BROWSER_TITLE' => 'vtiger CRM 5 - 業務用オープンソース CRM',
 'LBL_MY_ACCOUNT' => '私の顧客企業',
@@ -972,12 +974,12 @@ $app_strings = array (
 //Export Records <-----ENDS
 
 'Trouble Tickets'=>'サポート依頼',
-'LBL_NOT_ACCESSIBLE'=>'$$$アクセス不能',
+'LBL_NOT_ACCESSIBLE'=>'アクセス不可',
 
 //Added for Existing Picklist Strings for both Lead module (convert div) and for potential module.
 
-'Prospecting'=>'顧客発掘',
-'Qualification'=>'顧客選別',
+'Prospecting'=>'発掘',
+'Qualification'=>'選別',
 'Needs Analysis'=>'要求分析',
 'Value Proposition'=>'価値訴求',
 'Id. Decision Makers'=>'決定者の判別',

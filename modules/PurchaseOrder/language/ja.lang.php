@@ -184,7 +184,7 @@ $mod_strings = Array(
 'Approved'=>'承認済み',
 'Delivered'=>'配送済み',
 'Cancelled'=>'取り消し',
-'Received Shipment'=>'配送物受領済み',
+'Received Shipment'=>'入庫済み',
 
 //Added for Reports (5.0.4)
 'Tax Type'=>'税タイプ',

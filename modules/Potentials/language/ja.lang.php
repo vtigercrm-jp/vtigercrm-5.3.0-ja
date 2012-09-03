@@ -117,8 +117,8 @@ $mod_strings = Array(
 
 //Added for Existing Picklist Strings
 
-'Prospecting'=>'顧客発掘',
-'Qualification'=>'顧客選別',
+'Prospecting'=>'開拓',
+'Qualification'=>'選別',
 'Needs Analysis'=>'要求分析',
 'Value Proposition'=>'価値訴求',
 'Id. Decision Makers'=>'決定者の判別',
