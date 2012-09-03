@@ -235,12 +235,19 @@ $cvcolumns = Array(Array('vtiger_leaddetails:lead_no:lead_no:Leads_Lead_No:V',
                          'vtiger_contactdetails:lastname:lastname:Contacts_Last_Name:V',
 // JFV - swap firstname and lastname
 						 'vtiger_contactdetails:firstname:firstname:Contacts_First_Name:V',
-// JFV END					
-                         'vtiger_contactaddress:mailingstreet:mailingstreet:Contacts_Mailing_Street:V',
-                         'vtiger_contactaddress:mailingcity:mailingcity:Contacts_Mailing_City:V',
-                         'vtiger_contactaddress:mailingstate:mailingstate:Contacts_Mailing_State:V',
+// JFV END	
+// JFV - swap address order				
+//                         'vtiger_contactaddress:mailingstreet:mailingstreet:Contacts_Mailing_Street:V',
+//                         'vtiger_contactaddress:mailingcity:mailingcity:Contacts_Mailing_City:V',
+//                         'vtiger_contactaddress:mailingstate:mailingstate:Contacts_Mailing_State:V',
+//			 'vtiger_contactaddress:mailingzip:mailingzip:Contacts_Mailing_Zip:V',
+//			 'vtiger_contactaddress:mailingcountry:mailingcountry:Contacts_Mailing_Country:V'),
+			 'vtiger_contactaddress:mailingcountry:mailingcountry:Contacts_Mailing_Country:V',
 			 'vtiger_contactaddress:mailingzip:mailingzip:Contacts_Mailing_Zip:V',
-			 'vtiger_contactaddress:mailingcountry:mailingcountry:Contacts_Mailing_Country:V'),
+		   		         'vtiger_contactaddress:mailingstate:mailingstate:Contacts_Mailing_State:V',
+                         'vtiger_contactaddress:mailingcity:mailingcity:Contacts_Mailing_City:V',
+		   	             'vtiger_contactaddress:mailingstreet:mailingstreet:Contacts_Mailing_Street:V'),
+// JFV END
 		   
 // JFV - swap firstname and lastname
 		   Array(
