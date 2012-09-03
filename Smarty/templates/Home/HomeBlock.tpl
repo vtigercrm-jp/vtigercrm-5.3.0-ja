@@ -67,7 +67,10 @@
 	</tr>
 		{/foreach}
 	{else}
-		<div class="componentName">{$APP.LBL_NO_DATA}</div>
+{*// JFV - in home, change string No Data to small *}
+{*		<div class="componentName">{$APP.LBL_NO_DATA}</div>*}
+		<div class="componentName" style="font-size:x-small; margin-top:20px">{$APP.LBL_NO_DATA}</div>
+{*// JFV END*}
 	{/if}
 	</table>
 
@@ -100,7 +103,10 @@
 	</tr>
 		{/foreach}
 	{else}
-		<div class="componentName">{$APP.LBL_NO_DATA}</div>
+{*// JFV - in home, change string No Data to small *}
+{*		<div class="componentName">{$APP.LBL_NO_DATA}</div>*}
+		<div class="componentName" style="font-size:x-small; margin-top:20px">{$APP.LBL_NO_DATA}</div>
+{*// JFV END*}
 	{/if}
 	</table>
 	

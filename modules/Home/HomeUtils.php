@@ -129,7 +129,10 @@ function getActivityEntries($open_activity_list){
 		$values = array('noofactivities'=>count($open_activity_list),'Header'=>$header,'Entries'=>$entries);
 	}else{
 		$values = array('noofactivities'=>count($open_activity_list), 'Entries'=>
-			'<div class="componentName">'.$app_strings['LBL_NO_DATA'].'</div>');
+// JFV - in home, change string No Data to small
+//			'<div class="componentName">'.$app_strings['LBL_NO_DATA'].'</div>');
+			'<div class="componentName" style="font-size:x-small">'.$app_strings['LBL_NO_DATA'].'</div>');
+// JFV END	
 	}
 	return $values;
 }
