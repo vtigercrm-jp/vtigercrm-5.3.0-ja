@@ -170,17 +170,17 @@ function mapLocation2(){
 	this.openMapWindow = function(mapParameter){
 		mapParameter = removeHTMLFormatting(mapParameter);
 		if(this.areaType=="jp"){
-			window.open('http://maps.google.co.jp/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8&oe=UTF8&hl=ja','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
+			window.open('http://maps.google.co.jp/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8&oe=UTF8&output=embed&hl=ja','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
 		}else if(this.areaType=="roc"){
-			window.open('http://maps.google.com.tw/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8&oe=UTF8&hl=zh-TW','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
+			window.open('http://maps.google.com.tw/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8&oe=UTF8&output=embed&hl=zh-TW','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
 		}else if(this.areaType=="tw"){
-			window.open('http://maps.google.com.tw/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8&oe=UTF8&hl=zh-TW','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
+			window.open('http://maps.google.com.tw/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8&oe=UTF8&output=embed&hl=zh-TW','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
 		}else if(this.areaType=="hk"){ // map haven't been supported by hk google
-			window.open('http://maps.google.com.tw/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8&oe=UTF8&hl=zh-HK','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
+			window.open('http://maps.google.com.tw/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8&oe=UTF8&output=embed&hl=zh-HK','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
 		}else if(this.areaType=="cn"){
-	         window.open('http://ditu.google.com/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8&oe=UTF8','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
+	         window.open('http://ditu.google.com/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8&oe=UTF8&output=embed','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
 		}else{
-			window.open('http://maps.google.com/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
+			window.open('http://maps.google.com/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8&output=embed','goolemap','height=450,width=700,resizable=yes,titlebar,location,top=200,left=250');
 		}
 	}
 }
@@ -272,7 +272,7 @@ function searchMapLocation(addressType)
 			otherLoc.openMapWindow(mapParameter);
 		}else{							// address area is normal type
 			mapParameter = removeHTMLFormatting(mapParameter);
-			window.open('http://maps.google.com/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8','goolemap','height=450,width=700,resizable=no,titlebar,location,top=200,left=250');
+			window.open('http://maps.google.com/maps?q='+encodeURIComponent(mapParameter)+'&ie=UTF8&output=embed','goolemap','height=450,width=700,resizable=no,titlebar,location,top=200,left=250');
 		}
 //	mapParameter = removeHTMLFormatting(mapParameter);
 //	window.open('http://maps.google.com/maps?q='+mapParameter,'goolemap','height=450,width=700,resizable=no,titlebar,location,top=200,left=250');
