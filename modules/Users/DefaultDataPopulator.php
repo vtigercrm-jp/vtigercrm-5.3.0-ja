@@ -266,7 +266,10 @@ class DefaultDataPopulator extends CRMEntity {
 		//Lead Details --- START
 		//Block13 -- Start
 
-		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'salutation','vtiger_leaddetails',1,'55','salutationtype','Salutation',1,0,'',100,1,13,3,'V~O',1,null,'BAS',1)");
+// JFV - not display saluation (Mr Ms etc)
+//		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'salutation','vtiger_leaddetails',1,'55','salutationtype','Salutation',1,0,'',100,1,13,3,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'salutation','vtiger_leaddetails',1,'55','salutationtype','Salutation',1,1,'',100,1,13,3,'V~O',1,null,'BAS',1)");
+// JFV END
 // JFV - change firstname and lastname order to japan/china way
 //		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'firstname','vtiger_leaddetails',1,'55','firstname','First Name',1,0,'',100,2,13,1,'V~O',2,1,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (7,".$this->db->getUniqueID("vtiger_field").",'firstname','vtiger_leaddetails',1,'55','firstname','First Name',1,0,'',100,4,13,1,'V~O',2,1,'BAS',1)");
@@ -325,7 +328,10 @@ class DefaultDataPopulator extends CRMEntity {
 		//Contact Details -- START
 		//Block4 -- Start
 
-		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'salutation','vtiger_contactdetails',1,'55','salutationtype','Salutation',1,0,'',100,1,4,3,'V~O',1,null,'BAS',1)");
+// JFV - not display saluation (Mr Ms etc)
+//		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'salutation','vtiger_contactdetails',1,'55','salutationtype','Salutation',1,0,'',100,1,4,3,'V~O',1,null,'BAS',1)");
+		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'salutation','vtiger_contactdetails',1,'55','salutationtype','Salutation',1,1,'',100,1,4,3,'V~O',1,null,'BAS',1)");
+// JFV END
 // JFV - change firstname and lastname order to japan/china way
 //		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'firstname','vtiger_contactdetails',1,'55','firstname','First Name',1,0,'',100,2,4,1,'V~O',2,1,'BAS',1)");
 		$this->db->query("insert into vtiger_field values (4,".$this->db->getUniqueID("vtiger_field").",'firstname','vtiger_contactdetails',1,'55','firstname','First Name',1,0,'',100,4,4,1,'V~O',2,1,'BAS',1)");
