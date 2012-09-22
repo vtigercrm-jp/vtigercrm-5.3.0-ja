@@ -1434,6 +1434,22 @@ Severity: Critical
 
 Thanks,
 {CURRENTUSER}';
+// JFV - add japanese localization to inventry notification
+$invoice_body = '{HANDLER} 様
+
+{PRODUCTNAME} の現在の在庫量は {CURRENTSTOCK} です。在庫レベルが再発注レベルを下回っているので、必要数を再調達して下さい。
+
+請求書が既にお客様に発送済みのため、緊急対応をお願いします。
+
+重要度: 極めて重要
+
+宜しくお願いします
+{CURRENTUSER}
+
+---------------
+'
+. $invoice_body;
+// JFV END
 
 		
                $this->db->query("insert into vtiger_inventorynotification(notificationid,notificationname,notificationsubject,notificationbody,label) values (".$this->db->getUniqueID("vtiger_inventorynotification").",'InvoiceNotification','{PRODUCTNAME} Stock Level is Low','".$invoice_body." ','InvoiceNotificationDescription')");
@@ -1446,6 +1462,20 @@ Severity: Minor
 
 Thanks,
 {CURRENTUSER}';	
+// JFV - add japanese localization to inventry notification
+		$quote_body = '{HANDLER} 様
+
+		{QUOTEQUANTITY} ユニットの {PRODUCTNAME} に対して 見積りが作成されました。{PRODUCTNAME} の現在の在庫数は {CURRENTSTOCK} です。
+
+		重要度: 軽微
+
+		宜しくお願いします
+		{CURRENTUSER}
+
+		---------------
+		'
+		. $quote_body;
+// JFV END
 		
 		
                $this->db->query("insert into vtiger_inventorynotification(notificationid,notificationname,notificationsubject,notificationbody,label) values (".$this->db->getUniqueID("vtiger_inventorynotification").",'QuoteNotification','Quote given for {PRODUCTNAME}','".$quote_body." ','QuoteNotificationDescription')");
@@ -1460,6 +1490,23 @@ Severity: Major
 
 Thanks,
 {CURRENTUSER}';
+// JFV - add japanese localization to inventry notification
+		$so_body = '{HANDLER} 様,
+
+{SOQUANTITY} ユニットの {PRODUCTNAME} に対して 販売受注書が作成されました。{PRODUCTNAME} の現在の在庫数は {CURRENTSTOCK} です。
+
+Please treat this information  with priority as the sales order is already generated.
+販売受注書が既に作成済みのため、優先的に対応をお願いします。
+
+重要度: 重要
+
+宜しくお願いします
+{CURRENTUSER}
+
+---------------
+'
+. $so_body;
+// JFV END
 
 		
                $this->db->query("insert into vtiger_inventorynotification(notificationid,notificationname,notificationsubject,notificationbody,label) values (".$this->db->getUniqueID("vtiger_inventorynotification").",'SalesOrderNotification','Sales Order generated for {PRODUCTNAME}','".$so_body." ','SalesOrderNotificationDescription')");
@@ -1470,6 +1517,16 @@ Thanks,
  - Unless otherwise agreed in writing by the supplier all invoices are payable within thirty (30) days of the date of invoice, in the currency of the invoice, drawn on a bank based in India or by such other method as is agreed in advance by the Supplier.
 
  - All prices are not inclusive of VAT which shall be payable in addition by the Customer at the applicable rate.';
+// JFV - add japanese localization to terms and conditions
+$inv_tandc_text='
+ - サプライヤーによる書面による同意がある場合を除き、すべての請求書は発行日より 30 日以内に、請求書指定の貨幣により、インドに拠点を持つ銀行の drown on またはサプライヤーによる事前の同意を得た他の方法にて、支払われるものとします。
+
+ - すべての価格は VAT を含まず、お客様により適切な比率の追加の支払いが行われるものとします。
+
+---------------
+'
+. $inv_tandc_text;
+// JFV END
 
 	$this->db->query("insert into vtiger_inventory_tandc(id,type,tandc) values (".$this->db->getUniqueID("vtiger_inventory_tandc").", 'Inventory', '".$inv_tandc_text."')");	
 
@@ -1495,9 +1552,33 @@ Thanks,
 	-IJKL   <br />
 	-MNOP   <br />
 	-QRST';
+// JFV - add japanese localization to email template
+	$body='いつもお世話になっております   <br />
+	<br />
+	vtiger チームに代わり、vtiger CRM 4.2 リリースの喜びをお伝え致します。このリリースには、E メール  テンプレート処理、カスタム ビュー機能、vtiger_reports 機能および多数のその他ユーティリティが含まれます。vtiger CRM はすべてのプラットフォームで稼働します。<br />
+	<br />
+	vtiger CRM の注目機能 :   <br />
+	<br />
+	-E メール クライアント統合    <br />
+	-サポート依頼統合   <br />
+	-請求書管理統合   <br />
+	-レポート統合   <br />
+	-ポータル統合   <br />
+	-強化された Word プラグイン対応   <br />
+	-カスタム ビュー統合   <br />
+	<br />
+	既知の問題:   <br />
+	-ABCD   <br />
+	-EFGH   <br />
+	-IJKL   <br />
+	-MNOP   <br />
+	-QRST'
+	."<br /><br />----------<br />"
+	. $body;
 
-          $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Announcement for Release','Announcement for Release','Announcement of a release','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
-	
+//          $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Announcement for Release','Announcement for Release','Announcement of a release','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+          $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','例) リリースの報告 / Announcement for Release','リリースの報告 / Announcement for Release','リリース報告 / Announcement of a release','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+// JFV END	
 
 
 $body='name <br />
@@ -1519,9 +1600,33 @@ state, <br />
  Kindly let us know if there are any issues that you feel are pending to be discussed. <br />
  We will be more than happy to give you a call. <br />
  We would like to continue our business with you.';
+// JFV - add japanese localization to email template
+$body='name <br />
+street, <br />
+city, <br />
+state, <br />
+ zip) <br />
+  <br />
+  様 <br />
+ <br />
+ 以下の請求が未払いですので、ご確認下さいませ。<br />
+ <br />
+ No. 日付                    金額 <br />
+ 1   2001/1/1    $4000 <br />
+ 2   2001/2/2    $5000 <br />
+ 3   2001/3/3    $10000 <br />
+ 4   2001/4/7    $23560 <br />
+ <br />
+ 懸案事項がある場合は、ご遠慮なくお知らせ下さい。<br />
+ お電話でのご相談が宜しければ喜んで対応いたします。<br />
+ 今後ともお引き立ての程を宜しくお願い致します。<br />'.
+"<br /><br />----------<br />"
+. $body;
 
 
-               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Pending Invoices','Invoices Pending','Payment Due','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+//               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Pending Invoices','Invoices Pending','Payment Due','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','例) 未払い請求書 / Pending Invoices','請求書の未払いについて / Invoices Pending','支払い期限 / Payment Due','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+// JFV END
 
 
 
@@ -1543,18 +1648,44 @@ Cuff Links Ground. We will be waiting for you in the <br />
 Executive Lounge. <br />
 <br />
 Looking forward to seeing you there.';
+// JFV - add japanese localization to email template
+$body=' 様 <br />
+<br />
+XYZW 案件の提案書をレビューした結果、全般において受け入れ可能なものでした。<br />
+<br />
+私どもはこの案件に強い期待を抱いており、 協業の機会を持てることを喜んでいます。 <br />
+貴社との長期的な関係を築けるよう望んでおります。<br />
+<br />
+この機会を大切にするため、水曜日の午前 9 時から Cuff Links Ground にて行われる<br />
+ゴルフにお誘いしたいと考えています。<br />
+エグゼクティブ ラウンジにてお待ちする予定です。<br />
+<br />
+ご参加頂けますようご検討お願い致します。'
+."<br /><br />----------<br />"
+. $body;
 
 	       
-               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Acceptance Proposal','Acceptance Proposal','Acceptance of Proposal','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+//               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Acceptance Proposal','Acceptance Proposal','Acceptance of Proposal','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','例) 提案書の了承 / Acceptance Proposal','提案書の了承 / Acceptance Proposal','提案書の了承 / Acceptance of Proposal','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+// JFV END
 
 
 $body= ' The undersigned hereby acknowledges receipt and delivery of the goods. <br />
 The undersigned will release the payment subject to the goods being discovered not satisfactory. <br />
 <br />
 Signed under seal this <date>';
+// JFV - add japanese localization to email template
+$body= '署名者は商品の授受を確認するものとします。 <br />
+署名者は不十分な箇所が見つかった商品にかかわる支払いは保留するものとします。 <br />
+<br />
+以下署名<date>'
+."<br /><br />----------<br />"
+. $body;
 
-	       
-               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Goods received acknowledgement','Goods received acknowledgement','Acknowledged Receipt of Goods','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+
+//               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Goods received acknowledgement','Goods received acknowledgement','Acknowledged Receipt of Goods','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','例) 商品授受の確認 / Goods received acknowledgement','商品授受の確認 / Goods received acknowledgement','商品授受の確認 / Acknowledged Receipt of Goods','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+// JFV END
 
 
 	       $body= ' Dear <br />
@@ -1565,11 +1696,23 @@ only if the objection is received within ten days of receipt of <br />
 this notice. <br />
  <br />
 Thank you for your patronage.';
+// JFV - add japanese localization to email template
+	       $body= ' 様 <br />
+         注文書にてオーダーを受け取りました。 <br />
+   これで双方による確定と考えております。 <br />
+何らかの例外事項がある場合は、本通知の受け取りより 10 日以内に <br />
+申し立てがあった場合にのみ考慮するものとさせて頂きます。 <br />
+<br />
+平素のご愛顧に心より御礼申し上げます。'
+."<br /><br />----------<br />"
+. $body;
 
 
 
 	       
-               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Accept Order','Accept Order','Acknowledgement/Acceptance of Order','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+//               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Accept Order','Accept Order','Acknowledgement/Acceptance of Order','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','例) 注文の受け取り / Accept Order','注文の受け取り / Accept Order','注文の確認/受理 / Acknowledgement/Acceptance of Order','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+// JFV END
 
 
 
@@ -1586,9 +1729,26 @@ at 3250 Lovedale Square Avenue, in Frankfurt. <br />
 <br />
 We hope to keep in touch with you all. <br />
 Please update your addressbooks.';
+// JFV - add japanese localization to email template
+$body=' 様 <br />
+ <br />
+只今オフィスを以下の場所に移転中です。<br />
+11111,XYZDEF Cross, <br />
+UVWWX Circle <br />
+新拠点の電話番号は、(101) 1212-1328 です。 <br />
+<br />
+製造部門は引き続き 3250 Lovedale Square Avenue, in Frankfurt<br />
+が活動拠点となります。<br />
+<br />
+今後ともご連絡をお待ちしております。 <br />
+アドレス帳の更新もお願い致します。'
+."<br /><br />----------<br />"
+. $body;
 
 	       
-               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Address Change','Change of Address','Address Change','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+//               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Address Change','Change of Address','Address Change','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','例) 住所の変更 / Address Change','住所の変更 / Change of Address','住所変更 / Address Change','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+// JFV END
 
 
 
@@ -1607,10 +1767,30 @@ John to your firm. <br />
 I was genuinely touched to receive such fine hospitality. <br />
 <br />
 Thank you once again.';
+// JFV - add japanese localization to email template
+$body=' 様 <br />
+<br />
+スタッフの方々ともども、お会いできる機会を頂き、<br />
+誠にありがとうございます。 <br />
+<br />
+John Doe が長年御社をお世話さえて頂き、 <br />
+良好な関係を持つことができました。 <br />
+御社との素晴らしい関係については、彼より個人的に聞いております。 <br />
+今後彼の不在においても、John　による御社へのサービスと同様に <br />
+引き続き誠心誠意にお世話させていただくことを <br />
+お約束いたします。 <br />
+<br />
+素晴らしい御もてなしに非常に感銘を受けた次第です。 <br />
+<br />
+改めてお礼を申し上げます。'
+."<br /><br />----------<br />"
+. $body;
 
 
-	       
-               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Follow Up','Follow Up','Follow Up of meeting','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+
+//               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Follow Up','Follow Up','Follow Up of meeting','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','例) フォローアップ / Follow Up','フォローアップ / Follow Up','会議のフォローアップ / Follow Up of meeting','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+// JFV END
 
 
 
@@ -1626,10 +1806,25 @@ whopping 75%! <br />
 Let us meet at Smoking Joe for a drink in the evening! <br />
 
 C you all there guys!';
+// JFV - add japanese localization to email template
+$body='おめでとうございます! <br />
+<br />
+前四半期の総売上高が、 $100,000,00　に <br />
+達したことを喜びとともにお伝えします。 <br />
+目標高を初めて 30% 超過することもできました。 <br />
+また前四半期の記録を 75% も上回るものでした。<br />
+<br />
+今夜は　Smoking Joe にて飲みましょう！ <br />
+
+皆さんの参加をお待ちしています。'
+."<br /><br />----------<br />"
+. $body;
 
 
-	       
-               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Target Crossed!','Target Crossed!','Fantastic Sales Spree!','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+
+//               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Target Crossed!','Target Crossed!','Fantastic Sales Spree!','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','例) 目標達成 / Target Crossed!','目標達成 / Target Crossed!','素晴らしい売上 / Fantastic Sales Spree!','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+// JFV END
 
 $body='Dear <br />
 <br />
@@ -1638,13 +1833,166 @@ We are glad to be given the chance to serve you.I look <br />
 forward to establishing a long term partnership with you. <br />
 Consider me as a friend. <br />
 Should any need arise,please do give us a call.';
+// JFV - add japanese localization to email template
+$body=' 様 <br />
+<br />
+我々のサービスの力量を信頼頂いたことを感謝申し上げます。<br />
+また、サービスを提供させていただく機会を頂けたことをお礼申し上げます。<br />
+長期にわたる関係を築けることを願っております。<br />
+友人のようにお付き合い頂ければ幸いです。<br />
+何かございましたら、いつでもお電話をお待ちしております。'
+."<br /><br />----------<br />"
+. $body;
 
 
-	       
-               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Thanks Note','Thanks Note','Note of thanks','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+
+//               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Thanks Note','Thanks Note','Note of thanks','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','例) お礼状 / Thanks Note','お礼状　/ Thanks Note','お礼状 / Note of thanks','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+// JFV END
 
 //Added for HTML Eemail templates..
 //for Customer Portal Login details
+// JFV - add japanese localization to email template
+// $body='<table width="700" cellspacing="0" cellpadding="0" border="0" align="center" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: normal; text-decoration: none; background-color: rgb(122, 122, 254);">
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+//         <tr>
+//             <td width="50"> </td>
+//             <td>
+//             <table width="100%" cellspacing="0" cellpadding="0" border="0">
+//                     <tr>
+//                         <td>
+//                         <table width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: rgb(27, 77, 140); font-family: Arial,Helvetica,sans-serif; font-size: 14px; color: rgb(255, 255, 255); font-weight: normal; line-height: 25px;">
+//                                 <tr>
+//                                     <td align="center" rowspan="4">$logo$</td>
+//                                     <td align="center"> </td>
+//                                 </tr>
+//                                 <tr>
+//                                     <td align="left" style="background-color: rgb(27, 77, 140); font-family: Arial,Helvetica,sans-serif; font-size: 24px; color: rgb(255, 255, 255); font-weight: bolder; line-height: 35px;">vtiger CRM<br /> </td>
+//                                 </tr>
+//                                 <tr>
+//                                     <td align="right" style="padding-right: 100px;">The honest Open Source CRM </td>
+//                                 </tr>
+//                                 <tr>
+//                                     <td> </td>
+//                                 </tr>
+//                         </table>
+//                         </td>
+//                     </tr>
+//                     <tr>
+//                         <td>
+//                         <table width="100%" cellspacing="0" cellpadding="0" border="0" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: normal; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+//                                 <tr>
+//                                     <td valign="top">
+//                                     <table width="100%" cellspacing="0" cellpadding="5" border="0">
+//                                             <tr>
+//                                                 <td align="right" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bolder; text-decoration: none; color: rgb(66, 66, 253);"> </td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td> </td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td style="font-family: Arial,Helvetica,sans-serif; font-size: 14px; color: rgb(22, 72, 134); font-weight: bolder; line-height: 15px;">Dear $contact_name$, </td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; text-align: justify; line-height: 20px;"> Thank you very much for subscribing to the vtiger CRM - annual support service.<br />Here is your self service portal login details:</td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td align="center">
+//                                                 <table width="75%" cellspacing="0" cellpadding="10" border="0" style="border: 2px solid rgb(180, 180, 179); background-color: rgb(226, 226, 225); font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal;">
+//                                                         <tr>
+//                                                             <td><br />User ID     : <font color="#990000"><strong> $login_name$</strong></font> </td>
+//                                                         </tr>
+//                                                         <tr>
+//                                                             <td>Password: <font color="#990000"><strong> $password$</strong></font> </td>
+//                                                         </tr>
+//                                                         <tr>
+//                                                             <td align="center"> <strong>  $URL$<br /> </strong> </td>
+//                                                         </tr>
+//                                                 </table>
+//                                                 </td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; text-align: justify; line-height: 20px;"><strong>NOTE:</strong> We suggest you to change your password after logging in first time. <br /><br /> <strong><u>Help Documentation</u></strong><br />  <br /> After logging in to vtiger Self-service Portal first time, you can access the vtiger CRM documents from the <strong>Documents</strong> tab. Following documents are available for your reference:<br />
+//                                                 <ul>
+//                                                     <li>Installation Manual (Windows &amp; Linux OS)<br /> </li>
+//                                                     <li>User &amp; Administrator Manual<br /> </li>
+//                                                     <li>vtiger Customer Portal - User Manual<br /> </li>
+//                                                     <li>vtiger Outlook Plugin - User Manual<br /> </li>
+//                                                     <li>vtiger Office Plug-in - User Manual<br /> </li>
+//                                                     <li>vtiger Thunderbird Extension - User Manual<br /> </li>
+//                                                     <li>vtiger Web Forms - User Manual<br /> </li>
+//                                                     <li>vtiger Firefox Tool bar - User Manual<br /> </li>
+//                                                 </ul>
+//                                                 <br />  <br /> <strong><u>Knowledge Base</u></strong><br /> <br /> Periodically we update frequently asked question based on our customer experiences. You can access the latest articles from the <strong>FAQ</strong> tab.<br /> <br /> <strong><u>vtiger CRM - Details</u></strong><br /> <br /> Kindly let us know your current vtiger CRM version and system specification so that we can provide you necessary guidelines to enhance your vtiger CRM system performance. Based on your system specification we alert you about the latest security &amp; upgrade patches.<br />  <br />			 Thank you once again and wish you a wonderful experience with vtiger CRM.<br /> </td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td align="right"><strong style="padding: 2px; font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: bold;"><br /><br />Best Regards</strong></td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td align="right" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; line-height: 20px;">$support_team$ </td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td align="right"><a style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bolder; text-decoration: none; color: rgb(66, 66, 253);" href="http://www.vtiger.com">www.vtiger.com</a></td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td> </td>
+//                                             </tr>
+//                                     </table>
+//                                     </td>
+//                                     <td width="1%" valign="top"> </td>
+//                                 </tr>
+//                         </table>
+//                         </td>
+//                     </tr>
+//                     <tr>
+//                         <td>
+//                         <table width="100%" cellspacing="0" cellpadding="5" border="0" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(255, 255, 255); font-weight: normal; line-height: 15px; background-color: rgb(51, 51, 51);">
+//                                 <tr>
+//                                     <td align="center">Shree Narayana Complex, No 11 Sarathy Nagar, Vijaya Nagar , Velachery, Chennai - 600 042 India </td>
+//                                 </tr>
+//                                 <tr>
+//                                     <td align="center">Telephone No: +91 - 44 - 4202 - 1990     Toll Free No: +1 877 788 4437</td>
+//                                 </tr>
+//                                 <tr>
+//                                     <td align="center">Email Id: <a style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bolder; text-decoration: none; color: rgb(255, 255, 255);" href="mailto:support@vtiger.com">support@vtiger.com</a></td>
+//                                 </tr>
+//                         </table>
+//                         </td>
+//                     </tr>
+//             </table>
+//             </td>
+//             <td width="50"> </td>
+//         </tr>
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+// </table>';
 $body='<table width="700" cellspacing="0" cellpadding="0" border="0" align="center" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: normal; text-decoration: none; background-color: rgb(122, 122, 254);">
         <tr>
             <td> </td>
@@ -1700,16 +2048,16 @@ $body='<table width="700" cellspacing="0" cellpadding="0" border="0" align="cent
                                                 <td style="font-family: Arial,Helvetica,sans-serif; font-size: 14px; color: rgb(22, 72, 134); font-weight: bolder; line-height: 15px;">Dear $contact_name$, </td>
                                             </tr>
                                             <tr>
-                                                <td style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; text-align: justify; line-height: 20px;"> Thank you very much for subscribing to the vtiger CRM - annual support service.<br />Here is your self service portal login details:</td>
+                                                <td style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; text-align: justify; line-height: 20px;"> vtiger CRM の通年サポート　サービスをお選び頂き誠にありがとうございます。<br />セルフサービスのポータル　ログインの詳細は以下の通りです：</td>
                                             </tr>
                                             <tr>
                                                 <td align="center">
                                                 <table width="75%" cellspacing="0" cellpadding="10" border="0" style="border: 2px solid rgb(180, 180, 179); background-color: rgb(226, 226, 225); font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal;">
                                                         <tr>
-                                                            <td><br />User ID     : <font color="#990000"><strong> $login_name$</strong></font> </td>
+                                                            <td><br />ユーザー ID     : <font color="#990000"><strong> $login_name$</strong></font> </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Password: <font color="#990000"><strong> $password$</strong></font> </td>
+                                                            <td>パスワード: <font color="#990000"><strong> $password$</strong></font> </td>
                                                         </tr>
                                                         <tr>
                                                             <td align="center"> <strong>  $URL$<br /> </strong> </td>
@@ -1718,7 +2066,7 @@ $body='<table width="700" cellspacing="0" cellpadding="0" border="0" align="cent
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; text-align: justify; line-height: 20px;"><strong>NOTE:</strong> We suggest you to change your password after logging in first time. <br /><br /> <strong><u>Help Documentation</u></strong><br />  <br /> After logging in to vtiger Self-service Portal first time, you can access the vtiger CRM documents from the <strong>Documents</strong> tab. Following documents are available for your reference:<br />
+                                                <td style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; text-align: justify; line-height: 20px;"><strong>NOTE:</strong> 初回ログインの後でパスワードを変更してください。 <br /><br /> <strong><u>ヘルプ　ドキュメント</u></strong><br />  <br /> vtiger CRM セルフサービス　ポータルにログインすると、<strong>ドキュメント</strong>　タブより vtiger CRM ドキュメントにアクセスできます。以下のドキュメントがご利用できます：<br />
                                                 <ul>
                                                     <li>Installation Manual (Windows &amp; Linux OS)<br /> </li>
                                                     <li>User &amp; Administrator Manual<br /> </li>
@@ -1729,10 +2077,10 @@ $body='<table width="700" cellspacing="0" cellpadding="0" border="0" align="cent
                                                     <li>vtiger Web Forms - User Manual<br /> </li>
                                                     <li>vtiger Firefox Tool bar - User Manual<br /> </li>
                                                 </ul>
-                                                <br />  <br /> <strong><u>Knowledge Base</u></strong><br /> <br /> Periodically we update frequently asked question based on our customer experiences. You can access the latest articles from the <strong>FAQ</strong> tab.<br /> <br /> <strong><u>vtiger CRM - Details</u></strong><br /> <br /> Kindly let us know your current vtiger CRM version and system specification so that we can provide you necessary guidelines to enhance your vtiger CRM system performance. Based on your system specification we alert you about the latest security &amp; upgrade patches.<br />  <br />			 Thank you once again and wish you a wonderful experience with vtiger CRM.<br /> </td>
+                                                <br />  <br /> <strong><u>Knowledge Base</u></strong><br /> <br /> お客様の情報に基づき、よくある質問を定期的に更新します。<strong>FAQ</strong> タブから最新の記事にアクセスできます。<br /> <br /> <strong><u>vtiger CRM - 詳細</u></strong><br /> <br /> お使いの vtiger CRM システムのバージョンとシステム仕様をお知らせ頂くことにより、vtiger CRM のパフォーマンスを強化するために必要なガイドラインを提供することができます。システムの仕様に応じて、 最新のセキュリティ &amp; アップデート　パッチをお知らせします。<br />  <br />			 重ねてお礼を申し上げるとともに、vtiger CRM での素晴らしい体験をお祈りいたします。<br /> </td>
                                             </tr>
                                             <tr>
-                                                <td align="right"><strong style="padding: 2px; font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: bold;"><br /><br />Best Regards</strong></td>
+                                                <td align="right"><strong style="padding: 2px; font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: bold;"><br /><br />宜しくお願いします</strong></td>
                                             </tr>
                                             <tr>
                                                 <td align="right" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; line-height: 20px;">$support_team$ </td>
@@ -1785,11 +2133,128 @@ $body='<table width="700" cellspacing="0" cellpadding="0" border="0" align="cent
             <td> </td>
         </tr>
 </table>';
-	       
-               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Customer Login Details','Customer Portal Login Details','Send Portal login details to customer','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+   
+//               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Customer Login Details','Customer Portal Login Details','Send Portal login details to customer','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','例) 顧客ログインの詳細','顧客ポータル　ログインの詳細','ポータルログインの詳細を顧客に送付する','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+// JFV END
 
 
-//for Support end notification before a week	       
+//for Support end notification before a week	
+// JFV - add japanese localization to email template
+// $body='<table width="700" cellspacing="0" cellpadding="0" border="0" align="center" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: normal; text-decoration: none; background-color: rgb(122, 122, 254);">
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+//         <tr>
+//             <td width="50"> </td>
+//             <td>
+//             <table width="100%" cellspacing="0" cellpadding="0" border="0">
+//                     <tr>
+//                         <td>
+//                         <table width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: rgb(27, 77, 140); font-family: Arial,Helvetica,sans-serif; font-size: 14px; color: rgb(255, 255, 255); font-weight: normal; line-height: 25px;">
+//                                 <tr>
+//                                     <td align="center" rowspan="4">$logo$</td>
+//                                     <td align="center"> </td>
+//                                 </tr>
+//                                 <tr>
+//                                     <td align="left" style="background-color: rgb(27, 77, 140); font-family: Arial,Helvetica,sans-serif; font-size: 24px; color: rgb(255, 255, 255); font-weight: bolder; line-height: 35px;">vtiger CRM </td>
+//                                 </tr>
+//                                 <tr>
+//                                     <td align="right" style="padding-right: 100px;">The honest Open Source CRM </td>
+//                                 </tr>
+//                                 <tr>
+//                                     <td> </td>
+//                                 </tr>
+//                         </table>
+//                         </td>
+//                     </tr>
+//                     <tr>
+//                         <td>
+//                         <table width="100%" cellspacing="0" cellpadding="0" border="0" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: normal; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+//                                 <tr>
+//                                     <td valign="top">
+//                                     <table width="100%" cellspacing="0" cellpadding="5" border="0">
+//                                             <tr>
+//                                                 <td align="right" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bolder; text-decoration: none; color: rgb(66, 66, 253);"> </td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td> </td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td style="font-family: Arial,Helvetica,sans-serif; font-size: 14px; color: rgb(22, 72, 134); font-weight: bolder; line-height: 15px;">Dear $contacts-lastname$, </td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; text-align: justify; line-height: 20px;">This is just a notification mail regarding your support end.<br /><span style="font-weight: bold;">Priority:</span> Urgent<br />Your Support is going to expire on next week<br />Please contact support@vtiger.com.<br /><br /><br /></td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td align="center"><br /></td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td align="right"><strong style="padding: 2px; font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: bold;"><br /><br />Sincerly</strong></td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td align="right" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; line-height: 20px;">Support Team </td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td align="right"><a style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bolder; text-decoration: none; color: rgb(66, 66, 253);" href="http://www.vtiger.com">www.vtiger.com</a></td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td> </td>
+//                                             </tr>
+//                                     </table>
+//                                     </td>
+//                                     <td width="1%" valign="top"> </td>
+//                                 </tr>
+//                         </table>
+//                         </td>
+//                     </tr>
+//                     <tr>
+//                         <td>
+//                         <table width="100%" cellspacing="0" cellpadding="5" border="0" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(255, 255, 255); font-weight: normal; line-height: 15px; background-color: rgb(51, 51, 51);">
+//                                 <tr>
+//                                     <td align="center">Shree Narayana Complex, No 11 Sarathy Nagar, Vijaya Nagar , Velachery, Chennai - 600 042 India </td>
+//                                 </tr>
+//                                 <tr>
+//                                     <td align="center">Telephone No: +91 - 44 - 4202 - 1990     Toll Free No: +1 877 788 4437</td>
+//                                 </tr>
+//                                 <tr>
+//                                     <td align="center">Email Id: <a style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bolder; text-decoration: none; color: rgb(255, 255, 255);" href="mailto:info@vtiger.com">info@vtiger.com</a></td>
+//                                 </tr>
+//                         </table>
+//                         </td>
+//                     </tr>
+//             </table>
+//             </td>
+//             <td width="50"> </td>
+//         </tr>
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+// </table>';
 $body='<table width="700" cellspacing="0" cellpadding="0" border="0" align="center" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: normal; text-decoration: none; background-color: rgb(122, 122, 254);">
         <tr>
             <td> </td>
@@ -1842,19 +2307,19 @@ $body='<table width="700" cellspacing="0" cellpadding="0" border="0" align="cent
                                                 <td> </td>
                                             </tr>
                                             <tr>
-                                                <td style="font-family: Arial,Helvetica,sans-serif; font-size: 14px; color: rgb(22, 72, 134); font-weight: bolder; line-height: 15px;">Dear $contacts-lastname$, </td>
+                                                <td style="font-family: Arial,Helvetica,sans-serif; font-size: 14px; color: rgb(22, 72, 134); font-weight: bolder; line-height: 15px;">$contacts-lastname$　様 </td>
                                             </tr>
                                             <tr>
-                                                <td style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; text-align: justify; line-height: 20px;">This is just a notification mail regarding your support end.<br /><span style="font-weight: bold;">Priority:</span> Urgent<br />Your Support is going to expire on next week<br />Please contact support@vtiger.com.<br /><br /><br /></td>
+                                                <td style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; text-align: justify; line-height: 20px;">これはサポートの終了をお知らせするメールです。<br /><span style="font-weight: bold;">優先度:</span> 至急<br />サポートは翌週に終了する予定です。<br />連絡先： support@vtiger.com.<br /><br /><br /></td>
                                             </tr>
                                             <tr>
                                                 <td align="center"><br /></td>
                                             </tr>
                                             <tr>
-                                                <td align="right"><strong style="padding: 2px; font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: bold;"><br /><br />Sincerly</strong></td>
+                                                <td align="right"><strong style="padding: 2px; font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: bold;"><br /><br />宜しくお願い致します</strong></td>
                                             </tr>
                                             <tr>
-                                                <td align="right" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; line-height: 20px;">Support Team </td>
+                                                <td align="right" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; line-height: 20px;">サポート チーム </td>
                                             </tr>
                                             <tr>
                                                 <td align="right"><a style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bolder; text-decoration: none; color: rgb(66, 66, 253);" href="http://www.vtiger.com">www.vtiger.com</a></td>
@@ -1904,10 +2369,127 @@ $body='<table width="700" cellspacing="0" cellpadding="0" border="0" align="cent
             <td> </td>
         </tr>
 </table>';
-               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Support end notification before a week','VtigerCRM Support Notification','Send Notification mail to customer before a week of support end date','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+//               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Support end notification before a week','VtigerCRM Support Notification','Send Notification mail to customer before a week of support end date','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+               $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','例) 一週間前のサポート終了通知','VtigerCRM サポート通知','サポート終了の一週間前に顧客へ通知メールを送信します','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+// JFV END
 	       
 	       
 //for Support end notification before a month	       
+// JFV - add japanese localization to email template
+// $body='<table width="700" cellspacing="0" cellpadding="0" border="0" align="center" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: normal; text-decoration: none; background-color: rgb(122, 122, 254);">
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+//         <tr>
+//             <td width="50"> </td>
+//             <td>
+//             <table width="100%" cellspacing="0" cellpadding="0" border="0">
+//                     <tr>
+//                         <td>
+//                         <table width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: rgb(27, 77, 140); font-family: Arial,Helvetica,sans-serif; font-size: 14px; color: rgb(255, 255, 255); font-weight: normal; line-height: 25px;">
+//                                 <tr>
+//                                     <td align="center" rowspan="4">$logo$</td>
+//                                     <td align="center"> </td>
+//                                 </tr>
+//                                 <tr>
+//                                     <td align="left" style="background-color: rgb(27, 77, 140); font-family: Arial,Helvetica,sans-serif; font-size: 24px; color: rgb(255, 255, 255); font-weight: bolder; line-height: 35px;">vtiger CRM </td>
+//                                 </tr>
+//                                 <tr>
+//                                     <td align="right" style="padding-right: 100px;">The honest Open Source CRM </td>
+//                                 </tr>
+//                                 <tr>
+//                                     <td> </td>
+//                                 </tr>
+//                         </table>
+//                         </td>
+//                     </tr>
+//                     <tr>
+//                         <td>
+//                         <table width="100%" cellspacing="0" cellpadding="0" border="0" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: normal; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
+//                                 <tr>
+//                                     <td valign="top">
+//                                     <table width="100%" cellspacing="0" cellpadding="5" border="0">
+//                                             <tr>
+//                                                 <td align="right" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bolder; text-decoration: none; color: rgb(66, 66, 253);"> </td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td> </td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td style="font-family: Arial,Helvetica,sans-serif; font-size: 14px; color: rgb(22, 72, 134); font-weight: bolder; line-height: 15px;">Dear $contacts-lastname$, </td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; text-align: justify; line-height: 20px;">This is just a notification mail regarding your support end.<br /><span style="font-weight: bold;">Priority:</span> Normal<br />Your Support is going to expire on next month.<br />Please contact support@vtiger.com<br /><br /><br /></td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td align="center"><br /></td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td align="right"><strong style="padding: 2px; font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: bold;"><br /><br />Sincerly</strong></td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td align="right" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; line-height: 20px;">Support Team </td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td align="right"><a href="http://www.vtiger.com" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bolder; text-decoration: none; color: rgb(66, 66, 253);">www.vtiger.com</a></td>
+//                                             </tr>
+//                                             <tr>
+//                                                 <td> </td>
+//                                             </tr>
+//                                     </table>
+//                                     </td>
+//                                     <td width="1%" valign="top"> </td>
+//                                 </tr>
+//                         </table>
+//                         </td>
+//                     </tr>
+//                     <tr>
+//                         <td>
+//                         <table width="100%" cellspacing="0" cellpadding="5" border="0" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(255, 255, 255); font-weight: normal; line-height: 15px; background-color: rgb(51, 51, 51);">
+//                                 <tr>
+//                                     <td align="center">Shree Narayana Complex, No 11 Sarathy Nagar, Vijaya Nagar , Velachery, Chennai - 600 042 India </td>
+//                                 </tr>
+//                                 <tr>
+//                                     <td align="center">Telephone No: +91 - 44 - 4202 - 1990     Toll Free No: +1 877 788 4437</td>
+//                                 </tr>
+//                                 <tr>
+//                                     <td align="center">Email Id: <a href="mailto:info@vtiger.com" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bolder; text-decoration: none; color: rgb(255, 255, 255);">info@vtiger.com</a></td>
+//                                 </tr>
+//                         </table>
+//                         </td>
+//                     </tr>
+//             </table>
+//             </td>
+//             <td width="50"> </td>
+//         </tr>
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+//         <tr>
+//             <td> </td>
+//             <td> </td>
+//             <td> </td>
+//         </tr>
+// </table>';
 $body='<table width="700" cellspacing="0" cellpadding="0" border="0" align="center" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: normal; text-decoration: none; background-color: rgb(122, 122, 254);">
         <tr>
             <td> </td>
@@ -1960,19 +2542,19 @@ $body='<table width="700" cellspacing="0" cellpadding="0" border="0" align="cent
                                                 <td> </td>
                                             </tr>
                                             <tr>
-                                                <td style="font-family: Arial,Helvetica,sans-serif; font-size: 14px; color: rgb(22, 72, 134); font-weight: bolder; line-height: 15px;">Dear $contacts-lastname$, </td>
+                                                <td style="font-family: Arial,Helvetica,sans-serif; font-size: 14px; color: rgb(22, 72, 134); font-weight: bolder; line-height: 15px;">$contacts-lastname$ 様 </td>
                                             </tr>
                                             <tr>
-                                                <td style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; text-align: justify; line-height: 20px;">This is just a notification mail regarding your support end.<br /><span style="font-weight: bold;">Priority:</span> Normal<br />Your Support is going to expire on next month.<br />Please contact support@vtiger.com<br /><br /><br /></td>
+                                                <td style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; text-align: justify; line-height: 20px;">これはサポートの終了をお知らせするメールです。<br /><span style="font-weight: bold;">優先度：</span> 通常<br />サポートは翌月に終了する予定です。<br />連絡先： support@vtiger.com<br /><br /><br /></td>
                                             </tr>
                                             <tr>
                                                 <td align="center"><br /></td>
                                             </tr>
                                             <tr>
-                                                <td align="right"><strong style="padding: 2px; font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: bold;"><br /><br />Sincerly</strong></td>
+                                                <td align="right"><strong style="padding: 2px; font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: bold;"><br /><br />宜しくお願いします</strong></td>
                                             </tr>
                                             <tr>
-                                                <td align="right" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; line-height: 20px;">Support Team </td>
+                                                <td align="right" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: rgb(0, 0, 0); font-weight: normal; line-height: 20px;">サポート チーム </td>
                                             </tr>
                                             <tr>
                                                 <td align="right"><a href="http://www.vtiger.com" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-weight: bolder; text-decoration: none; color: rgb(66, 66, 253);">www.vtiger.com</a></td>
@@ -2022,7 +2604,9 @@ $body='<table width="700" cellspacing="0" cellpadding="0" border="0" align="cent
             <td> </td>
         </tr>
 </table>';
-	       $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Support end notification before a month','VtigerCRM Support Notification','Send Notification mail to customer before a month of support end date','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+//           $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','Support end notification before a month','VtigerCRM Support Notification','Send Notification mail to customer before a month of support end date','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");    
+	       $this->db->query("insert into vtiger_emailtemplates(foldername,templatename,subject,description,body,deleted,templateid) values ('Public','例) 一ヶ月前のサポート終了通知','VtigerCRM サポート通知','サポート終了の一ヶ月前に顧客へ通知メールを送信します','".$body."',0,".$this->db->getUniqueID('vtiger_emailtemplates').")");
+// JFV END
 
 		
 	//Insert into vtiger_organizationdetails vtiger_table

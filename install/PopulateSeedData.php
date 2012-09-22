@@ -71,7 +71,11 @@ $phone = $phone; // This line is useless, but gets around a code analyzer warnin
 function create_date()
 {
 	$date = "";
-	$date .= "2006";
+// JFV - change dummy data
+//	$date .= "2006";
+	$jfv_today = getdate();
+	$date .= $jfv_today['year'];
+// JFV END
 	$date .= "-";
 	$date .= rand(1,9);
 	$date .= "-";
@@ -133,13 +137,23 @@ for($i = 0; $i < $company_name_count; $i++) {
 
 	$whitespace = array(" ", ".", "&", "\/");
 	$website = str_replace($whitespace, "", strtolower($account->column_fields["accountname"]));
-	$account->column_fields["website"] = "www.".$website.".com";
-	
-	$account->column_fields["bill_street"] = $street_address_array[rand(0,$street_address_count-1)];
-	$account->column_fields["bill_city"] = $city_array[rand(0,$city_array_count-1)];
-	$account->column_fields["bill_state"] = "CA";
-	$account->column_fields["bill_code"] = rand(10000, 99999);
-	$account->column_fields["bill_country"] = 'USA';	
+// JFV - change dummy data
+//	$account->column_fields["website"] = "www.".$website.".com";
+	$account->column_fields["website"] = "www.dummy".$city_array_count.".com";
+// JFV END
+
+// JFV - change dummy data
+//	$account->column_fields["bill_street"] = $street_address_array[rand(0,$street_address_count-1)];
+	$account->column_fields["bill_street"] = "千代田1番1号";
+//	$account->column_fields["bill_city"] = $city_array[rand(0,$city_array_count-1)];
+	$account->column_fields["bill_city"] = "千代田区";
+//	$account->column_fields["bill_state"] = "CA";
+	$account->column_fields["bill_state"] = "東京都";
+//	$account->column_fields["bill_code"] = rand(10000, 99999);
+	$account->column_fields["bill_code"] = "100-0001";
+//	$account->column_fields["bill_country"] = 'USA';	
+	$account->column_fields["bill_country"] = '日本';	
+// JFV END
 
 	$account->column_fields["ship_street"] = $account->column_fields["bill_street"];
 	$account->column_fields["ship_city"] = $account->column_fields["bill_city"];
@@ -188,7 +202,10 @@ for($i = 0; $i < $company_name_count; $i++) {
 	$key = array_rand($comboFieldArray['opportunity_type_dom']);
 	$opp->column_fields["opportunity_type"] = $comboFieldArray['opportunity_type_dom'][$key];
 
-	$amount = array("10000", "25000", "50000", "75000"); 
+// JFV - change dummy data
+//	$amount = array("10000", "25000", "50000", "75000"); 
+	$amount = array("1000000", "2500000", "5000000", "7500000"); 
+// JFV END
 	$key = array_rand($amount);
 	$opp->column_fields["amount"] = $amount[$key];
 	$opp->column_fields["related_to"] = $account->id;
@@ -205,8 +222,11 @@ for($i=0; $i<10; $i++)
 	$contact->column_fields["firstname"] = ucfirst(strtolower($first_name_array[$i]));
 	$contact->column_fields["lastname"] = ucfirst(strtolower($last_name_array[$i]));
 	$contact->column_fields["assigned_user_id"] = $assigned_user_id;
-	
-	$contact->column_fields["email"] = strtolower($contact->column_fields["firstname"])."_".strtolower($contact->column_fields["lastname"])."@company.com";
+
+// JFV - change dummy data
+//	$contact->column_fields["email"] = strtolower($contact->column_fields["firstname"])."_".strtolower($contact->column_fields["lastname"])."@company.com";
+	$contact->column_fields["email"] = "dummy_".$i."@company.com";
+// JFV END
 
 	$contact->column_fields["phone"] = create_phone_number();
 	$contact->column_fields["homephone"] = create_phone_number();
@@ -214,24 +234,41 @@ for($i=0; $i<10; $i++)
 	
 	// Fill in a bogus address
 	$key = array_rand($street_address_array);
-	$contact->column_fields["mailingstreet"] = $street_address_array[$key];
+// JFV - change dummy data
+//	$contact->column_fields["mailingstreet"] = $street_address_array[$key];
+	$contact->column_fields["mailingstreet"] = "千代田1番1号";
 	$key = array_rand($city_array);
-	$contact->column_fields["mailingcity"] = $city_array[$key];
-	$contact->column_fields["mailingstate"] = "CA";
-	$contact->column_fields["mailingzip"] = '99999';
-	$contact->column_fields["mailingcountry"] = 'USA';	
+//	$contact->column_fields["mailingcity"] = $city_array[$key];
+	$contact->column_fields["mailingcity"] = "千代田区";
+//	$contact->column_fields["mailingstate"] = "CA";
+	$contact->column_fields["mailingstate"] = "東京都";
+//	$contact->column_fields["mailingzip"] = '99999';
+	$contact->column_fields["mailingzip"] = '100-0001';
+//	$contact->column_fields["mailingcountry"] = 'USA';	
+	$contact->column_fields["mailingcountry"] = '日本';	
+// JFV END
 
 	$key = array_rand($comboFieldArray['leadsource_dom']);
 	$contact->column_fields["leadsource"] = $comboFieldArray['leadsource_dom'][$key];
 
-	$titles = array("President", 
-					"VP Operations", 
-					"VP Sales", 
-					"Director Operations", 
-					"Director Sales", 
-					"Mgr Operations", 
-					"IT Developer", 
+// JFV - change dummy data
+// 	$titles = array("President", 
+// 					"VP Operations", 
+// 					"VP Sales", 
+// 					"Director Operations", 
+// 					"Director Sales", 
+// 					"Mgr Operations", 
+// 					"IT Developer", 
+// 					"");
+	$titles = array("取締役社長", 
+					"業務事業部長", 
+					"営業事業部長", 
+					"業務部長", 
+					"営業部長", 
+					"業務課長", 
+					"システム エンジニア", 
 					"");
+// JFV END
 	$key = array_rand($titles);
 	$contact->column_fields["title"] = $titles[$key];
 	
@@ -284,23 +321,37 @@ for($i=0; $i<10; $i++)
 
 	$lead->column_fields["assigned_user_id"] = $assigned_user_id;
 	
-	$lead->column_fields["email"] = strtolower($lead->column_fields["firstname"])."_".strtolower($lead->column_fields["lastname"])."@company.com";
+// JFV - change dummy data
+//	$lead->column_fields["email"] = strtolower($lead->column_fields["firstname"])."_".strtolower($lead->column_fields["lastname"])."@company.com";
+	$lead->column_fields["email"] = "dummy_l_".$i."@company.com";
+// JFV END
 	
 	$website = str_replace($whitespace, "", strtolower(ucfirst(strtolower($company_name_array[$i]))));
-        $lead->column_fields["website"] = "www.".$website.".com";
-	
+// JFV - change dummy data
+//        $lead->column_fields["website"] = "www.".$website.".com";
+        $lead->column_fields["website"] = "www.dummyl-".$i.".com";
+// JFV END
+    
 	$lead->column_fields["phone"] = create_phone_number();
 	$lead->column_fields["mobile"] = create_phone_number();
 	
 	// Fill in a bogus address
 	$key = array_rand($street_address_array);
 	//$lead->address_street = $street_address_array[$key];
-	$lead->column_fields["lane"] = $street_address_array[$key];
+// JFV - change dummy data
+//	$lead->column_fields["lane"] = $street_address_array[$key];
+	$lead->column_fields["lane"] = "千代田1番1号";
 	$key = array_rand($city_array);
-	$lead->column_fields["city"] = $city_array[$key];
-	$lead->column_fields["state"] = "CA";
-	$lead->column_fields["code"] = '99999';
-	$lead->column_fields["country"] = 'USA';
+//	$lead->column_fields["city"] = $city_array[$key];
+	$lead->column_fields["city"] = "千代田区";
+//	$lead->column_fields["state"] = "CA";
+	$lead->column_fields["state"] = "東京都";
+//	$lead->column_fields["code"] = '99999';
+	$lead->column_fields["code"] = '100-0001';
+//	$lead->column_fields["country"] = 'USA';
+	$lead->column_fields["state"] = "東京都";
+	$lead->column_fields["country"] = '日本';
+// JFV END
 	
 	$key = array_rand($comboFieldArray['leadsource_dom']);
 	$lead->column_fields["leadsource"] = $comboFieldArray['leadsource_dom'][$key];
@@ -311,14 +362,24 @@ for($i=0; $i<10; $i++)
 	$key = array_rand($comboFieldArray['rating_dom']);
 	$lead->column_fields["rating"] = $comboFieldArray['rating_dom'][$key];	
 
-	$titles = array("President", 
-					"VP Operations", 
-					"VP Sales", 
-					"Director Operations", 
-					"Director Sales", 
-					"Mgr Operations", 
-					"IT Developer", 
+// JFV - change dummy data
+//	$titles = array("President", 
+//					"VP Operations", 
+//					"VP Sales", 
+//					"Director Operations", 
+//					"Director Sales", 
+//					"Mgr Operations", 
+//					"IT Developer", 
+//					"");
+	$titles = array("取締役社長", 
+					"業務事業部長", 
+					"営業事業部長", 
+					"業務部長", 
+					"営業部長", 
+					"業務課長", 
+					"システム エンジニア", 
 					"");
+// JFV END
 	$key = array_rand($titles);
 	$lead->column_fields["designation"] = $titles[$key];
 
@@ -329,11 +390,20 @@ for($i=0; $i<10; $i++)
 for($i=0; $i<10; $i++)
 {
 	$vendor = new Vendors();
-	$vendor->column_fields["vendorname"] = ucfirst(strtolower($first_name_array[$i]));
+// JFV - change dummy data
+// 	$vendor->column_fields["vendorname"] = ucfirst(strtolower($first_name_array[$i]));
+	$vendor->column_fields["vendorname"] = "例）業者".$i;
+// JFV END
 	$vendor->column_fields["phone"] = create_phone_number();
-	$vendor->column_fields["email"] = strtolower($vendor->column_fields["vendorname"])."@company.com";
-	$website = str_replace($whitespace, "", strtolower(ucfirst(strtolower($company_name_array[$i]))));
-	$vendor->column_fields["website"] = "www.".$website.".com";
+// JFV - change dummy data
+//	$vendor->column_fields["email"] = strtolower($vendor->column_fields["vendorname"])."@company.com";
+	$vendor->column_fields["email"] = "dummyV_".$i."@company.com";
+// JFV END
+// JFV - change dummy data
+//	$website = str_replace($whitespace, "", strtolower(ucfirst(strtolower($company_name_array[$i]))));
+//	$vendor->column_fields["website"] = "www.".$website.".com";
+	$vendor->column_fields["website"] = "www.dummyv-".$i.".com";
+// JFV END
 
 	$vendor->column_fields["assigned_user_id"] = $assigned_user_id;
 	
@@ -341,9 +411,14 @@ for($i=0; $i<10; $i++)
 	$vendor->column_fields["street"] = $street_address_array[rand(0,$street_address_count-1)]; 
 	$key = array_rand($city_array);
 	$vendor->column_fields["city"] = $city_array[$key];
-	$vendor->column_fields["state"] = "CA";
+// JFV - change dummy data
+//	$vendor->column_fields["state"] = "CA";
+//	$vendor->column_fields["postalcode"] = '99999';
+//	$vendor->column_fields["country"] = 'USA';	
+	$vendor->column_fields["state"] = "東京都";
 	$vendor->column_fields["postalcode"] = '99999';
-	$vendor->column_fields["country"] = 'USA';	
+	$vendor->column_fields["country"] = '日本';	
+// JFV END
 
 	$vendor->save("Vendors");
 	$vendor_ids[] = $vendor->id;
@@ -351,11 +426,19 @@ for($i=0; $i<10; $i++)
 
 //Populating Product Data
 
-$product_name_array= array( "Vtiger Single User Pack", "Vtiger 5 Users Pack", "Vtiger 10 Users Pack",
-        "Vtiger 25 Users Pack", "Vtiger 50 Users Pack", "Double Panel See-thru Clipboard",
-        "abcd1234", "Cd-R CD Recordable", "Sharp - Plain Paper Fax" , "Brother Ink Jet Cartridge"); 
+// JFV - change dummy data
+// $product_name_array= array( "Vtiger Single User Pack", "Vtiger 5 Users Pack", "Vtiger 10 Users Pack",
+//         "Vtiger 25 Users Pack", "Vtiger 50 Users Pack", "Double Panel See-thru Clipboard",
+//         "abcd1234", "Cd-R CD Recordable", "Sharp - Plain Paper Fax" , "Brother Ink Jet Cartridge"); 
+$product_name_array= array( "例）製品 001", "例）製品 002", "例）製品 101",
+        "例）製品 102", "例）製品 201", "例）製品 202",
+        "例）製品 301", "例）製品 302", "例）製品 401" , "例）製品 402"); 
+// JFV END
 $product_code_array= array("001","002","003","023","005","sg-106","1324356","sg-108","sg-119","sg-125");
-$subscription_rate=array("149","699","1299","2999","4995");
+// JFV - change dummy data
+//$subscription_rate=array("149","699","1299","2999","4995");
+$subscription_rate=array("14900","69900","129900","299900","499500");
+// JFV END
 //added by jeri to populate product images
 $product_image_array = array("","","","");
 for($i=0; $i<10; $i++) {
@@ -367,11 +450,14 @@ for($i=0; $i<10; $i++) {
 		$usageunit	=	"Each";
 		$qty_per_unit	=	1;
 		$qty_in_stock	=	rand(10000, 99999);
-		$category 	= 	"Hardware";		
+		$category 	= 	"Hardware";	
 		$website 	=	"";
 		$manufacturer	= 	"";
 		$commission_rate=	rand(10,20);
-		$unit_price	=	rand(100,999);
+// JFV - change dummy data
+//		$unit_price	=	rand(100,999);
+		$unit_price	=	rand(10000,99900);
+// JFV END
 		$product_image_name = '';
 	} else {
 		$account_key = array_rand($account_ids);
@@ -381,8 +467,12 @@ for($i=0; $i<10; $i++) {
 		$qty_per_unit	=	1;
 		$qty_in_stock	=	rand(10000, 99999);
 		$category 	= 	"Software";	
-		$website 	=	"www.vtiger.com";
-		$manufacturer	= 	"LexPon Inc.";
+// JFV - change dummy data
+//		$website 	=	"www.vtiger.com";
+		$website 	=	"www.vtigercrm.jp";
+//		$manufacturer	= 	"LexPon Inc.";
+		$manufacturer	= 	"vtigerCRM.jp";
+// JFV END
 		$commission_rate=	rand(1,10);
 		$unit_price	=	$subscription_rate[$i];
 		$product_image_name = $product_image_array[$i];
@@ -420,21 +510,37 @@ for($i=0; $i<10; $i++) {
 
 //Populating HelpDesk- FAQ Data
 
-	$status_array=array ("Draft","Reviewed","Published","Draft","Reviewed","Draft","Reviewed","Draft","Reviewed","Draft","Reviewed","Draft");
+// JFV - change dummy data
+// 	$status_array=array ("Draft","Reviewed","Published","Draft","Reviewed","Draft","Reviewed","Draft","Reviewed","Draft","Reviewed","Draft");
+// 	$question_array=array (
+// 	"How to migrate data from previous versions to the latest version?",
+// 	"Error message: The file is damaged and could not be repaired.",
+// 	"A program is trying to access e-mail addresses you have stored in Outlook. Do you want to allow this? If this is unexpected, it may be a virus and you should choose No when trying to add Email to vitger CRM ",
+// 	"When trying to merge a template with a contact, First I was asked allow installation of ActiveX control. I accepted. After it appears a message that it will not be installed because it can't verify the publisher. Do you have a workarround for this issue ?",
+// 	" Error message - please close all instances of word before using the vtiger word plugin. Do I need to close all Word and Outlook instances first before I can reopen Word and sign in?",
+// 	"How to migrate data from previous versions to the latest version?",
+// 	"A program is trying to access e-mail addresses you have stored in Outlook. Do you want to allow this? If this is unexpected, it may be a virus and you should choose No when trying to add Email to vitger CRM ",
+// 	" Error message - please close all instances of word before using the vtiger word plugin. Do I need to close all Word and Outlook instances first before I can reopen Word and sign in?",
+// 	"Error message: The file is damaged and could not be repaired.",
+// 	"When trying to merge a template with a contact, First I was asked allow installation of ActiveX control. I accepted. After it appears a message that it will not be installed because it can't verify the publisher. Do you have a workarround for this issue ?",
+// 	" Error message - please close all instances of word before using the vtiger word plugin. Do I need to close all Word and Outlook instances first before I can reopen Word and sign in?",
+// 	"How to migrate data from previous versions to the latest version?",
+// 	);
 	$question_array=array (
-	"How to migrate data from previous versions to the latest version?",
-	"Error message: The file is damaged and could not be repaired.",
-	"A program is trying to access e-mail addresses you have stored in Outlook. Do you want to allow this? If this is unexpected, it may be a virus and you should choose No when trying to add Email to vitger CRM ",
-	"When trying to merge a template with a contact, First I was asked allow installation of ActiveX control. I accepted. After it appears a message that it will not be installed because it can't verify the publisher. Do you have a workarround for this issue ?",
-	" Error message - please close all instances of word before using the vtiger word plugin. Do I need to close all Word and Outlook instances first before I can reopen Word and sign in?",
-	"How to migrate data from previous versions to the latest version?",
-	"A program is trying to access e-mail addresses you have stored in Outlook. Do you want to allow this? If this is unexpected, it may be a virus and you should choose No when trying to add Email to vitger CRM ",
-	" Error message - please close all instances of word before using the vtiger word plugin. Do I need to close all Word and Outlook instances first before I can reopen Word and sign in?",
-	"Error message: The file is damaged and could not be repaired.",
-	"When trying to merge a template with a contact, First I was asked allow installation of ActiveX control. I accepted. After it appears a message that it will not be installed because it can't verify the publisher. Do you have a workarround for this issue ?",
-	" Error message - please close all instances of word before using the vtiger word plugin. Do I need to close all Word and Outlook instances first before I can reopen Word and sign in?",
-	"How to migrate data from previous versions to the latest version?",
+	"例）前バージョンから最新バージョンへのマイグレーションの方法は？",
+	"例）エラーメッセージ： ファイルが破損しており、修復できません。",
+	"例）プログラムが Outlook に保存した E メールアドレスにアクセスしようとしています。許可しますか？予期しないものである場合、ウィルスの可能性があるため、E メールの vtiger CRM への時に No を選ぶ必要があります。",
+	"例）顧客担当者とテンプレートをマージする場合、まず ActiveX コントロールのインストールを求められました。許可すると、発行者を検証できないため、インストールされない旨のメッセージが表示されます。この問題の対処方法はありますか？",
+	"例）エラーメッセージ - vtiger word プラグインを使用する前に、word のインスタンスをすべて閉じて下さい。まずWord と Outlook のインスタンスをすべて閉じてから、Word を再度オープンしてサインインしますか？",
+	"例）前バージョンから最新バージョンへのマイグレーションの方法は？",
+	"例）プログラムが Outlook に保存した E メールアドレスにアクセスしようとしています。許可しますか？予期しないものである場合、ウィルスの可能性があるため、E メールの vtiger CRM への時に No を選ぶ必要があります。",
+	"例）エラーメッセージ - vtiger word プラグインを使用する前に、word のインスタンスをすべて閉じて下さい。まずWord と Outlook のインスタンスをすべて閉じてから、Word を再度オープンしてサインインしますか？",
+	"例）エラーメッセージ： ファイルが破損しており、修復できません。",
+	"例）顧客担当者とテンプレートをマージする場合、まず ActiveX コントロールのインストールを求められました。許可すると、発行者を検証できないため、インストールされない旨のメッセージが表示されます。この問題の対処方法はありますか？",
+	"例）エラーメッセージ - vtiger word プラグインを使用する前に、word のインスタンスをすべて閉じて下さい。まずWord と Outlook のインスタンスをすべて閉じてから、Word を再度オープンしてサインインしますか？",
+	"例）前バージョンから最新バージョンへのマイグレーションの方法は？",
 	);
+// JFV END
 
 	$answer_array=array (
 	"Database migration scripts are available to migrate from the following versions:
@@ -484,10 +590,16 @@ for($i=0;$i<12;$i++) {
 
 //Populate Quote Data
 
-$sub_array = array ("Prod_Quote", "Cont_Quote", "SO_Quote", "PO_Quote", "Vendor_Quote");
+// JFV - chang edummy data
+//$sub_array = array ("Prod_Quote", "Cont_Quote", "SO_Quote", "PO_Quote", "Vendor_Quote");
+$sub_array = array ("例）見積り 001", "例）見積り 002", "例）見積り 101", "例）見積り 102", "例）見積り 201");
+// JFV END
 $stage_array = array ("Created", "Reviewed", "Delivered", "Accepted" , "Rejected");
 $carrier_array = array ("FedEx", "UPS", "USPS", "DHL", "BlueDart");
-$validtill_array = array ("2007-09-21", "2007-10-29", "2007-12-11", "2007-03-29", "2007-06-18");
+// JFV - change dummy data
+//$validtill_array = array ("2007-09-21", "2007-10-29", "2007-12-11", "2007-03-29", "2007-06-18");
+$validtill_array = array ("2012-09-21", "2012-10-29", "2012-12-11", "2012-03-29", "2012-06-18");
+// JFV END
 
 for($i=0;$i<5;$i++)
 {
@@ -508,9 +620,15 @@ for($i=0;$i<5;$i++)
 
 	$quote->column_fields["bill_street"] = $street_address_array[rand(0,$street_address_count-1)];
 	$quote->column_fields["bill_city"] = $city_array[rand(0,$city_array_count-1)];
-	$quote->column_fields["bill_state"] = "CA";
+// JFV - change dummy data
+//	$quote->column_fields["bill_state"] = "CA";
+	$quote->column_fields["bill_state"] = "東京都";
+// JFV END
 	$quote->column_fields["bill_code"] = rand(10000, 99999);
-	$quote->column_fields["bill_country"] = 'USA';	
+// JFV - change dummy data
+// 	$quote->column_fields["bill_country"] = 'USA';	
+	$quote->column_fields["bill_country"] = '日本';	
+// JFV END
 
 	$quote->column_fields["ship_street"] = $account->column_fields["bill_street"];
 	$quote->column_fields["ship_city"] = $account->column_fields["bill_city"];
@@ -534,7 +652,10 @@ for($i=0;$i<5;$i++)
 	$_REQUEST['hdnProductId1'] = $productid;
 	$_REQUEST['qty1'] = $qty = 1;
 	$_REQUEST['listPrice1'] = $listprice = 130;
-	$_REQUEST['comment1'] = "This is test comment for product of Quotes";
+// JFV - change dummy data
+// 	$_REQUEST['comment1'] = "This is test comment for product of Quotes";
+	$_REQUEST['comment1'] = "ダミー コメントです";
+// JFV END
 	
 	$_REQUEST['deleted1'] = 0;
 	$_REQUEST['discount_type1'] = 'amount';
@@ -559,10 +680,16 @@ for($i=0;$i<5;$i++)
 
 //Populate SalesOrder Data
 
-$subj_array = array ("SO_vtiger", "SO_zoho", "SO_vtiger5usrp", "SO_vt100usrpk", "SO_vendtl");
+// JFV - change dummy data
+//$subj_array = array ("SO_vtiger", "SO_zoho", "SO_vtiger5usrp", "SO_vt100usrpk", "SO_vendtl");
+$subj_array = array ("例）受注 001", "例）受注 002", "例）受注 101", "例）受注 102", "例）受注 201");
+// JFV END
 $status_array = array ("Created",  "Delivered", "Approved" , "Cancelled" , "Created");
 $carrier_array = array ("FedEx", "UPS", "USPS", "DHL", "BlueDart");
-$duedate_array = array ("2007-04-21", "2007-05-29", "2007-08-11", "2007-09-09", "2007-02-28");
+// JFV - change dummy data
+//$duedate_array = array ("2007-04-21", "2007-05-29", "2007-08-11", "2007-09-09", "2007-02-28");
+$duedate_array = array ("2012-04-21", "2012-05-29", "2012-08-11", "2012-09-09", "2012-02-28");
+// JFV END
 
 for($i=0;$i<5;$i++)
 {
@@ -584,9 +711,15 @@ for($i=0;$i<5;$i++)
 
 	$so->column_fields["bill_street"] = $street_address_array[rand(0,$street_address_count-1)];
 	$so->column_fields["bill_city"] = $city_array[rand(0,$city_array_count-1)];
-	$so->column_fields["bill_state"] = "CA";
+// JFV - change dummy data
+//	$so->column_fields["bill_state"] = "CA";
+	$so->column_fields["bill_state"] = "東京都";
+// JFV END
 	$so->column_fields["bill_code"] = rand(10000, 99999);
-	$so->column_fields["bill_country"] = 'USA';	
+// JFV - change dummy data
+//	$so->column_fields["bill_country"] = 'USA';	
+	$so->column_fields["bill_country"] = '日本';
+// JFV END
 
 	$so->column_fields["ship_street"] = $account->column_fields["bill_street"];
 	$so->column_fields["ship_city"] = $account->column_fields["bill_city"];
@@ -610,7 +743,10 @@ for($i=0;$i<5;$i++)
 	$_REQUEST['hdnProductId1'] = $productid;
 	$_REQUEST['qty1'] = $qty = 1;
 	$_REQUEST['listPrice1'] = $listprice = 1230;
-	$_REQUEST['comment1'] = "This is test comment for product of SalesOrder";
+// JFV - change dummy data
+// 	$_REQUEST['comment1'] = "This is test comment for product of SalesOrder";
+	$_REQUEST['comment1'] = "ダミー コメントです";
+// JFV END
 	
 	$_REQUEST['deleted1'] = 0;
 	$_REQUEST['discount_type1'] = 'amount';
@@ -635,11 +771,17 @@ for($i=0;$i<5;$i++)
 
 //Populate PurchaseOrder Data
 
-$psubj_array = array ("PO_vtiger", "PO_zoho", "PO_vtiger5usrp", "PO_vt100usrpk", "PO_vendtl");
+// JFV - change dummy data
+//$psubj_array = array ("PO_vtiger", "PO_zoho", "PO_vtiger5usrp", "PO_vt100usrpk", "PO_vendtl");
+$psubj_array = array ("例）購買 001", "例）購買 002", "例）購買 101", "例）購買 102", "例）購買 201");
+// JFV END
 $pstatus_array = array ("Created",  "Delivered", "Approved" , "Cancelled", "Received Shipment");
 $carrier_array = array ("FedEx", "UPS", "USPS", "DHL", "BlueDart");
 $trkno_array = array ("po1425", "po2587", "po7974", "po7979", "po6411"); 
-$duedate_array = array ("2007-04-21", "2007-05-29", "2007-07-11", "2007-04-09", "2006-08-18");
+// JFV - change dummy data
+//$duedate_array = array ("2007-04-21", "2007-05-29", "2007-07-11", "2007-04-09", "2006-08-18");
+$duedate_array = array ("2012-04-21", "2012-05-29", "2012-07-11", "2012-04-09", "2012-08-18");
+// JFV END
 
 for($i=0;$i<5;$i++)
 {
@@ -659,9 +801,15 @@ for($i=0;$i<5;$i++)
 
 	$po->column_fields["bill_street"] = $street_address_array[rand(0,$street_address_count-1)];
 	$po->column_fields["bill_city"] = $city_array[rand(0,$city_array_count-1)];
-	$po->column_fields["bill_state"] = "CA";
+// JFV - change dummy data
+//	$po->column_fields["bill_state"] = "CA";
+	$po->column_fields["bill_state"] = "東京都";
+// JFV END
 	$po->column_fields["bill_code"] = rand(10000, 99999);
-	$po->column_fields["bill_country"] = 'USA';	
+// JFV - change dummy data
+//	$po->column_fields["bill_country"] = 'USA';	
+	$po->column_fields["bill_country"] = '日本';	
+// JFV END
 
 	$po->column_fields["ship_street"] = $account->column_fields["bill_street"];
 	$po->column_fields["ship_city"] = $account->column_fields["bill_city"];
@@ -685,7 +833,10 @@ for($i=0;$i<5;$i++)
 	$_REQUEST['hdnProductId1'] = $productid;
 	$_REQUEST['qty1'] = $qty = 1;
 	$_REQUEST['listPrice1'] = $listprice = 2200;
-	$_REQUEST['comment1'] = "This is test comment for product of PurchaseOrder";
+// JFV - change dummy data
+// 	$_REQUEST['comment1'] = "This is test comment for product of PurchaseOrder";
+	$_REQUEST['comment1'] = "ダミー コメントです";
+// JFV END
 	
 	$_REQUEST['deleted1'] = 0;
 	$_REQUEST['discount_type1'] = 'amount';
@@ -710,7 +861,10 @@ for($i=0;$i<5;$i++)
 
 //Populate Invoice Data
 
-$isubj_array = array ("vtiger_invoice201", "zoho_inv7841", "vtiger5usrp_invoice71134", "vt100usrpk_inv113", "vendtl_inv214");
+// JFV - change dummy data
+//$isubj_array = array ("vtiger_invoice201", "zoho_inv7841", "vtiger5usrp_invoice71134", "vt100usrpk_inv113", "vendtl_inv214");
+$isubj_array = array ("例）請求書 001", "例）請求書 002", "例）請求書 101", "例）請求書 102", "例）請求書 201");
+// JFV END
 $istatus_array = array ("Created",  "Sent", "Approved" , "Credit Invoice", "Paid");
 $itotal_array = array ("4842.000", "4842.000", "4842.000", "4842.000", "4842.000");
 
@@ -732,9 +886,15 @@ for($i=0;$i<5;$i++)
 
 	$invoice->column_fields["bill_street"] = $street_address_array[rand(0,$street_address_count-1)];
 	$invoice->column_fields["bill_city"] = $city_array[rand(0,$city_array_count-1)];
-	$invoice->column_fields["bill_state"] = "CA";
+// JFV - change dummy data
+// $invoice->column_fields["bill_state"] = "CA";
+	$invoice->column_fields["bill_state"] = "東京都";
+// JFV END
 	$invoice->column_fields["bill_code"] = rand(10000, 99999);
-	$invoice->column_fields["bill_country"] = 'USA';	
+// JFV
+//	$invoice->column_fields["bill_country"] = 'USA';
+	$invoice->column_fields["bill_country"] = '日本';
+// JFV END	
 
 	$invoice->column_fields["ship_street"] = $account->column_fields["bill_street"];
 	$invoice->column_fields["ship_city"] = $account->column_fields["bill_city"];
@@ -770,7 +930,10 @@ for($i=0;$i<5;$i++)
 	$_REQUEST['hdnProductId1'] = $productid;
 	$_REQUEST['qty1'] = $qty = 1;
 	$_REQUEST['listPrice1'] = $listprice = 4300;
-	$_REQUEST['comment1'] = "This is test comment for product of Invoice";
+// JFV - change dummy data
+//  $_REQUEST['comment1'] = "This is test comment for product of Invoice";
+	$_REQUEST['comment1'] = "ダミー コメントです";
+// JFV END
 	
 	$_REQUEST['deleted1'] = 0;
 	$_REQUEST['discount_type1'] = 'amount';
@@ -796,15 +959,22 @@ for($i=0;$i<5;$i++)
 
 //Populate Email Data
 
-$esubj_array =  array ("Vtiger 5.0.3 Released", "Try vtigercrm!", "Hi There!!!", "Welcome to Open Source", "Help needed in customization of Vtiger");
-$startdate_array =  array ("2007-07-27","2007-05-09","2007-04-05","2007-11-01","2007-08-18");
+// JFV - change dummy data
+//$esubj_array =  array ("Vtiger 5.0.3 Released", "Try vtigercrm!", "Hi There!!!", "Welcome to Open Source", "Help needed in customization of Vtiger");
+$esubj_array =  array ("例）vtigerCRM.jp 5.3.0 です", "例）vtigerCRM.jp をお試しください", "例）こんにちは", "例）オープン ソースへようこそ", "例）vtigerCRM.jp のカスタマイズ");
+//$startdate_array =  array ("2007-07-27","2007-05-09","2007-04-05","2007-11-01","2007-08-18");
+$startdate_array =  array ("2012-07-27","2012-05-09","2012-04-05","2012-11-01","2012-08-18");
+// JFV END
 $filename_array = array ("vtiger5alpha.tar.gz", "zohowriter.zip", "hi.doc", "welcome.pps", "sos.doc");
 
 $to_array = array("a@a.com","b@b.com", "tester@testvtiger.com","xanth@yaz.com","violet@bing.com");
 $cc_array = array("andrewa@a.com","casterb@b.com", "indomine@variancevtiger.com","becker@nosbest.com","electra@violet.com");
 $bcc_array = array("nathan@nathantests.com","jeff@karl1.com", "isotope@uranium.com","bunny@bugs.com","explosive@dud.com");
 $from_array = array("harvest@zss.com","rain@sunshine.com", "gloom@rainyday.com","joy@happyday.com","success@goodjob.com");
-$body_array = array("This release has close to 500 fixes in it and has gone through almost 7 rounds of validation. We think it is a stable product that you can directly use in deployment! ","Nice to have you visit us, very nice of you. Stay for sometime and have a look at our product. I am sure you will like it", "This will take some time to fix. Can you provide me more details please?","What a cool tool! I wish I had found it earlier. Oh it has a lot of my friends name in it too! I too can contribute. But how?","Urgent. I need this done last week! Guys, you are the ones I am depending on. Do something!");
+// JFV - change dummy data
+//$body_array = array("This release has close to 500 fixes in it and has gone through almost 7 rounds of validation. We think it is a stable product that you can directly use in deployment! ","Nice to have you visit us, very nice of you. Stay for sometime and have a look at our product. I am sure you will like it", "This will take some time to fix. Can you provide me more details please?","What a cool tool! I wish I had found it earlier. Oh it has a lot of my friends name in it too! I too can contribute. But how?","Urgent. I need this done last week! Guys, you are the ones I am depending on. Do something!");
+$body_array = array("vtigerCRM の日本語版です。長年の開発により達成された、安定した品質をお届けします。","様々な機能をお試しください。ご満足頂けましたでしょうか？", "修正にはしばらく時間がかかります。お待ちください。","オープンソースにはどうすれば貢献できますか？","今週中に完了する必要があります。ご支援をお願いします。");
+// JFV END
 
 for($i=0;$i<5;$i++)
 {
@@ -828,7 +998,10 @@ for($i=0;$i<5;$i++)
 
 //Populate PriceBook data
 
-$PB_array = array ("Cd-R PB", "Vtiger PB", "Gator PB", "Kyple PB", "Pastor PB", "Zoho PB", "PB_100", "Per_PB", "CST_PB", "GATE_PB", "Chevron_PB", "Pizza_PB");
+// JFV - change dummy data
+//$PB_array = array ("Cd-R PB", "Vtiger PB", "Gator PB", "Kyple PB", "Pastor PB", "Zoho PB", "PB_100", "Per_PB", "CST_PB", "GATE_PB", "Chevron_PB", "Pizza_PB");
+$PB_array = array ("例）台帳 001", "例）台帳 002", "例）台帳 101", "例）台帳 102", "例）台帳 201", "例）台帳 202", "例）台帳 301", "例）台帳 302", "例）台帳 401", "例）台帳 402", "例）台帳 501", "例）台帳 502");
+// JFV END
 $Active_array = array ("0", "1", "1", "0", "1","0", "1", "1", "0", "1","0","1");
 
 //$num_array = array(0,1,2,3,4);
@@ -849,9 +1022,14 @@ for($i=0;$i<12;$i++)
 
 $status_array=array("Open","In Progress","Wait For Response","Open","Closed");
 $category_array=array("Big Problem","Small Problem","Other Problem","Small Problem","Other Problem");
-$ticket_title_array=array("Upload Attachment problem",
-			"Individual Customization -Menu and RSS","Export Output query",
-		"Import Error CSV Leads","How to automatically add a lead from a web form to VTiger");
+// JFV - change dummy data
+//$ticket_title_array=array("Upload Attachment problem",
+//			"Individual Customization -Menu and RSS","Export Output query",
+//		"Import Error CSV Leads","How to automatically add a lead from a web form to VTiger");
+$ticket_title_array=array("例）添付ファイルのアップロード問題",
+			"例）個別カスタマイズ - メニューと RSS","例）クエリ出力のエクスポート",
+		"例）CSV 見込み客のインポート エラー","例）Web フォームから vtigerCRM への見込み客の自動追加の方法");
+// JFV END
 
 for($i=0;$i<5;$i++)
 {
@@ -891,8 +1069,12 @@ for($i=0;$i<5;$i++)
 }
 
 // Populate Activities Data
-$task_array=array("Tele Conference","Call user - John","Send Fax to Mary Smith");
-$event_array=array("","","Call Smith","Team Meeting","Call Richie","Meeting with Don");
+// JFV - change dummy data
+//$task_array=array("Tele Conference","Call user - John","Send Fax to Mary Smith");
+$task_array=array("例）電話会議","例）顧客電話 - 佐藤様","例）三上様へ FAX 送信");
+//$event_array=array("","","Call Smith","Team Meeting","Call Richie","Meeting with Don");
+$event_array=array("","","例）佐藤様電話","例）チーム会議","例）後藤様電話","例）川島さんと会議");
+// JFV END
 $task_status_array=array("Planned","In Progress","Completed");
 $task_priority_array=array("High","Medium","Low");
 $visibility=array("","","Private","Public","Private","Public");
@@ -989,7 +1171,10 @@ $expected_revenue = Array("250000","750000","500000");
 $budget_cost = Array("25000","50000","90000");
 $actual_cost = Array("23500","45000","80000");
 $num_sent = Array("2000","2500","3000");
-$clo_date = Array('2003-1-2','2004-2-3','2005-4-12');
+// JFV - change dummy data
+//$clo_date = Array('2003-1-2','2004-2-3','2005-4-12');
+$clo_date = Array('2012-1-2','2012-2-3','2012-4-12');
+// JFV END
 
 $expected_response_count = Array("2500","7500","5000");
 $expected_sales_count = Array("25000","50000","90000");
@@ -1034,10 +1219,15 @@ for($i=0;$i<count($campaign_name_array);$i++)
 
 //Populate My Sites Data 
 
-$portalname = array ("Vtiger", "Vtiger Blogs", "Vtiger Forums", "VtigerForge", "Vtiger Docs");
-$portalurl = array ("http://vtiger.com", "http://blogs.vtiger.com", "http://forums.vtiger.com", "http://vtigerforge.com", "http://wiki.vtiger.com");
+// JFV - change my sites links
+//$portalname = array ("Vtiger", "Vtiger Blogs", "Vtiger Forums", "VtigerForge", "Vtiger Docs");
+$portalname = array ("vtigerCRM.jp", "Vtiger", "Vtiger Blogs", "Vtiger Forums", "VtigerForge", "Vtiger Docs");
+//$portalurl = array ("http://vtiger.com", "http://blogs.vtiger.com", "http://forums.vtiger.com", "http://vtigerforge.com", "http://wiki.vtiger.com");
+$portalurl = array ("http://www.vtigerCRM.jp", "http://vtiger.com", "http://blogs.vtiger.com", "http://forums.vtiger.com", "http://vtigerforge.com", "http://wiki.vtiger.com");
 
-for($i=0;$i<5;$i++)
+//for($i=0;$i<5;$i++)
+for($i=0;$i<6;$i++)
+// JFV END
 {
 	$portalid = $adb->getUniqueId('vtiger_portal');
 	$portal_qry = "insert into vtiger_portal values (?,?,?,?,?)";

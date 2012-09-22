@@ -983,10 +983,21 @@ function populateDefaultWorkflows($adb) {
 	$task->methodName = "NotifyOwner";
 	$task->recepient = "\$(assigned_user_id : (Users) email1)";
 	$task->subject = "Regarding Account Creation";
+// JFV - add Japanese localization to email notification
+	$task->subject = "顧客企業が作成されました / " . $task->subject;
+// JFV END
 	$task->content = "An Account has been assigned to you on vtigerCRM<br>Details of account are :<br><br>".
 			"AccountId:".'<b>$account_no</b><br>'."AccountName:".'<b>$accountname</b><br>'."Rating:".'<b>$rating</b><br>'.
 			"Industry:".'<b>$industry</b><br>'."AccountType:".'<b>$accounttype</b><br>'.
 			"Description:".'<b>$description</b><br><br><br>'."Thank You<br>Admin";
+// JFV - add Japanese localization to email notification
+	$task->content = "vtigerCRM にて顧客企業があなたに割り当てられました。<br>顧客企業の詳細は次のとおりです：<br><br>".
+			"顧客企業 No:".'<b>$account_no</b><br>'."顧客企業名:".'<b>$accountname</b><br>'."各付け:".'<b>$rating</b><br>'.
+			"業界:".'<b>$industry</b><br>'."タイプ:".'<b>$accounttype</b><br>'.
+			"詳細:".'<b>$description</b><br><br><br>'."宜しくお願いします<br>管理者".
+			"<br><br>---------------<br>".
+			$task->content;
+// JFV END
 	$task->summary="An account has been created ";
 	$tm->saveTask($task);
 	$adb->pquery("update com_vtiger_workflows set defaultworkflow=? where workflow_id=?",array(1,$id1));
@@ -1008,11 +1019,23 @@ function populateDefaultWorkflows($adb) {
 	$task->methodName = "NotifyOwner";
 	$task->recepient = "\$(assigned_user_id : (Users) email1)";
 	$task->subject = "Regarding Contact Creation";
+// JFV - add Japanese localization to email notification
+	$task->subject = "顧客担当者が作成されました / " . $task->subject;
+// JFV END
 	$task->content = "An Contact has been assigned to you on vtigerCRM<br>Details of Contact are :<br><br>".
 			"Contact Id:".'<b>$contact_no</b><br>'."LastName:".'<b>$lastname</b><br>'."FirstName:".'<b>$firstname</b><br>'.
 			"Lead Source:".'<b>$leadsource</b><br>'.
 			"Department:".'<b>$department</b><br>'.
 			"Description:".'<b>$description</b><br><br><br>'."Thank You<br>Admin";
+// JFV - add Japanese localization to email notification
+	$task->content = "vtigerCRM にて顧客担当者があなたに割り当てられました。<br>詳細は次のとおりです:<br><br>".
+			"顧客担当者 ID:".'<b>$contact_no</b><br>'."姓:".'<b>$lastname</b><br>'."名:".'<b>$firstname</b><br>'.
+			"紹介元:".'<b>$leadsource</b><br>'.
+			"部門:".'<b>$department</b><br>'.
+			"詳細:".'<b>$description</b><br><br><br>'."宜しくお願いします<br>管理者".
+			"<br><br>---------------<br>".
+			$task->content;
+// JFV END
 	$task->summary="An contact has been created ";
 	$tm->saveTask($task);
 	$adb->pquery("update com_vtiger_workflows set defaultworkflow=? where workflow_id=?",array(1,$id1));
@@ -1035,13 +1058,26 @@ function populateDefaultWorkflows($adb) {
 	$task->methodName = "NotifyOwner";
 	$task->recepient = "\$(assigned_user_id : (Users) email1)";
 	$task->subject = "Regarding Contact Assignment";
+// JFV - add Japanese localization to email notification
+	$task->subject = "顧客担当者が割り当てられました / " . $task->subject;
+// JFV END
 	$task->content = "An Contact has been assigned to you on vtigerCRM<br>Details of Contact are :<br><br>".
 			"Contact Id:".'<b>$contact_no</b><br>'."LastName:".'<b>$lastname</b><br>'."FirstName:".'<b>$firstname</b><br>'.
 			"Lead Source:".'<b>$leadsource</b><br>'.
 			"Department:".'<b>$department</b><br>'.
 			"Description:".'<b>$description</b><br><br><br>'."And <b>CustomerPortal Login Details</b> is sent to the " .
 			"EmailID :-".'$email<br>'."<br>Thank You<br>Admin";
-		
+// JFV - add Japanese localization to email notification
+	$task->content = "vtigerCRM にて顧客担当者があなたに割り当てられました。<br>詳細は次のとおりです<br><br>".
+			"顧客担当者 ID:".'<b>$contact_no</b><br>'."姓:".'<b>$lastname</b><br>'."名:".'<b>$firstname</b><br>'.
+			"紹介元:".'<b>$leadsource</b><br>'.
+			"部門:".'<b>$department</b><br>'.
+			"詳細:".'<b>$description</b><br><br><br>'."また、<b>顧客ポータルのログインの詳細は</b>、次に送信しました：" .
+			"電子メール :-".'$email<br>'."<br>宜しくお願いします<br>管理者".
+			"<br><br>---------------<br>".
+			$task->content;
+// JFV END
+
 	$task->summary="An contact has been created ";
 	$tm->saveTask($task);
 	$adb->pquery("update com_vtiger_workflows set defaultworkflow=? where workflow_id=?",array(1,$id1));
@@ -1061,12 +1097,25 @@ function populateDefaultWorkflows($adb) {
 	$task->active=true;
 	$task->recepient = "\$(assigned_user_id : (Users) email1)";
 	$task->subject = "Regarding Potential Assignment";
+// JFV - add Japanese localization to email notification
+		$task->subject = "案件が割り当てられました / " . $task->subject;
+// JFV END
 	$task->content = "An Potential has been assigned to you on vtigerCRM<br>Details of Potential are :<br><br>".
 			"Potential No:".'<b>$potential_no</b><br>'."Potential Name:".'<b>$potentialname</b><br>'.
 			"Amount:".'<b>$amount</b><br>'.
 			"Expected Close Date:".'<b>$closingdate</b><br>'.
 			"Type:".'<b>$opportunity_type</b><br><br><br>'.
 			"Description :".'$description<br>'."<br>Thank You<br>Admin";
+// JFV - add Japanese localization to email notification
+	$task->content = "vtigerCRM にて案件があなたに割り当てられました。<br>詳細は次のとおりです:<br><br>".
+			"案件 No:".'<b>$potential_no</b><br>'."案件名:".'<b>$potentialname</b><br>'.
+			"金額:".'<b>$amount</b><br>'.
+			"完了予定日:".'<b>$closingdate</b><br>'.
+			"タイプ:".'<b>$opportunity_type</b><br><br><br>'.
+			"詳細 :".'$description<br>'."<br>宜しくお願いします<br>管理者".
+			"<br><br>---------------<br>".
+			$task->content;
+// JFV END
 
 	$task->summary="An Potential has been created ";
 	$tm->saveTask($task);
